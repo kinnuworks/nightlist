@@ -1,0 +1,241 @@
+dx_id,patient_id,icd10,diagnosis_text,stage_text,diagnosis_date,measurable_disease
+DX30001,P10001,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2025-06-02,Y
+DX30002,P10002,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2026-03-13,Y
+DX30003,P10003,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2026-04-13,Y
+DX30004,P10004,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2025-12-07,Y
+DX30005,P10005,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2026-02-28,Y
+DX30006,P10006,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2026-08-21,Y
+DX30007,P10007,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-03-25,Y
+DX30008,P10008,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2026-08-27,Y
+DX30009,P10009,C34.90,Large cell carcinoma of lung,Stage IVB (cT3 cN3 cM1c),2024-11-18,Y
+DX30010,P10010,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIIA (cT1c cN2 cM0),2026-04-28,Y
+DX30011,P10011,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIIB (cT3 cN2 cM0),2025-10-21,Y
+DX30012,P10012,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IA (cT1b cN0 cM0),2026-09-08,
+DX30013,P10013,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2026-06-03,Y
+DX30014,P10014,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIIC (cT4 cN3 cM0),2026-04-22,Y
+DX30015,P10015,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIA (cT2b cN0 cM0),2026-06-25,
+DX30016,P10016,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-05-06,
+DX30017,P10017,C34.90,Large cell carcinoma of lung,Stage IVB (cT3 cN3 cM1c),2026-08-20,Y
+DX30018,P10018,C34.90,Large cell carcinoma of lung,Stage IIIB (cT3 cN2 cM0),2026-01-08,
+DX30019,P10019,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-11-25,Y
+DX30020,P10020,C34.90,"Non-small cell lung cancer, not otherwise specified",Stage IVB (cT3 cN3 cM1c),2026-02-27,Y
+DX30021,P10021,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVA (cT2a cN2 cM1b),2026-07-15,Y
+DX30022,P10022,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVB (cT3 cN3 cM1c),2026-03-16,Y
+DX30023,P10023,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IIIB (cT3 cN2 cM0),2025-10-05,Y
+DX30024,P10024,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVA (cT2a cN2 cM1b),2026-01-13,Y
+DX30025,P10025,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVA (cT2a cN2 cM1b),2026-02-18,Y
+DX30026,P10026,C34.90,"Non-small cell lung cancer, not otherwise specified",Stage IVB (cT3 cN3 cM1c),2026-06-28,Y
+DX30027,P10027,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IIIC (cT4 cN3 cM0),2026-01-14,Y
+DX30028,P10028,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVB (cT3 cN3 cM1c),2025-02-09,N
+DX30029,P10029,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2024-12-29,N
+DX30030,P10030,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIIA (cT1c cN2 cM0),2025-10-14,N
+DX30031,P10031,C34.90,Large cell carcinoma of lung,Stage IA (cT1b cN0 cM0),2025-09-25,
+DX30032,P10032,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IB (cT2a cN0 cM0),2026-07-02,
+DX30033,P10033,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVB (cT3 cN3 cM1c),2026-07-04,Y
+DX30034,P10034,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2025-01-22,
+DX30035,P10035,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVB (cT3 cN3 cM1c),2025-10-28,Y
+DX30036,P10036,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2026-02-03,Y
+DX30037,P10037,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVA (cT2a cN2 cM1b),2025-04-10,N
+DX30038,P10038,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIA (cT2b cN0 cM0),2026-07-20,
+DX30039,P10039,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-08-25,Y
+DX30040,P10040,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVA (cT2a cN2 cM1b),2026-04-19,Y
+DX30041,P10041,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2025-12-23,Y
+DX30042,P10042,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIA (cT1c cN2 cM0),2026-04-27,Y
+DX30043,P10043,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2025-07-22,Y
+DX30044,P10044,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2025-11-22,Y
+DX30045,P10045,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IA (cT1b cN0 cM0),2026-05-01,Y
+DX30046,P10046,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVB (cT3 cN3 cM1c),2024-11-25,Y
+DX30047,P10047,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2024-11-09,Y
+DX30048,P10048,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVA (cT2a cN2 cM1b),2026-07-01,Y
+DX30049,P10049,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVB (cT3 cN3 cM1c),2026-04-29,N
+DX30050,P10050,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVB (cT3 cN3 cM1c),2026-08-08,Y
+DX30051,P10051,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIB (cT3 cN0 cM0),2026-07-01,
+DX30052,P10052,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IIA (cT2b cN0 cM0),2026-02-21,
+DX30053,P10053,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIA (cT1c cN2 cM0),2026-07-04,Y
+DX30054,P10054,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IA (cT1b cN0 cM0),2026-02-08,
+DX30055,P10055,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVA (cT2a cN2 cM1b),2026-01-20,Y
+DX30056,P10056,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIA (cT1c cN2 cM0),2025-10-01,Y
+DX30057,P10057,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIA (cT2b cN0 cM0),2026-03-09,Y
+DX30058,P10058,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IB (cT2a cN0 cM0),2026-02-06,
+DX30059,P10059,C34.90,Large cell carcinoma of lung,Stage IB (cT2a cN0 cM0),2026-08-04,Y
+DX30060,P10060,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IB (cT2a cN0 cM0),2026-06-04,Y
+DX30061,P10061,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVB (cT3 cN3 cM1c),2024-12-03,Y
+DX30062,P10062,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2026-08-26,Y
+DX30063,P10063,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIB (cT3 cN2 cM0),2026-05-17,N
+DX30064,P10064,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVB (cT3 cN3 cM1c),2026-05-28,Y
+DX30065,P10065,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2024-11-21,Y
+DX30066,P10066,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIB (cT3 cN0 cM0),2025-12-05,
+DX30067,P10067,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2025-11-04,Y
+DX30068,P10068,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IB (cT2a cN0 cM0),2026-04-02,
+DX30069,P10069,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIIB (cT3 cN2 cM0),2026-05-06,Y
+DX30070,P10070,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2026-01-30,N
+DX30071,P10071,C34.90,Large cell carcinoma of lung,Stage IVB (cT3 cN3 cM1c),2026-09-15,Y
+DX30072,P10072,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-03-11,Y
+DX30073,P10073,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIIB (cT3 cN2 cM0),2026-08-15,Y
+DX30074,P10074,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IIA (cT2b cN0 cM0),2025-09-09,
+DX30075,P10075,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVB (cT3 cN3 cM1c),2026-04-20,Y
+DX30076,P10076,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IIB (cT3 cN0 cM0),2026-09-07,Y
+DX30077,P10077,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2025-07-27,Y
+DX30078,P10078,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IA (cT1b cN0 cM0),2026-02-03,
+DX30079,P10079,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIB (cT3 cN2 cM0),2026-02-22,Y
+DX30080,P10080,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2025-04-07,Y
+DX30081,P10081,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIC (cT4 cN3 cM0),2026-06-16,Y
+DX30082,P10082,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIA (cT2b cN0 cM0),2026-01-15,
+DX30083,P10083,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIB (cT3 cN0 cM0),2026-01-08,
+DX30084,P10084,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVB (cT3 cN3 cM1c),2026-02-06,Y
+DX30085,P10085,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IIIC (cT4 cN3 cM0),2026-03-09,Y
+DX30086,P10086,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVB (cT3 cN3 cM1c),2025-07-10,Y
+DX30087,P10087,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIIB (cT3 cN2 cM0),2026-02-06,Y
+DX30088,P10088,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2024-12-02,
+DX30089,P10089,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIA (cT2b cN0 cM0),2026-03-08,
+DX30090,P10090,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIB (cT3 cN2 cM0),2026-09-09,Y
+DX30091,P10091,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IIIB (cT3 cN2 cM0),2025-11-02,Y
+DX30092,P10092,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVB (cT3 cN3 cM1c),2025-10-26,Y
+DX30093,P10093,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2025-01-13,Y
+DX30094,P10094,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVA (cT2a cN2 cM1b),2026-03-04,Y
+DX30095,P10095,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2025-10-27,Y
+DX30096,P10096,C34.90,Large cell carcinoma of lung,Stage IVB (cT3 cN3 cM1c),2025-06-14,Y
+DX30097,P10097,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2026-04-05,Y
+DX30098,P10098,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIA (cT2b cN0 cM0),2026-08-11,
+DX30099,P10099,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2026-07-05,Y
+DX30100,P10100,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVB (cT3 cN3 cM1c),2025-01-09,Y
+DX30101,P10101,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-11-18,Y
+DX30102,P10102,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVB (cT3 cN3 cM1c),2025-12-19,Y
+DX30103,P10103,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IIB (cT3 cN0 cM0),2026-08-09,
+DX30104,P10104,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2025-05-28,Y
+DX30105,P10105,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVA (cT2a cN2 cM1b),2025-08-14,
+DX30106,P10106,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2026-01-11,Y
+DX30107,P10107,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIB (cT3 cN0 cM0),2026-07-30,
+DX30108,P10108,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IIIA (cT1c cN2 cM0),2026-03-04,N
+DX30109,P10109,C34.90,Large cell carcinoma of lung,Stage IVB (cT3 cN3 cM1c),2026-07-30,Y
+DX30110,P10110,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIB (cT3 cN2 cM0),2026-03-07,Y
+DX30111,P10111,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIB (cT3 cN0 cM0),2026-02-18,Y
+DX30112,P10112,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVA (cT2a cN2 cM1b),2025-02-19,Y
+DX30113,P10113,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IIIC (cT4 cN3 cM0),2026-03-08,Y
+DX30114,P10114,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-06-07,Y
+DX30115,P10115,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IIIC (cT4 cN3 cM0),2026-03-08,Y
+DX30116,P10116,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVA (cT2a cN2 cM1b),2026-03-17,
+DX30117,P10117,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2026-04-18,Y
+DX30118,P10118,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IA (cT1b cN0 cM0),2026-07-21,
+DX30119,P10119,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-09-21,N
+DX30120,P10120,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIB (cT3 cN2 cM0),2026-10-01,Y
+DX30121,P10121,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVA (cT2a cN2 cM1b),2025-02-07,Y
+DX30122,P10122,C34.90,Large cell carcinoma of lung,Stage IIIB (cT3 cN2 cM0),2026-07-10,Y
+DX30123,P10123,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVB (cT3 cN3 cM1c),2025-06-09,Y
+DX30124,P10124,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2026-02-09,
+DX30125,P10125,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVB (cT3 cN3 cM1c),2026-07-30,Y
+DX30126,P10126,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IIA (cT2b cN0 cM0),2025-10-12,
+DX30127,P10127,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IIIA (cT1c cN2 cM0),2025-09-08,Y
+DX30128,P10128,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2025-08-03,N
+DX30129,P10129,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIB (cT3 cN0 cM0),2026-05-08,Y
+DX30130,P10130,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVA (cT2a cN2 cM1b),2025-05-13,Y
+DX30131,P10131,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IA (cT1b cN0 cM0),2025-11-07,
+DX30132,P10132,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2025-10-22,Y
+DX30133,P10133,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIA (cT1c cN2 cM0),2026-07-30,Y
+DX30134,P10134,C34.90,"Non-small cell lung cancer, not otherwise specified",Stage IIIB (cT3 cN2 cM0),2026-02-23,Y
+DX30135,P10135,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IA (cT1b cN0 cM0),2026-09-01,Y
+DX30136,P10136,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVB (cT3 cN3 cM1c),2025-06-26,
+DX30137,P10137,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVA (cT2a cN2 cM1b),2025-08-21,Y
+DX30138,P10138,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIB (cT3 cN2 cM0),2026-04-13,Y
+DX30139,P10139,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-08-19,Y
+DX30140,P10140,C34.90,"Non-small cell lung cancer, not otherwise specified",Stage IIIA (cT1c cN2 cM0),2025-11-19,Y
+DX30141,P10141,C34.90,Large cell carcinoma of lung,Stage IVB (cT3 cN3 cM1c),2025-06-18,Y
+DX30142,P10142,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVB (cT3 cN3 cM1c),2026-06-04,Y
+DX30143,P10143,C34.90,Large cell carcinoma of lung,Stage IVA (cT2a cN2 cM1b),2025-05-16,Y
+DX30144,P10144,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVB (cT3 cN3 cM1c),2025-09-24,
+DX30145,P10145,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2026-06-16,Y
+DX30146,P10146,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2026-02-12,Y
+DX30147,P10147,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVB (cT3 cN3 cM1c),2025-11-23,Y
+DX30148,P10148,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVA (cT2a cN2 cM1b),2025-04-30,
+DX30149,P10149,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIIA (cT1c cN2 cM0),2025-09-24,Y
+DX30150,P10150,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2025-11-09,Y
+DX30151,P10151,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVA (cT2a cN2 cM1b),2025-04-10,N
+DX30152,P10152,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIIB (cT3 cN2 cM0),2026-08-05,Y
+DX30153,P10153,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IA (cT1b cN0 cM0),2026-09-23,
+DX30154,P10154,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IIIA (cT1c cN2 cM0),2026-04-30,Y
+DX30155,P10155,C34.90,Large cell carcinoma of lung,Stage IVB (cT3 cN3 cM1c),2025-11-11,Y
+DX30156,P10156,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2025-11-16,Y
+DX30157,P10157,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIIA (cT1c cN2 cM0),2026-01-14,Y
+DX30158,P10158,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IIIB (cT3 cN2 cM0),2026-05-23,Y
+DX30159,P10159,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIIC (cT4 cN3 cM0),2026-07-06,Y
+DX30160,P10160,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2026-10-04,Y
+DX30161,P10161,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2025-10-07,Y
+DX30162,P10162,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IIIB (cT3 cN2 cM0),2026-01-29,Y
+DX30163,P10163,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IB (cT2a cN0 cM0),2025-10-09,
+DX30164,P10164,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2024-12-11,Y
+DX30165,P10165,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIB (cT3 cN0 cM0),2026-06-26,
+DX30166,P10166,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIA (cT1c cN2 cM0),2025-12-12,Y
+DX30167,P10167,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2025-05-24,Y
+DX30168,P10168,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVA (cT2a cN2 cM1b),2024-12-15,Y
+DX30169,P10169,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVA (cT2a cN2 cM1b),2025-04-03,Y
+DX30170,P10170,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IIIC (cT4 cN3 cM0),2025-09-03,Y
+DX30171,P10171,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IIB (cT3 cN0 cM0),2026-08-14,
+DX30172,P10172,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2025-04-07,Y
+DX30173,P10173,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2025-08-04,Y
+DX30174,P10174,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2026-04-29,Y
+DX30175,P10175,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVB (cT3 cN3 cM1c),2026-04-26,Y
+DX30176,P10176,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVA (cT2a cN2 cM1b),2026-06-08,
+DX30177,P10177,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2025-10-11,Y
+DX30178,P10178,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVA (cT2a cN2 cM1b),2026-09-27,Y
+DX30179,P10179,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVB (cT3 cN3 cM1c),2025-02-18,Y
+DX30180,P10180,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVA (cT2a cN2 cM1b),2025-03-17,Y
+DX30181,P10181,C34.90,"Non-small cell lung cancer, not otherwise specified",Stage IIIB (cT3 cN2 cM0),2026-06-02,Y
+DX30182,P10182,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIB (cT3 cN0 cM0),2026-04-13,
+DX30183,P10183,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2026-04-30,Y
+DX30184,P10184,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IB (cT2a cN0 cM0),2026-08-08,
+DX30185,P10185,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIIB (cT3 cN2 cM0),2025-12-09,Y
+DX30186,P10186,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVA (cT2a cN2 cM1b),2025-08-04,Y
+DX30187,P10187,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IIIB (cT3 cN2 cM0),2026-07-04,Y
+DX30188,P10188,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVA (cT2a cN2 cM1b),2026-08-13,Y
+DX30189,P10189,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IA (cT1b cN0 cM0),2026-06-18,
+DX30190,P10190,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIA (cT1c cN2 cM0),2025-11-06,Y
+DX30191,P10191,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2024-12-17,Y
+DX30192,P10192,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIC (cT4 cN3 cM0),2025-12-15,Y
+DX30193,P10193,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVA (cT2a cN2 cM1b),2026-09-07,Y
+DX30194,P10194,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2026-01-05,Y
+DX30195,P10195,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-11-21,Y
+DX30196,P10196,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVB (cT3 cN3 cM1c),2025-04-18,Y
+DX30197,P10197,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVB (cT3 cN3 cM1c),2025-07-12,Y
+DX30198,P10198,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2026-05-11,Y
+DX30199,P10199,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIB (cT3 cN0 cM0),2025-12-04,Y
+DX30200,P10200,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVB (cT3 cN3 cM1c),2026-04-09,Y
+DX30201,P10201,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IA (cT1b cN0 cM0),2025-09-21,
+DX30202,P10202,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVB (cT3 cN3 cM1c),2026-04-01,Y
+DX30203,P10203,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2026-03-22,Y
+DX30204,P10204,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVB (cT3 cN3 cM1c),2025-08-07,Y
+DX30205,P10205,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2026-01-17,Y
+DX30206,P10206,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2025-03-05,Y
+DX30207,P10207,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVA (cT2a cN2 cM1b),2025-01-24,Y
+DX30208,P10208,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVB (cT3 cN3 cM1c),2024-12-29,Y
+DX30209,P10209,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IIIA (cT1c cN2 cM0),2026-03-16,Y
+DX30210,P10210,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIB (cT3 cN0 cM0),2025-12-31,Y
+DX30211,P10211,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVA (cT2a cN2 cM1b),2026-09-21,Y
+DX30212,P10212,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IVB (cT3 cN3 cM1c),2025-02-13,Y
+DX30213,P10213,C34.90,"Non-small cell lung cancer, not otherwise specified",Stage IVB (cT3 cN3 cM1c),2025-05-04,Y
+DX30214,P10214,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIIB (cT3 cN2 cM0),2026-02-08,Y
+DX30215,P10215,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IVA (cT2a cN2 cM1b),2026-06-06,Y
+DX30216,P10216,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIA (cT1c cN2 cM0),2026-07-27,N
+DX30217,P10217,C34.31,"Squamous cell carcinoma, left main bronchus",Stage IA (cT1b cN0 cM0),2025-09-04,
+DX30218,P10218,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IA (cT1b cN0 cM0),2025-12-05,
+DX30219,P10219,C34.90,Large cell carcinoma of lung,Stage IB (cT2a cN0 cM0),2025-09-20,
+DX30220,P10220,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2025-10-26,N
+DX30221,P10221,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2024-11-24,Y
+DX30222,P10222,C34.11,Adenocarcinoma of right upper lobe of lung,Stage IIIC (cT4 cN3 cM0),2026-03-11,Y
+DX30223,P10223,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVA (cT2a cN2 cM1b),2024-11-22,Y
+DX30224,P10224,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIIB (cT3 cN2 cM0),2026-02-26,Y
+DX30225,P10225,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IIB (cT3 cN0 cM0),2025-09-19,
+DX30226,P10226,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVB (cT3 cN3 cM1c),2025-12-11,
+DX30227,P10227,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVA (cT2a cN2 cM1b),2025-05-02,Y
+DX30228,P10228,C34.90,"Non-small cell lung cancer, not otherwise specified",Stage IVB (cT3 cN3 cM1c),2026-04-07,Y
+DX30229,P10229,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2024-11-09,Y
+DX30230,P10230,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IIIC (cT4 cN3 cM0),2025-10-01,Y
+DX30231,P10231,C34.31,Squamous cell carcinoma of right lower lobe of lung,Stage IVA (cT2a cN2 cM1b),2026-06-04,Y
+DX30232,P10232,C34.90,"Non-small cell lung cancer, not otherwise specified",Stage IIA (cT2b cN0 cM0),2026-01-14,
+DX30233,P10233,C34.90,"Non-small cell lung cancer, not otherwise specified",Stage IB (cT2a cN0 cM0),2026-09-17,
+DX30234,P10234,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2025-07-08,Y
+DX30235,P10235,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVB (cT3 cN3 cM1c),2025-12-06,Y
+DX30236,P10236,C34.11,"Non-small cell lung carcinoma, adenocarcinoma subtype",Stage IVA (cT2a cN2 cM1b),2024-12-06,Y
+DX30237,P10237,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IVB (cT3 cN3 cM1c),2026-03-16,Y
+DX30238,P10238,C34.11,"Lung adenocarcinoma, left lower lobe",Stage IA (cT1b cN0 cM0),2026-06-02,
+DX30239,P10239,C34.90,"Malignant neoplasm of upper lobe, right bronchus or lung",Stage IVA (cT2a cN2 cM1b),2026-01-12,Y
+DX30240,P10240,C34.90,Large cell carcinoma of lung,Stage IIIB (cT3 cN2 cM0),2026-02-08,Y

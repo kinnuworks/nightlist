@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env.local
+logs/*.jsonl
+data/runtime/
+*.log
+.DS_Store
+web/replay-data/
+data/sources/ctgov_nsclc_us.json

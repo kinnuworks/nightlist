@@ -1,0 +1,32 @@
+{
+  "name": "@nightlist/server",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "start": "tsx src/main.ts",
+    "night": "tsx src/cli/night.ts",
+    "compile": "tsx src/cli/compile.ts",
+    "test": "tsx --test test/*.test.ts",
+    "zetaris:sql": "tsx scripts/zetaris-sql.ts",
+    "zetaris:setup": "tsx scripts/zetaris-setup.ts",
+    "generate": "tsx scripts/generate-clinic.ts",
+    "terminology": "tsx scripts/resolve-terminology.ts",
+    "trials": "tsx scripts/fetch-trials.ts",
+    "demo": "tsx scripts/demo-two-nights.ts",
+    "eval:sample": "tsx scripts/eval-sample.ts",
+    "eval": "tsx scripts/eval-compare.ts"
+  },
+  "dependencies": {
+    "@duckdb/node-api": "^2.0.0-r.1",
+    "@hono/node-server": "^2.1.5",
+    "hono": "^4.13.14",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

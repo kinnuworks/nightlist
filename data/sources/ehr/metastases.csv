@@ -1,0 +1,235 @@
+met_id,patient_id,site,status,noted_date
+M50001,P10001,bone,active,2026-04-16
+M50002,P10002,adrenal,active,2026-04-01
+M50003,P10003,pleura,active,2026-06-17
+M50004,P10004,liver,active,2026-05-30
+M50005,P10005,brain,active,2026-03-12
+M50006,P10005,bone,active,2026-04-07
+M50007,P10007,bone,active,2026-03-17
+M50008,P10008,brain,treated_stable,2026-04-25
+M50009,P10008,liver,active,2026-07-23
+M50010,P10009,bone,active,2026-07-23
+M50011,P10009,adrenal,active,2026-06-08
+M50012,P10009,pleura,active,2026-05-20
+M50013,P10013,bone,active,2026-07-24
+M50014,P10017,brain,treated_stable,2026-03-14
+M50015,P10017,bone,active,2026-09-15
+M50016,P10017,contralateral lung,active,2026-08-22
+M50017,P10019,liver,active,2026-06-06
+M50018,P10019,adrenal,active,2026-07-20
+M50019,P10020,brain,active,2026-06-05
+M50020,P10021,contralateral lung,active,2026-03-29
+M50021,P10022,liver,active,2026-09-19
+M50022,P10022,adrenal,active,2026-06-16
+M50023,P10022,contralateral lung,active,2026-06-13
+M50024,P10024,liver,active,2026-07-15
+M50025,P10024,adrenal,active,2026-06-30
+M50026,P10025,liver,active,2026-07-20
+M50027,P10025,contralateral lung,active,2026-07-26
+M50028,P10026,liver,active,2026-09-03
+M50029,P10026,pleura,active,2026-04-25
+M50030,P10028,adrenal,active,2026-07-18
+M50031,P10029,liver,active,2026-09-03
+M50032,P10029,pleura,active,2026-04-02
+M50033,P10034,liver,active,2026-04-08
+M50034,P10034,contralateral lung,active,2026-03-12
+M50035,P10035,brain,treated_stable,2026-05-23
+M50036,P10035,contralateral lung,active,2026-03-13
+M50037,P10035,pleura,active,2026-06-09
+M50038,P10036,liver,active,2026-06-26
+M50039,P10036,contralateral lung,active,2026-08-23
+M50040,P10037,brain,treated_stable,2026-07-17
+M50041,P10041,bone,active,2026-04-13
+M50042,P10043,brain,treated_stable,2026-04-05
+M50043,P10043,adrenal,active,2026-08-19
+M50044,P10044,adrenal,active,2026-06-02
+M50045,P10046,liver,active,2026-04-13
+M50046,P10046,contralateral lung,active,2026-06-01
+M50047,P10047,liver,active,2026-05-17
+M50048,P10047,adrenal,active,2026-05-24
+M50049,P10048,contralateral lung,active,2026-05-25
+M50050,P10049,bone,active,2026-09-15
+M50051,P10049,pleura,active,2026-08-30
+M50052,P10050,brain,active,2026-05-17
+M50053,P10050,adrenal,active,2026-07-19
+M50054,P10055,bone,active,2026-06-01
+M50055,P10061,brain,treated_stable,2026-04-21
+M50056,P10061,bone,active,2026-03-29
+M50057,P10062,bone,active,2026-04-24
+M50058,P10062,pleura,active,2026-05-16
+M50059,P10064,brain,treated_stable,2026-05-06
+M50060,P10067,brain,treated_stable,2026-06-18
+M50061,P10067,adrenal,active,2026-05-08
+M50062,P10067,pleura,active,2026-08-12
+M50063,P10070,contralateral lung,active,2026-08-04
+M50064,P10071,pleura,active,2026-07-20
+M50065,P10072,adrenal,active,2026-06-15
+M50066,P10072,pleura,active,2026-05-14
+M50067,P10075,bone,active,2026-05-27
+M50068,P10077,liver,active,2026-09-08
+M50069,P10077,contralateral lung,active,2026-06-04
+M50070,P10080,liver,active,2026-07-22
+M50071,P10080,contralateral lung,active,2026-04-13
+M50072,P10086,contralateral lung,active,2026-09-07
+M50073,P10086,pleura,active,2026-04-15
+M50074,P10092,bone,active,2026-09-18
+M50075,P10092,adrenal,active,2026-06-01
+M50076,P10092,contralateral lung,active,2026-04-03
+M50077,P10093,liver,active,2026-04-23
+M50078,P10093,adrenal,active,2026-08-31
+M50079,P10093,contralateral lung,active,2026-06-10
+M50080,P10093,pleura,active,2026-07-29
+M50081,P10094,bone,active,2026-05-18
+M50082,P10095,bone,active,2026-07-19
+M50083,P10095,liver,active,2026-06-10
+M50084,P10095,adrenal,active,2026-05-15
+M50085,P10095,contralateral lung,active,2026-07-05
+M50086,P10097,liver,active,2026-05-29
+M50087,P10097,pleura,active,2026-08-05
+M50088,P10099,liver,active,2026-05-23
+M50089,P10099,contralateral lung,active,2026-09-03
+M50090,P10100,contralateral lung,active,2026-07-20
+M50091,P10101,contralateral lung,active,2026-05-09
+M50092,P10102,liver,active,2026-07-27
+M50093,P10104,adrenal,active,2026-08-04
+M50094,P10105,bone,active,2026-05-17
+M50095,P10106,contralateral lung,active,2026-07-26
+M50096,P10106,pleura,active,2026-03-28
+M50097,P10109,adrenal,active,2026-07-14
+M50098,P10109,contralateral lung,active,2026-08-19
+M50099,P10112,bone,active,2026-07-20
+M50100,P10112,adrenal,active,2026-06-25
+M50101,P10112,pleura,active,2026-08-18
+M50102,P10114,brain,active,2026-09-11
+M50103,P10116,brain,active,2026-06-04
+M50104,P10116,liver,active,2026-04-12
+M50105,P10116,adrenal,active,2026-04-29
+M50106,P10116,contralateral lung,active,2026-07-29
+M50107,P10117,contralateral lung,active,2026-09-13
+M50108,P10117,pleura,active,2026-09-25
+M50109,P10119,adrenal,active,2026-04-11
+M50110,P10119,contralateral lung,active,2026-06-14
+M50111,P10121,brain,treated_stable,2026-09-26
+M50112,P10121,contralateral lung,active,2026-09-07
+M50113,P10123,bone,active,2026-09-11
+M50114,P10123,liver,active,2026-06-10
+M50115,P10123,adrenal,active,2026-08-11
+M50116,P10123,contralateral lung,active,2026-07-02
+M50117,P10125,brain,treated_stable,2026-07-12
+M50118,P10125,bone,active,2026-07-25
+M50119,P10125,pleura,active,2026-08-25
+M50120,P10128,adrenal,active,2026-07-10
+M50121,P10128,pleura,active,2026-03-18
+M50122,P10130,bone,active,2026-05-08
+M50123,P10130,liver,active,2026-03-26
+M50124,P10132,brain,active,2026-05-25
+M50125,P10132,bone,active,2026-07-29
+M50126,P10132,liver,active,2026-05-27
+M50127,P10136,adrenal,active,2026-06-18
+M50128,P10137,bone,active,2026-07-15
+M50129,P10139,adrenal,active,2026-06-18
+M50130,P10139,contralateral lung,active,2026-08-28
+M50131,P10141,contralateral lung,active,2026-04-18
+M50132,P10142,adrenal,active,2026-09-26
+M50133,P10143,bone,active,2026-07-05
+M50134,P10143,adrenal,active,2026-03-17
+M50135,P10143,pleura,active,2026-09-11
+M50136,P10144,liver,active,2026-06-02
+M50137,P10145,liver,active,2026-08-27
+M50138,P10145,pleura,active,2026-04-27
+M50139,P10146,liver,active,2026-09-22
+M50140,P10147,bone,active,2026-08-10
+M50141,P10147,contralateral lung,active,2026-07-01
+M50142,P10148,pleura,active,2026-09-23
+M50143,P10150,brain,treated_stable,2026-05-22
+M50144,P10151,bone,active,2026-04-09
+M50145,P10155,bone,active,2026-04-29
+M50146,P10155,adrenal,active,2026-04-27
+M50147,P10155,contralateral lung,active,2026-04-16
+M50148,P10160,brain,treated_stable,2026-04-29
+M50149,P10160,adrenal,active,2026-08-07
+M50150,P10161,liver,active,2026-07-11
+M50151,P10164,adrenal,active,2026-03-23
+M50152,P10164,contralateral lung,active,2026-08-04
+M50153,P10164,pleura,active,2026-04-27
+M50154,P10168,bone,active,2026-07-07
+M50155,P10169,bone,active,2026-06-02
+M50156,P10169,liver,active,2026-06-16
+M50157,P10169,pleura,active,2026-03-24
+M50158,P10172,adrenal,active,2026-03-28
+M50159,P10173,contralateral lung,active,2026-04-08
+M50160,P10174,bone,active,2026-06-29
+M50161,P10174,contralateral lung,active,2026-06-24
+M50162,P10175,bone,active,2026-04-23
+M50163,P10175,liver,active,2026-07-25
+M50164,P10176,bone,active,2026-03-27
+M50165,P10176,adrenal,active,2026-08-20
+M50166,P10177,liver,active,2026-07-03
+M50167,P10177,adrenal,active,2026-09-08
+M50168,P10177,contralateral lung,active,2026-07-22
+M50169,P10177,pleura,active,2026-03-11
+M50170,P10178,liver,active,2026-07-06
+M50171,P10178,contralateral lung,active,2026-05-09
+M50172,P10179,adrenal,active,2026-04-12
+M50173,P10179,pleura,active,2026-07-03
+M50174,P10180,brain,treated_stable,2026-04-15
+M50175,P10180,contralateral lung,active,2026-08-12
+M50176,P10183,adrenal,active,2026-07-21
+M50177,P10186,bone,active,2026-03-25
+M50178,P10186,pleura,active,2026-04-23
+M50179,P10188,brain,treated_stable,2026-06-24
+M50180,P10188,bone,active,2026-09-17
+M50181,P10188,adrenal,active,2026-04-28
+M50182,P10188,contralateral lung,active,2026-06-16
+M50183,P10191,liver,active,2026-06-05
+M50184,P10191,contralateral lung,active,2026-07-07
+M50185,P10191,pleura,active,2026-09-11
+M50186,P10193,pleura,active,2026-06-30
+M50187,P10194,pleura,active,2026-09-19
+M50188,P10196,liver,active,2026-04-14
+M50189,P10197,brain,treated_stable,2026-04-20
+M50190,P10197,contralateral lung,active,2026-06-14
+M50191,P10198,bone,active,2026-04-23
+M50192,P10200,liver,active,2026-05-04
+M50193,P10202,brain,active,2026-03-21
+M50194,P10202,liver,active,2026-04-04
+M50195,P10203,bone,active,2026-05-06
+M50196,P10203,liver,active,2026-05-23
+M50197,P10204,brain,active,2026-05-08
+M50198,P10205,adrenal,active,2026-06-08
+M50199,P10207,bone,active,2026-08-08
+M50200,P10207,adrenal,active,2026-05-29
+M50201,P10207,pleura,active,2026-09-24
+M50202,P10208,brain,treated_stable,2026-08-07
+M50203,P10211,adrenal,active,2026-04-12
+M50204,P10211,pleura,active,2026-05-11
+M50205,P10212,contralateral lung,active,2026-06-08
+M50206,P10215,brain,treated_stable,2026-09-03
+M50207,P10215,liver,active,2026-08-20
+M50208,P10220,bone,active,2026-09-24
+M50209,P10220,contralateral lung,active,2026-09-15
+M50210,P10221,brain,active,2026-04-11
+M50211,P10221,liver,active,2026-08-28
+M50212,P10221,pleura,active,2026-06-03
+M50213,P10226,bone,active,2026-07-29
+M50214,P10226,liver,active,2026-07-28
+M50215,P10226,contralateral lung,active,2026-07-24
+M50216,P10226,pleura,active,2026-08-18
+M50217,P10227,bone,active,2026-04-11
+M50218,P10227,liver,active,2026-05-15
+M50219,P10227,adrenal,active,2026-06-20
+M50220,P10228,bone,active,2026-03-26
+M50221,P10228,liver,active,2026-09-13
+M50222,P10228,adrenal,active,2026-04-11
+M50223,P10229,brain,active,2026-09-14
+M50224,P10229,bone,active,2026-03-13
+M50225,P10231,pleura,active,2026-06-26
+M50226,P10234,bone,active,2026-05-26
+M50227,P10235,brain,active,2026-08-25
+M50228,P10236,brain,treated_stable,2026-09-06
+M50229,P10236,liver,active,2026-06-24
+M50230,P10236,pleura,active,2026-07-04
+M50231,P10239,brain,active,2026-09-10
+M50232,P10239,adrenal,active,2026-07-27
+M50233,P10239,contralateral lung,active,2026-09-06
+M50234,P10239,pleura,active,2026-03-22

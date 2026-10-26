@@ -1,0 +1,38 @@
+{
+  "name": "Nightlist",
+  "track": "Solving Fragmented Intelligence",
+  "summary": "Overnight lung cancer trial screening for a community clinic: the model compiles public trial eligibility text into checks, and Zetaris runs them over patient data the model never sees.",
+  "users": ["clinical research coordinator", "oncology nurse navigator"],
+  "sponsor_technology": {
+    "zetaris": {
+      "role": "data layer",
+      "in_use_case": true,
+      "sources": ["EHR (PostgreSQL datasource)", "lab system files", "ClinicalTrials.gov REST", "RxNav REST", "NCI Thesaurus REST", "compiled trial feed"],
+      "usl": "trialmatch (10 tables)",
+      "dq_rules": 6,
+      "sql": "sql/"
+    },
+    "meterless": {
+      "engines": {
+        "world_model": "engines/world-model (official conformance 8/8)",
+        "hmem": "engines/hmem (official conformance 13/13)",
+        "scout_intent": "engines/scout-intent (official eval, all gates)"
+      },
+      "nightshift": "primary AI provider; routing modes meterless/deep and meterless/fast"
+    },
+    "nvidia": "Nemotron models behind Nightshift: a large model compiles criteria, a small one back-translates them",
+    "cursor": "not used"
+  },
+  "data": {
+    "trials": "ClinicalTrials.gov API v2, live snapshot",
+    "patients": "240 synthetic patients, no real patient data",
+    "terminology": ["RxNav", "NCI Thesaurus", "US Census ZCTA"]
+  },
+  "run": {
+    "setup": "npm run setup",
+    "demo": "npm run demo",
+    "start": "npm start",
+    "sample_mode": "SAMPLE_MODE=true (default)"
+  },
+  "pre_existing_components": "none"
+}

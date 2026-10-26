@@ -1,0 +1,12 @@
+CREATE TABLE patients (patient_id text PRIMARY KEY, mrn text, given_name text, family_name text, sex text, birth_date date, zip text, demo_story text);
+CREATE TABLE diagnoses (dx_id text PRIMARY KEY, patient_id text REFERENCES patients, icd10 text, diagnosis_text text, stage_text text, diagnosis_date date, measurable_disease text);
+CREATE TABLE metastases (met_id text PRIMARY KEY, patient_id text REFERENCES patients, site text, status text, noted_date date);
+CREATE TABLE medications (med_order_id text PRIMARY KEY, patient_id text REFERENCES patients, order_text text, line_of_therapy int, setting text, start_date date, end_date date);
+CREATE TABLE problems (problem_id text PRIMARY KEY, patient_id text REFERENCES patients, icd10 text, description text, status text);
+CREATE TABLE ecog (patient_id text REFERENCES patients, ecog_score int, recorded_date date);
+COPY patients FROM '/seed/patients.csv' CSV HEADER;
+COPY diagnoses FROM '/seed/diagnoses.csv' CSV HEADER;
+COPY metastases FROM '/seed/metastases.csv' CSV HEADER;
+COPY medications FROM '/seed/medications.csv' CSV HEADER NULL '';
+COPY problems FROM '/seed/problems.csv' CSV HEADER;
+COPY ecog FROM '/seed/ecog.csv' CSV HEADER;

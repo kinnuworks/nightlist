@@ -1,0 +1,358 @@
+problem_id,patient_id,icd10,description,status
+PL90001,P10001,I10,Essential hypertension,active
+PL90002,P10002,J44.9,Chronic obstructive pulmonary disease,active
+PL90003,P10004,J44.9,Chronic obstructive pulmonary disease,active
+PL90004,P10004,I10,Essential hypertension,active
+PL90005,P10005,E11.9,Type 2 diabetes mellitus,active
+PL90006,P10006,I10,Essential hypertension,active
+PL90007,P10007,B18.1,Chronic viral hepatitis B,active
+PL90008,P10010,J44.9,Chronic obstructive pulmonary disease,active
+PL90009,P10011,M32.9,"Systemic lupus erythematosus, unspecified",active
+PL90010,P10012,E11.9,Type 2 diabetes mellitus,active
+PL90011,P10014,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90012,P10014,J44.9,Chronic obstructive pulmonary disease,active
+PL90013,P10014,I10,Essential hypertension,active
+PL90014,P10014,E11.9,Type 2 diabetes mellitus,active
+PL90015,P10015,J44.9,Chronic obstructive pulmonary disease,active
+PL90016,P10015,I10,Essential hypertension,active
+PL90017,P10016,J44.9,Chronic obstructive pulmonary disease,active
+PL90018,P10017,J44.9,Chronic obstructive pulmonary disease,active
+PL90019,P10017,I10,Essential hypertension,active
+PL90020,P10018,J44.9,Chronic obstructive pulmonary disease,active
+PL90021,P10018,I10,Essential hypertension,active
+PL90022,P10018,E11.9,Type 2 diabetes mellitus,active
+PL90023,P10019,I10,Essential hypertension,active
+PL90024,P10020,J44.9,Chronic obstructive pulmonary disease,active
+PL90025,P10021,I10,Essential hypertension,active
+PL90026,P10021,E11.9,Type 2 diabetes mellitus,active
+PL90027,P10022,J44.9,Chronic obstructive pulmonary disease,active
+PL90028,P10022,I10,Essential hypertension,active
+PL90029,P10023,J44.9,Chronic obstructive pulmonary disease,active
+PL90030,P10023,I10,Essential hypertension,active
+PL90031,P10025,J44.9,Chronic obstructive pulmonary disease,active
+PL90032,P10026,M06.9,"Rheumatoid arthritis, unspecified",active
+PL90033,P10026,J44.9,Chronic obstructive pulmonary disease,active
+PL90034,P10027,I10,Essential hypertension,active
+PL90035,P10028,J44.9,Chronic obstructive pulmonary disease,active
+PL90036,P10029,J44.9,Chronic obstructive pulmonary disease,active
+PL90037,P10029,I10,Essential hypertension,active
+PL90038,P10030,J44.9,Chronic obstructive pulmonary disease,active
+PL90039,P10031,J44.9,Chronic obstructive pulmonary disease,active
+PL90040,P10031,I10,Essential hypertension,active
+PL90041,P10032,J44.9,Chronic obstructive pulmonary disease,active
+PL90042,P10032,E11.9,Type 2 diabetes mellitus,active
+PL90043,P10033,I10,Essential hypertension,active
+PL90044,P10034,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90045,P10034,J44.9,Chronic obstructive pulmonary disease,active
+PL90046,P10035,J44.9,Chronic obstructive pulmonary disease,active
+PL90047,P10035,I10,Essential hypertension,active
+PL90048,P10036,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90049,P10036,I10,Essential hypertension,active
+PL90050,P10038,J44.9,Chronic obstructive pulmonary disease,active
+PL90051,P10038,I10,Essential hypertension,active
+PL90052,P10038,E11.9,Type 2 diabetes mellitus,active
+PL90053,P10039,J70.4,"Drug-induced interstitial lung disorder (immune pneumonitis, grade 2)",active
+PL90054,P10039,J44.9,Chronic obstructive pulmonary disease,active
+PL90055,P10039,I10,Essential hypertension,active
+PL90056,P10040,M06.9,"Rheumatoid arthritis, unspecified",active
+PL90057,P10040,J44.9,Chronic obstructive pulmonary disease,active
+PL90058,P10040,I10,Essential hypertension,active
+PL90059,P10041,I10,Essential hypertension,active
+PL90060,P10042,J44.9,Chronic obstructive pulmonary disease,active
+PL90061,P10042,I10,Essential hypertension,active
+PL90062,P10043,J44.9,Chronic obstructive pulmonary disease,active
+PL90063,P10044,J44.9,Chronic obstructive pulmonary disease,active
+PL90064,P10044,I10,Essential hypertension,active
+PL90065,P10046,J44.9,Chronic obstructive pulmonary disease,active
+PL90066,P10046,E11.9,Type 2 diabetes mellitus,active
+PL90067,P10047,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90068,P10047,J44.9,Chronic obstructive pulmonary disease,active
+PL90069,P10049,J44.9,Chronic obstructive pulmonary disease,active
+PL90070,P10050,I10,Essential hypertension,active
+PL90071,P10050,E11.9,Type 2 diabetes mellitus,active
+PL90072,P10051,J44.9,Chronic obstructive pulmonary disease,active
+PL90073,P10051,E11.9,Type 2 diabetes mellitus,active
+PL90074,P10052,M06.9,"Rheumatoid arthritis, unspecified",active
+PL90075,P10052,J44.9,Chronic obstructive pulmonary disease,active
+PL90076,P10052,I10,Essential hypertension,active
+PL90077,P10053,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90078,P10053,J44.9,Chronic obstructive pulmonary disease,active
+PL90079,P10054,B18.1,Chronic viral hepatitis B,active
+PL90080,P10054,I10,Essential hypertension,active
+PL90081,P10055,E11.9,Type 2 diabetes mellitus,active
+PL90082,P10056,I10,Essential hypertension,active
+PL90083,P10057,B18.2,Chronic viral hepatitis C,active
+PL90084,P10057,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90085,P10057,J44.9,Chronic obstructive pulmonary disease,active
+PL90086,P10057,I10,Essential hypertension,active
+PL90087,P10059,J44.9,Chronic obstructive pulmonary disease,active
+PL90088,P10059,E11.9,Type 2 diabetes mellitus,active
+PL90089,P10061,J44.9,Chronic obstructive pulmonary disease,active
+PL90090,P10061,I10,Essential hypertension,active
+PL90091,P10061,E11.9,Type 2 diabetes mellitus,active
+PL90092,P10062,J44.9,Chronic obstructive pulmonary disease,active
+PL90093,P10062,I10,Essential hypertension,active
+PL90094,P10063,Z85.3,"Personal history of breast cancer (2009, no active treatment)",active
+PL90095,P10064,E11.9,Type 2 diabetes mellitus,active
+PL90096,P10065,E11.9,Type 2 diabetes mellitus,active
+PL90097,P10066,J44.9,Chronic obstructive pulmonary disease,active
+PL90098,P10066,I10,Essential hypertension,active
+PL90099,P10067,E11.9,Type 2 diabetes mellitus,active
+PL90100,P10069,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90101,P10069,I10,Essential hypertension,active
+PL90102,P10070,J44.9,Chronic obstructive pulmonary disease,active
+PL90103,P10070,I10,Essential hypertension,active
+PL90104,P10070,E11.9,Type 2 diabetes mellitus,active
+PL90105,P10072,J44.9,Chronic obstructive pulmonary disease,active
+PL90106,P10072,I10,Essential hypertension,active
+PL90107,P10073,M06.9,"Rheumatoid arthritis, unspecified",active
+PL90108,P10074,I10,Essential hypertension,active
+PL90109,P10074,E11.9,Type 2 diabetes mellitus,active
+PL90110,P10075,E11.9,Type 2 diabetes mellitus,active
+PL90111,P10077,J70.4,"Drug-induced interstitial lung disorder (immune pneumonitis, grade 2)",active
+PL90112,P10077,J44.9,Chronic obstructive pulmonary disease,active
+PL90113,P10077,I10,Essential hypertension,active
+PL90114,P10078,J44.9,Chronic obstructive pulmonary disease,active
+PL90115,P10078,E11.9,Type 2 diabetes mellitus,active
+PL90116,P10079,I10,Essential hypertension,active
+PL90117,P10080,J44.9,Chronic obstructive pulmonary disease,active
+PL90118,P10081,I10,Essential hypertension,active
+PL90119,P10081,E11.9,Type 2 diabetes mellitus,active
+PL90120,P10082,J44.9,Chronic obstructive pulmonary disease,active
+PL90121,P10082,I10,Essential hypertension,active
+PL90122,P10083,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90123,P10083,B18.1,Chronic viral hepatitis B,active
+PL90124,P10084,I10,Essential hypertension,active
+PL90125,P10084,E11.9,Type 2 diabetes mellitus,active
+PL90126,P10085,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90127,P10085,J44.9,Chronic obstructive pulmonary disease,active
+PL90128,P10085,I10,Essential hypertension,active
+PL90129,P10086,J44.9,Chronic obstructive pulmonary disease,active
+PL90130,P10087,I10,Essential hypertension,active
+PL90131,P10088,Z85.3,"Personal history of breast cancer (2009, no active treatment)",active
+PL90132,P10089,J44.9,Chronic obstructive pulmonary disease,active
+PL90133,P10090,I10,Essential hypertension,active
+PL90134,P10091,I10,Essential hypertension,active
+PL90135,P10092,J44.9,Chronic obstructive pulmonary disease,active
+PL90136,P10092,E11.9,Type 2 diabetes mellitus,active
+PL90137,P10095,J44.9,Chronic obstructive pulmonary disease,active
+PL90138,P10095,I10,Essential hypertension,active
+PL90139,P10096,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90140,P10096,J44.9,Chronic obstructive pulmonary disease,active
+PL90141,P10096,I10,Essential hypertension,active
+PL90142,P10097,J44.9,Chronic obstructive pulmonary disease,active
+PL90143,P10097,I10,Essential hypertension,active
+PL90144,P10098,J44.9,Chronic obstructive pulmonary disease,active
+PL90145,P10098,I10,Essential hypertension,active
+PL90146,P10099,J44.9,Chronic obstructive pulmonary disease,active
+PL90147,P10099,I10,Essential hypertension,active
+PL90148,P10100,B18.2,Chronic viral hepatitis C,active
+PL90149,P10100,J44.9,Chronic obstructive pulmonary disease,active
+PL90150,P10100,I10,Essential hypertension,active
+PL90151,P10101,I10,Essential hypertension,active
+PL90152,P10102,J44.9,Chronic obstructive pulmonary disease,active
+PL90153,P10102,E11.9,Type 2 diabetes mellitus,active
+PL90154,P10103,Z85.3,"Personal history of breast cancer (2009, no active treatment)",active
+PL90155,P10103,J44.9,Chronic obstructive pulmonary disease,active
+PL90156,P10103,I10,Essential hypertension,active
+PL90157,P10104,B18.2,Chronic viral hepatitis C,active
+PL90158,P10104,I10,Essential hypertension,active
+PL90159,P10104,E11.9,Type 2 diabetes mellitus,active
+PL90160,P10106,J44.9,Chronic obstructive pulmonary disease,active
+PL90161,P10107,I10,Essential hypertension,active
+PL90162,P10108,J44.9,Chronic obstructive pulmonary disease,active
+PL90163,P10109,I10,Essential hypertension,active
+PL90164,P10110,M32.9,"Systemic lupus erythematosus, unspecified",active
+PL90165,P10110,K50.90,"Crohn's disease, unspecified",active
+PL90166,P10110,J44.9,Chronic obstructive pulmonary disease,active
+PL90167,P10110,I10,Essential hypertension,active
+PL90168,P10111,I10,Essential hypertension,active
+PL90169,P10112,I10,Essential hypertension,active
+PL90170,P10114,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90171,P10115,I10,Essential hypertension,active
+PL90172,P10116,C61,Malignant neoplasm of prostate (on active surveillance),active
+PL90173,P10116,J44.9,Chronic obstructive pulmonary disease,active
+PL90174,P10117,I10,Essential hypertension,active
+PL90175,P10118,J44.9,Chronic obstructive pulmonary disease,active
+PL90176,P10119,J44.9,Chronic obstructive pulmonary disease,active
+PL90177,P10119,I10,Essential hypertension,active
+PL90178,P10120,J44.9,Chronic obstructive pulmonary disease,active
+PL90179,P10121,I10,Essential hypertension,active
+PL90180,P10121,E11.9,Type 2 diabetes mellitus,active
+PL90181,P10122,B18.2,Chronic viral hepatitis C,active
+PL90182,P10122,J44.9,Chronic obstructive pulmonary disease,active
+PL90183,P10122,I10,Essential hypertension,active
+PL90184,P10123,E11.9,Type 2 diabetes mellitus,active
+PL90185,P10124,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90186,P10125,Z85.3,"Personal history of breast cancer (2009, no active treatment)",active
+PL90187,P10125,I10,Essential hypertension,active
+PL90188,P10126,I10,Essential hypertension,active
+PL90189,P10127,J44.9,Chronic obstructive pulmonary disease,active
+PL90190,P10128,J44.9,Chronic obstructive pulmonary disease,active
+PL90191,P10129,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90192,P10130,I10,Essential hypertension,active
+PL90193,P10131,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90194,P10131,I10,Essential hypertension,active
+PL90195,P10132,J70.4,"Drug-induced interstitial lung disorder (immune pneumonitis, grade 2)",active
+PL90196,P10132,I10,Essential hypertension,active
+PL90197,P10132,E11.9,Type 2 diabetes mellitus,active
+PL90198,P10133,E11.9,Type 2 diabetes mellitus,active
+PL90199,P10134,J44.9,Chronic obstructive pulmonary disease,active
+PL90200,P10135,E11.9,Type 2 diabetes mellitus,active
+PL90201,P10136,J44.9,Chronic obstructive pulmonary disease,active
+PL90202,P10136,I10,Essential hypertension,active
+PL90203,P10137,M32.9,"Systemic lupus erythematosus, unspecified",active
+PL90204,P10137,I10,Essential hypertension,active
+PL90205,P10137,E11.9,Type 2 diabetes mellitus,active
+PL90206,P10138,J44.9,Chronic obstructive pulmonary disease,active
+PL90207,P10138,I10,Essential hypertension,active
+PL90208,P10139,I10,Essential hypertension,active
+PL90209,P10140,M06.9,"Rheumatoid arthritis, unspecified",active
+PL90210,P10140,I10,Essential hypertension,active
+PL90211,P10141,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90212,P10142,E11.9,Type 2 diabetes mellitus,active
+PL90213,P10144,J70.4,"Drug-induced interstitial lung disorder (immune pneumonitis, grade 2)",active
+PL90214,P10144,J44.9,Chronic obstructive pulmonary disease,active
+PL90215,P10145,K50.90,"Crohn's disease, unspecified",active
+PL90216,P10145,E11.9,Type 2 diabetes mellitus,active
+PL90217,P10146,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90218,P10146,E11.9,Type 2 diabetes mellitus,active
+PL90219,P10147,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90220,P10147,J44.9,Chronic obstructive pulmonary disease,active
+PL90221,P10147,E11.9,Type 2 diabetes mellitus,active
+PL90222,P10148,J44.9,Chronic obstructive pulmonary disease,active
+PL90223,P10148,I10,Essential hypertension,active
+PL90224,P10150,M32.9,"Systemic lupus erythematosus, unspecified",active
+PL90225,P10150,J44.9,Chronic obstructive pulmonary disease,active
+PL90226,P10150,I10,Essential hypertension,active
+PL90227,P10151,Z85.3,"Personal history of breast cancer (2009, no active treatment)",active
+PL90228,P10151,J44.9,Chronic obstructive pulmonary disease,active
+PL90229,P10152,I10,Essential hypertension,active
+PL90230,P10152,E11.9,Type 2 diabetes mellitus,active
+PL90231,P10153,Z85.3,"Personal history of breast cancer (2009, no active treatment)",active
+PL90232,P10154,I10,Essential hypertension,active
+PL90233,P10155,J44.9,Chronic obstructive pulmonary disease,active
+PL90234,P10155,I10,Essential hypertension,active
+PL90235,P10156,I10,Essential hypertension,active
+PL90236,P10157,I10,Essential hypertension,active
+PL90237,P10158,J44.9,Chronic obstructive pulmonary disease,active
+PL90238,P10159,J44.9,Chronic obstructive pulmonary disease,active
+PL90239,P10159,I10,Essential hypertension,active
+PL90240,P10160,J44.9,Chronic obstructive pulmonary disease,active
+PL90241,P10161,I10,Essential hypertension,active
+PL90242,P10161,E11.9,Type 2 diabetes mellitus,active
+PL90243,P10162,I10,Essential hypertension,active
+PL90244,P10162,E11.9,Type 2 diabetes mellitus,active
+PL90245,P10165,J44.9,Chronic obstructive pulmonary disease,active
+PL90246,P10166,J44.9,Chronic obstructive pulmonary disease,active
+PL90247,P10167,J44.9,Chronic obstructive pulmonary disease,active
+PL90248,P10168,J44.9,Chronic obstructive pulmonary disease,active
+PL90249,P10170,I10,Essential hypertension,active
+PL90250,P10170,E11.9,Type 2 diabetes mellitus,active
+PL90251,P10171,J44.9,Chronic obstructive pulmonary disease,active
+PL90252,P10171,I10,Essential hypertension,active
+PL90253,P10172,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90254,P10172,I10,Essential hypertension,active
+PL90255,P10173,M32.9,"Systemic lupus erythematosus, unspecified",active
+PL90256,P10173,J44.9,Chronic obstructive pulmonary disease,active
+PL90257,P10173,I10,Essential hypertension,active
+PL90258,P10174,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90259,P10174,I10,Essential hypertension,active
+PL90260,P10174,E11.9,Type 2 diabetes mellitus,active
+PL90261,P10175,B18.2,Chronic viral hepatitis C,active
+PL90262,P10175,I10,Essential hypertension,active
+PL90263,P10176,B18.1,Chronic viral hepatitis B,active
+PL90264,P10176,J44.9,Chronic obstructive pulmonary disease,active
+PL90265,P10177,J44.9,Chronic obstructive pulmonary disease,active
+PL90266,P10179,M32.9,"Systemic lupus erythematosus, unspecified",active
+PL90267,P10179,I10,Essential hypertension,active
+PL90268,P10182,I10,Essential hypertension,active
+PL90269,P10182,E11.9,Type 2 diabetes mellitus,active
+PL90270,P10183,I10,Essential hypertension,active
+PL90271,P10184,I10,Essential hypertension,active
+PL90272,P10187,J44.9,Chronic obstructive pulmonary disease,active
+PL90273,P10187,I10,Essential hypertension,active
+PL90274,P10188,J44.9,Chronic obstructive pulmonary disease,active
+PL90275,P10188,E11.9,Type 2 diabetes mellitus,active
+PL90276,P10189,M06.9,"Rheumatoid arthritis, unspecified",active
+PL90277,P10189,I10,Essential hypertension,active
+PL90278,P10191,I10,Essential hypertension,active
+PL90279,P10192,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90280,P10192,I10,Essential hypertension,active
+PL90281,P10193,J44.9,Chronic obstructive pulmonary disease,active
+PL90282,P10193,I10,Essential hypertension,active
+PL90283,P10194,J44.9,Chronic obstructive pulmonary disease,active
+PL90284,P10195,I10,Essential hypertension,active
+PL90285,P10196,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90286,P10196,I10,Essential hypertension,active
+PL90287,P10198,J44.9,Chronic obstructive pulmonary disease,active
+PL90288,P10198,I10,Essential hypertension,active
+PL90289,P10198,E11.9,Type 2 diabetes mellitus,active
+PL90290,P10199,C61,Malignant neoplasm of prostate (on active surveillance),active
+PL90291,P10200,I10,Essential hypertension,active
+PL90292,P10202,J44.9,Chronic obstructive pulmonary disease,active
+PL90293,P10202,I10,Essential hypertension,active
+PL90294,P10202,E11.9,Type 2 diabetes mellitus,active
+PL90295,P10203,E11.9,Type 2 diabetes mellitus,active
+PL90296,P10204,J70.4,"Drug-induced interstitial lung disorder (immune pneumonitis, grade 2)",active
+PL90297,P10204,J44.9,Chronic obstructive pulmonary disease,active
+PL90298,P10205,J44.9,Chronic obstructive pulmonary disease,active
+PL90299,P10205,I10,Essential hypertension,active
+PL90300,P10206,B20,HIV disease,active
+PL90301,P10206,J44.9,Chronic obstructive pulmonary disease,active
+PL90302,P10206,I10,Essential hypertension,active
+PL90303,P10207,E11.9,Type 2 diabetes mellitus,active
+PL90304,P10208,I10,Essential hypertension,active
+PL90305,P10209,K50.90,"Crohn's disease, unspecified",active
+PL90306,P10209,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90307,P10209,J44.9,Chronic obstructive pulmonary disease,active
+PL90308,P10209,I10,Essential hypertension,active
+PL90309,P10209,E11.9,Type 2 diabetes mellitus,active
+PL90310,P10210,J44.9,Chronic obstructive pulmonary disease,active
+PL90311,P10210,E11.9,Type 2 diabetes mellitus,active
+PL90312,P10211,I10,Essential hypertension,active
+PL90313,P10211,E11.9,Type 2 diabetes mellitus,active
+PL90314,P10212,J44.9,Chronic obstructive pulmonary disease,active
+PL90315,P10213,I10,Essential hypertension,active
+PL90316,P10213,E11.9,Type 2 diabetes mellitus,active
+PL90317,P10214,I10,Essential hypertension,active
+PL90318,P10215,J44.9,Chronic obstructive pulmonary disease,active
+PL90319,P10215,I10,Essential hypertension,active
+PL90320,P10215,E11.9,Type 2 diabetes mellitus,active
+PL90321,P10216,J44.9,Chronic obstructive pulmonary disease,active
+PL90322,P10217,I10,Essential hypertension,active
+PL90323,P10218,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90324,P10218,J44.9,Chronic obstructive pulmonary disease,active
+PL90325,P10219,I50.22,"Chronic systolic heart failure, NYHA class III",active
+PL90326,P10219,J44.9,Chronic obstructive pulmonary disease,active
+PL90327,P10220,I10,Essential hypertension,active
+PL90328,P10220,E11.9,Type 2 diabetes mellitus,active
+PL90329,P10221,J44.9,Chronic obstructive pulmonary disease,active
+PL90330,P10221,I10,Essential hypertension,active
+PL90331,P10222,Z85.3,"Personal history of breast cancer (2009, no active treatment)",active
+PL90332,P10222,I10,Essential hypertension,active
+PL90333,P10223,E11.9,Type 2 diabetes mellitus,active
+PL90334,P10224,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90335,P10224,J44.9,Chronic obstructive pulmonary disease,active
+PL90336,P10225,I10,Essential hypertension,active
+PL90337,P10227,I10,Essential hypertension,active
+PL90338,P10228,I10,Essential hypertension,active
+PL90339,P10228,E11.9,Type 2 diabetes mellitus,active
+PL90340,P10229,J44.9,Chronic obstructive pulmonary disease,active
+PL90341,P10229,I10,Essential hypertension,active
+PL90342,P10230,J44.9,Chronic obstructive pulmonary disease,active
+PL90343,P10230,I10,Essential hypertension,active
+PL90344,P10231,J84.10,"Pulmonary fibrosis, unspecified",active
+PL90345,P10231,Z85.3,"Personal history of breast cancer (2009, no active treatment)",active
+PL90346,P10231,J44.9,Chronic obstructive pulmonary disease,active
+PL90347,P10232,E11.9,Type 2 diabetes mellitus,active
+PL90348,P10233,B18.2,Chronic viral hepatitis C,active
+PL90349,P10233,I10,Essential hypertension,active
+PL90350,P10234,I10,Essential hypertension,active
+PL90351,P10235,J44.9,Chronic obstructive pulmonary disease,active
+PL90352,P10236,B18.2,Chronic viral hepatitis C,active
+PL90353,P10236,I10,Essential hypertension,active
+PL90354,P10237,J44.9,Chronic obstructive pulmonary disease,active
+PL90355,P10237,I10,Essential hypertension,active
+PL90356,P10240,J44.9,Chronic obstructive pulmonary disease,active
+PL90357,P10240,I10,Essential hypertension,active

@@ -1,0 +1,1621 @@
+{
+ "S001": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [
+   "concomitant strong CYP3A4 inducer/inhibitor that cannot be discontinued; 2-week washout"
+  ],
+  "confidence": "medium"
+ },
+ "S002": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S003": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "other_malignancy_active"
+  },
+  "omitted": [
+   "progressing or required active treatment within past 3 years"
+  ],
+  "confidence": "medium"
+ },
+ "S004": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "autoimmune"
+  },
+  "omitted": [
+   "only autoimmune disease requiring systemic treatment",
+   "within past 2 years"
+  ],
+  "confidence": "medium"
+ },
+ "S005": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S006": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S007": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S008": {
+  "category": "check",
+  "pred": {
+   "k": "histology",
+   "anyOf": [
+    "adenocarcinoma",
+    "squamous",
+    "large_cell",
+    "nos"
+   ]
+  },
+  "omitted": [
+   "diagnosis within 3 months prior to enrollment",
+   "histologic/cytologic confirmation"
+  ],
+  "confidence": "medium"
+ },
+ "S009": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S010": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "other_malignancy_history"
+  },
+  "omitted": [
+   "within 2 years of first dose",
+   "exceptions: treated skin BCC/SCC, breast/cervix CIS, treatment completed >=2y with NED, stable concurrent malignancy not requiring treatment"
+  ],
+  "confidence": "medium"
+ },
+ "S011": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S012": {
+  "category": "check",
+  "pred": {
+   "k": "measurable_disease"
+  },
+  "omitted": [
+   "RECIST v1.1",
+   "previously locally treated lesions only count if progressing; single bone/CNS lesion not measurable"
+  ],
+  "confidence": "high"
+ },
+ "S013": {
+  "category": "check",
+  "pred": {
+   "k": "lines",
+   "max": 0
+  },
+  "omitted": [
+   "no prior HER2 exon20ins-targeted therapy (e.g. poziotinib, T-DXd) in any setting",
+   "adjuvant/neoadjuvant allowed if completed >=12 months before screening"
+  ],
+  "confidence": "medium"
+ },
+ "S014": {
+  "category": "check",
+  "pred": {
+   "k": "ecog",
+   "max": 1
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S015": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "other_malignancy_active"
+  },
+  "omitted": [
+   "exceptions: treated CIN, non-melanoma skin cancer"
+  ],
+  "confidence": "high"
+ },
+ "S016": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S017": {
+  "category": "check",
+  "pred": {
+   "k": "measurable_disease"
+  },
+  "omitted": [
+   "RECIST v1.1",
+   "irradiated lesions measurable only if progressing"
+  ],
+  "confidence": "high"
+ },
+ "S018": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S019": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "resectable stage II-IIIB(N2) previously untreated NSCLC; resectability and N2 substage not expressible (stage III would admit unresectable IIIB/IIIC)"
+  ],
+  "confidence": "medium"
+ },
+ "S020": {
+  "category": "check",
+  "pred": {
+   "k": "lab",
+   "analyte": "PLT",
+   "op": ">=",
+   "value": 100
+  },
+  "omitted": [
+   "within 4 weeks before registration"
+  ],
+  "confidence": "high"
+ },
+ "S021": {
+  "category": "check",
+  "pred": {
+   "k": "prior_therapy",
+   "classes": [
+    "PD1_PDL1",
+    "CTLA4"
+   ],
+   "present": true
+  },
+  "omitted": [
+   "anti-PD-L2, OX-40, CD137 and other T-cell co-stimulatory/co-inhibitory agents",
+   "exception: anti-PD-(L)1 for nonmetastatic NSCLC completed >=12 months before metastatic diagnosis"
+  ],
+  "confidence": "medium"
+ },
+ "S022": {
+  "category": "check",
+  "pred": {
+   "k": "histology",
+   "anyOf": [
+    "adenocarcinoma",
+    "squamous",
+    "large_cell",
+    "nos"
+   ]
+  },
+  "omitted": [
+   "histologic/cytologic documentation"
+  ],
+  "confidence": "high"
+ },
+ "S023": {
+  "category": "check",
+  "pred": {
+   "k": "brain_mets",
+   "activeOnly": true
+  },
+  "omitted": [
+   "active leptomeningeal disease",
+   "stable = asymptomatic, no steroids/seizure prophylaxis for >=4 weeks; screening imaging required"
+  ],
+  "confidence": "high"
+ },
+ "S024": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S025": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "other_malignancy_history"
+  },
+  "omitted": [
+   "ongoing treatment or not disease-free for 2 years",
+   "exceptions: treated cervical CIS, non-melanoma skin cancer, similar curative-outcome malignancies"
+  ],
+  "confidence": "medium"
+ },
+ "S026": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S027": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S028": {
+  "category": "check",
+  "pred": {
+   "k": "and",
+   "all": [
+    {
+     "k": "histology",
+     "anyOf": [
+      "adenocarcinoma",
+      "squamous",
+      "large_cell",
+      "nos"
+     ]
+    },
+    {
+     "k": "stage",
+     "anyOf": [
+      "III",
+      "IV"
+     ]
+    }
+   ]
+  },
+  "omitted": [
+   "stage IIIB-IIIC only (IIIA not eligible)",
+   "not suitable for curative surgery or radiotherapy",
+   "histologic/cytologic confirmation"
+  ],
+  "confidence": "high"
+ },
+ "S029": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S030": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "other_malignancy_history"
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S031": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S032": {
+  "category": "check",
+  "pred": {
+   "k": "ecog",
+   "max": 2
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S033": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "Group A cohort-specific (EGFR ex19del/L858R or other EGFR mutations)"
+  ],
+  "confidence": "high"
+ },
+ "S034": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S035": {
+  "category": "check",
+  "pred": {
+   "k": "biomarker",
+   "gene": "KRAS",
+   "alterations": [
+    "G12D"
+   ],
+   "status": "detected"
+  },
+  "omitted": [
+   "local testing",
+   "tissue required for central confirmation"
+  ],
+  "confidence": "high"
+ },
+ "S036": {
+  "category": "check",
+  "pred": {
+   "k": "measurable_disease"
+  },
+  "omitted": [
+   "CT/MRI per RECIST v1.1"
+  ],
+  "confidence": "high"
+ },
+ "S037": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S038": {
+  "category": "check",
+  "pred": {
+   "k": "lab",
+   "analyte": "HGB",
+   "op": ">=",
+   "value": 9
+  },
+  "omitted": [
+   "no RBC/plasma transfusion within 1 week before screening"
+  ],
+  "confidence": "high"
+ },
+ "S039": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "other_malignancy_active"
+  },
+  "omitted": [
+   "progressing or required active treatment within past 3 years"
+  ],
+  "confidence": "medium"
+ },
+ "S040": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S041": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "permissive statement (prior PD-(L)1 allowed); no restriction to check"
+  ],
+  "confidence": "medium"
+ },
+ "S042": {
+  "category": "check",
+  "pred": {
+   "k": "measurable_disease"
+  },
+  "omitted": [
+   "RECIST 1.1"
+  ],
+  "confidence": "high"
+ },
+ "S043": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "LCNEC, carcinoid, mixed SCLC/NSCLC histologies not in vocabulary"
+  ],
+  "confidence": "high"
+ },
+ "S044": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "HBV/HCV/HIV only excluded when not controlled with treatment; control status not expressible"
+  ],
+  "confidence": "medium"
+ },
+ "S045": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S046": {
+  "category": "check",
+  "pred": {
+   "k": "lab",
+   "analyte": "ANC",
+   "op": ">=",
+   "value": 1.5
+  },
+  "omitted": [
+   "within 14 days prior to Step 1 registration"
+  ],
+  "confidence": "high"
+ },
+ "S047": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S048": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S049": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "other_malignancy_active"
+  },
+  "omitted": [
+   "requiring treatment"
+  ],
+  "confidence": "high"
+ },
+ "S050": {
+  "category": "check",
+  "pred": {
+   "k": "brain_mets",
+   "activeOnly": true
+  },
+  "omitted": [
+   "history of leptomeningeal disease",
+   "history of spinal cord compression",
+   "treated lesions must be stable >=28 days on repeat imaging"
+  ],
+  "confidence": "medium"
+ },
+ "S051": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [
+   "strong CYP3A4 inhibitor/inducer or narrow-TI substrate washout of 14 days before first dose"
+  ],
+  "confidence": "medium"
+ },
+ "S052": {
+  "category": "check",
+  "pred": {
+   "k": "brain_mets",
+   "activeOnly": true
+  },
+  "omitted": [
+   "any untreated CNS lesion excluded (even asymptomatic)",
+   "treated mets: prednisone <=10 mg/day stable >14 days, no CNS progression, >=28 days since CNS treatment"
+  ],
+  "confidence": "medium"
+ },
+ "S053": {
+  "category": "check",
+  "pred": {
+   "k": "age",
+   "min": 70
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S054": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S055": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "life expectancy not expressible; remainder is Part 2 Expansion Group 9 endometrial cancer"
+  ],
+  "confidence": "high"
+ },
+ "S056": {
+  "category": "check",
+  "pred": {
+   "k": "or",
+   "any": [
+    {
+     "k": "condition",
+     "category": "other_malignancy_active"
+    },
+    {
+     "k": "condition",
+     "category": "other_malignancy_history"
+    }
+   ]
+  },
+  "omitted": [
+   "history window of 5 years",
+   "exceptions: curatively treated without recurrence for 5 years, carcinoma in situ"
+  ],
+  "confidence": "medium"
+ },
+ "S057": {
+  "category": "check",
+  "pred": {
+   "k": "or",
+   "any": [
+    {
+     "k": "histology",
+     "anyOf": [
+      "squamous"
+     ]
+    },
+    {
+     "k": "biomarker",
+     "gene": "ALK",
+     "alterations": [
+      "fusion"
+     ],
+     "status": "not_detected"
+    }
+   ]
+  },
+  "omitted": [
+   "local testing",
+   "failed testing counts as negative"
+  ],
+  "confidence": "medium"
+ },
+ "S058": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S059": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S060": {
+  "category": "check",
+  "pred": {
+   "k": "and",
+   "all": [
+    {
+     "k": "lab",
+     "analyte": "AST",
+     "op": "<=",
+     "value": 3,
+     "xUln": true
+    },
+    {
+     "k": "lab",
+     "analyte": "ALT",
+     "op": "<=",
+     "value": 3,
+     "xUln": true
+    }
+   ]
+  },
+  "omitted": [
+   "<=5x ULN allowed with hepatic metastases",
+   "within 4 weeks before registration"
+  ],
+  "confidence": "high"
+ },
+ "S061": {
+  "category": "check",
+  "pred": {
+   "k": "ecog",
+   "max": 1
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S062": {
+  "category": "check",
+  "pred": {
+   "k": "brain_mets",
+   "activeOnly": true
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S063": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "co-existing common RAS mutations (KRAS/NRAS/HRAS) not expressible"
+  ],
+  "confidence": "high"
+ },
+ "S064": {
+  "category": "check",
+  "pred": {
+   "k": "pdl1",
+   "minTps": 1
+  },
+  "omitted": [
+   "local IHC with 22C3 or SP263 clone"
+  ],
+  "confidence": "high"
+ },
+ "S065": {
+  "category": "check",
+  "pred": {
+   "k": "or",
+   "any": [
+    {
+     "k": "condition",
+     "category": "other_malignancy_active"
+    },
+    {
+     "k": "condition",
+     "category": "other_malignancy_history"
+    }
+   ]
+  },
+  "omitted": [
+   "within 3 years of first dose",
+   "residual disease from prior malignancy"
+  ],
+  "confidence": "medium"
+ },
+ "S066": {
+  "category": "check",
+  "pred": {
+   "k": "ecog",
+   "max": 1
+  },
+  "omitted": [
+   "assessed within 7 days prior to allocation"
+  ],
+  "confidence": "high"
+ },
+ "S067": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S068": {
+  "category": "check",
+  "pred": {
+   "k": "and",
+   "all": [
+    {
+     "k": "stage",
+     "anyOf": [
+      "III",
+      "IV"
+     ]
+    },
+    {
+     "k": "or",
+     "any": [
+      {
+       "k": "biomarker",
+       "gene": "ROS1",
+       "alterations": [
+        "fusion"
+       ],
+       "status": "detected"
+      },
+      {
+       "k": "biomarker",
+       "gene": "NTRK",
+       "alterations": [
+        "fusion"
+       ],
+       "status": "detected"
+      }
+     ]
+    }
+   ]
+  },
+  "omitted": [
+   "any solid tumor including primary CNS tumors (basket)",
+   "histologic/cytologic confirmation"
+  ],
+  "confidence": "medium"
+ },
+ "S069": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S070": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "Part II only; CNS mets with treated/asymptomatic exceptions"
+  ],
+  "confidence": "high"
+ },
+ "S071": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S072": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "Cohort 1E HCC-specific"
+  ],
+  "confidence": "high"
+ },
+ "S073": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S074": {
+  "category": "check",
+  "pred": {
+   "k": "ecog",
+   "max": 2
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S075": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "other_malignancy_history"
+  },
+  "omitted": [
+   "within 5 years before enrollment",
+   "exceptions: resected non-melanoma skin cancer, curatively treated in situ disease, curatively treated other solid tumors, contralateral breast cancer"
+  ],
+  "confidence": "medium"
+ },
+ "S076": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S077": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "pancreatic adenocarcinoma (different cancer)"
+  ],
+  "confidence": "high"
+ },
+ "S078": {
+  "category": "check",
+  "pred": {
+   "k": "ecog",
+   "max": 1
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S079": {
+  "category": "check",
+  "pred": {
+   "k": "or",
+   "any": [
+    {
+     "k": "condition",
+     "category": "pneumonitis"
+    },
+    {
+     "k": "condition",
+     "category": "ild"
+    }
+   ]
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S080": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [
+   "systemic corticosteroids >10 mg/day prednisone-equivalent within 7 days before treatment; exceptions for local/short-term/premedication use"
+  ],
+  "confidence": "medium"
+ },
+ "S081": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S082": {
+  "category": "check",
+  "pred": {
+   "k": "lab",
+   "analyte": "ANC",
+   "op": ">=",
+   "value": 1.5
+  },
+  "omitted": [
+   "within 28 days prior to randomization"
+  ],
+  "confidence": "high"
+ },
+ "S083": {
+  "category": "check",
+  "pred": {
+   "k": "brain_mets",
+   "activeOnly": true
+  },
+  "omitted": [
+   "leptomeningeal metastases",
+   "spinal cord compression",
+   "only symptomatic untreated CNS mets excluded"
+  ],
+  "confidence": "medium"
+ },
+ "S084": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S085": {
+  "category": "check",
+  "pred": {
+   "k": "measurable_disease"
+  },
+  "omitted": [
+   "RECIST v1.1"
+  ],
+  "confidence": "high"
+ },
+ "S086": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S087": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "radiotherapy within 2 weeks (washout) or radiation toxicity requiring corticosteroids"
+  ],
+  "confidence": "medium"
+ },
+ "S088": {
+  "category": "check",
+  "pred": {
+   "k": "lines",
+   "max": 0
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S089": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "Phase 3 only; specific CNS lesion size/location/steroid/seizure rules"
+  ],
+  "confidence": "high"
+ },
+ "S090": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S091": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [
+   "no major surgery within 14 days before sub-study randomization; recovered per investigator"
+  ],
+  "confidence": "medium"
+ },
+ "S092": {
+  "category": "check",
+  "pred": {
+   "k": "age",
+   "min": 18
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S093": {
+  "category": "check",
+  "pred": {
+   "k": "measurable_disease"
+  },
+  "omitted": [
+   "RECIST v1.1 at baseline"
+  ],
+  "confidence": "high"
+ },
+ "S094": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "Part A only; resectable stage II-IIIB untreated NSCLC, neoadjuvant candidate"
+  ],
+  "confidence": "high"
+ },
+ "S095": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S096": {
+  "category": "check",
+  "pred": {
+   "k": "measurable_disease"
+  },
+  "omitted": [
+   "RECIST 1.1"
+  ],
+  "confidence": "high"
+ },
+ "S097": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "NYHA class 2B or better; heart_failure category cannot express functional class"
+  ],
+  "confidence": "high"
+ },
+ "S098": {
+  "category": "check",
+  "pred": {
+   "k": "lab",
+   "analyte": "HGB",
+   "op": ">=",
+   "value": 8.5
+  },
+  "omitted": [
+   "must be >2 weeks post-RBC transfusion"
+  ],
+  "confidence": "high"
+ },
+ "S099": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "HCV must be treated and cured / undetectable viral load; cure status not expressible"
+  ],
+  "confidence": "medium"
+ },
+ "S100": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [
+   "washouts: chemo/radiation 3 weeks, immunotherapy 4 weeks, palliative RT/TCM 2 weeks, Cohort 2 EGFR TKI 5 half-lives"
+  ],
+  "confidence": "medium"
+ },
+ "S101": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S102": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S103": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S104": {
+  "category": "check",
+  "pred": {
+   "k": "lab",
+   "analyte": "TBILI",
+   "op": "<=",
+   "value": 1,
+   "xUln": true
+  },
+  "omitted": [
+   "Gilbert's disease: <=5x ULN",
+   "within 28 days prior to randomization"
+  ],
+  "confidence": "high"
+ },
+ "S105": {
+  "category": "check",
+  "pred": {
+   "k": "lines",
+   "max": 0
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S106": {
+  "category": "check",
+  "pred": {
+   "k": "brain_mets",
+   "activeOnly": true
+  },
+  "omitted": [
+   "only symptomatic untreated brain mets excluded; treated or asymptomatic untreated allowed"
+  ],
+  "confidence": "medium"
+ },
+ "S107": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "stage IIIB-IV non-squamous NSCLC is expressible but 'without actionable genomic alterations' is protocol-defined (gene list not given)"
+  ],
+  "confidence": "medium"
+ },
+ "S108": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "other_malignancy_history"
+  },
+  "omitted": [
+   "within 3 years"
+  ],
+  "confidence": "high"
+ },
+ "S109": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S110": {
+  "category": "check",
+  "pred": {
+   "k": "prior_therapy",
+   "classes": [
+    "KRAS_G12C"
+   ],
+   "present": true
+  },
+  "omitted": [
+   "pan-KRAS/RAS inhibitors"
+  ],
+  "confidence": "high"
+ },
+ "S111": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S112": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S113": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "hiv"
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S114": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S115": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S116": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [
+   "major surgery within 28 days before randomization; recovered per investigator"
+  ],
+  "confidence": "medium"
+ },
+ "S117": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S118": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S119": {
+  "category": "check",
+  "pred": {
+   "k": "brain_mets",
+   "activeOnly": true
+  },
+  "omitted": [
+   "carcinomatous meningitis",
+   "treated mets: stable >=4 weeks on repeat imaging, off steroids >=14 days"
+  ],
+  "confidence": "high"
+ },
+ "S120": {
+  "category": "check",
+  "pred": {
+   "k": "age",
+   "min": 18
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S121": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "Arms 6 and 7 only (PD-L1 <1%)"
+  ],
+  "confidence": "high"
+ },
+ "S122": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S123": {
+  "category": "check",
+  "pred": {
+   "k": "or",
+   "any": [
+    {
+     "k": "condition",
+     "category": "ild"
+    },
+    {
+     "k": "condition",
+     "category": "pneumonitis"
+    }
+   ]
+  },
+  "omitted": [
+   "radiation pneumonitis only if requiring steroids",
+   "drug-related pneumonia",
+   "uncontrolled massive pleural/pericardial effusion",
+   "baseline CT finding"
+  ],
+  "confidence": "medium"
+ },
+ "S124": {
+  "category": "check",
+  "pred": {
+   "k": "and",
+   "all": [
+    {
+     "k": "histology",
+     "anyOf": [
+      "adenocarcinoma",
+      "squamous",
+      "large_cell",
+      "nos"
+     ]
+    },
+    {
+     "k": "stage",
+     "anyOf": [
+      "III",
+      "IV"
+     ]
+    }
+   ]
+  },
+  "omitted": [
+   "stage IIIB not amenable to definitive chemoradiotherapy or IIIC only (IIIA excluded)",
+   "histologic/cytologic confirmation"
+  ],
+  "confidence": "high"
+ },
+ "S125": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S126": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "section heading, not a criterion"
+  ],
+  "confidence": "high"
+ },
+ "S127": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "hiv"
+  },
+  "omitted": [
+   "only HIV-positive on combination antiretroviral therapy"
+  ],
+  "confidence": "medium"
+ },
+ "S128": {
+  "category": "check",
+  "pred": {
+   "k": "biomarker",
+   "gene": "KRAS",
+   "alterations": [
+    "G12C"
+   ],
+   "status": "detected"
+  },
+  "omitted": [
+   "documentation"
+  ],
+  "confidence": "high"
+ },
+ "S129": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S130": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "prior neoadjuvant therapy (treatment setting) not expressible"
+  ],
+  "confidence": "high"
+ },
+ "S131": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S132": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S133": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S134": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S135": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "only HIV that is not well controlled; control status not expressible"
+  ],
+  "confidence": "medium"
+ },
+ "S136": {
+  "category": "check",
+  "pred": {
+   "k": "condition",
+   "category": "autoimmune"
+  },
+  "omitted": [
+   "requiring chronic systemic treatment (DMARDs, corticosteroids, immunosuppressants)",
+   "inflammatory disorders"
+  ],
+  "confidence": "medium"
+ },
+ "S137": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "placeholder, not a criterion"
+  ],
+  "confidence": "high"
+ },
+ "S138": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "pumitamig arm only; intolerance to anti-VEGF/anti-PD-(L)1 not expressible"
+  ],
+  "confidence": "high"
+ },
+ "S139": {
+  "category": "check",
+  "pred": {
+   "k": "and",
+   "all": [
+    {
+     "k": "lab",
+     "analyte": "AST",
+     "op": "<=",
+     "value": 2.5,
+     "xUln": true
+    },
+    {
+     "k": "lab",
+     "analyte": "ALT",
+     "op": "<=",
+     "value": 2.5,
+     "xUln": true
+    }
+   ]
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S140": {
+  "category": "check",
+  "pred": {
+   "k": "lab",
+   "analyte": "ANC",
+   "op": ">=",
+   "value": 1.5
+  },
+  "omitted": [
+   "within 14 days prior to randomization"
+  ],
+  "confidence": "high"
+ },
+ "S141": {
+  "category": "check",
+  "pred": {
+   "k": "and",
+   "all": [
+    {
+     "k": "not",
+     "p": {
+      "k": "biomarker",
+      "gene": "EGFR",
+      "status": "detected"
+     }
+    },
+    {
+     "k": "not",
+     "p": {
+      "k": "biomarker",
+      "gene": "ALK",
+      "alterations": [
+       "fusion"
+      ],
+      "status": "detected"
+     }
+    }
+   ]
+  },
+  "omitted": [
+   "'known' mutation: untested patients not excluded"
+  ],
+  "confidence": "high"
+ },
+ "S142": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "sub-study 1 and 2 only"
+  ],
+  "confidence": "high"
+ },
+ "S143": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S144": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S145": {
+  "category": "check",
+  "pred": {
+   "k": "ecog",
+   "max": 1
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S146": {
+  "category": "screening",
+  "pred": null,
+  "omitted": [
+   "tumor tissue submission for central FRA IHC"
+  ],
+  "confidence": "high"
+ },
+ "S147": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S148": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "MMAE-containing agents (subset of ADC) and docetaxel (subset of TAXANE) not expressible exactly"
+  ],
+  "confidence": "high"
+ },
+ "S149": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "second malignancy only if likely to interfere with endpoints (investigator judgment)"
+  ],
+  "confidence": "medium"
+ },
+ "S150": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "any active infection incl. TB; HIV/HBV/HCV are examples"
+  ],
+  "confidence": "medium"
+ },
+ "S151": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S152": {
+  "category": "check",
+  "pred": {
+   "k": "measurable_disease"
+  },
+  "omitted": [
+   "RECIST 1.1"
+  ],
+  "confidence": "high"
+ },
+ "S153": {
+  "category": "check",
+  "pred": {
+   "k": "ecog",
+   "max": 1
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S154": {
+  "category": "check",
+  "pred": {
+   "k": "ecog",
+   "max": 1
+  },
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S155": {
+  "category": "check",
+  "pred": {
+   "k": "or",
+   "any": [
+    {
+     "k": "lab",
+     "analyte": "CREAT",
+     "op": "<=",
+     "value": 1.5,
+     "xUln": true
+    },
+    {
+     "k": "lab",
+     "analyte": "CRCL",
+     "op": ">=",
+     "value": 50
+    }
+   ]
+  },
+  "omitted": [
+   "Cockcroft-Gault"
+  ],
+  "confidence": "high"
+ },
+ "S156": {
+  "category": "check",
+  "pred": {
+   "k": "or",
+   "any": [
+    {
+     "k": "lab",
+     "analyte": "CREAT",
+     "op": "<=",
+     "value": 1,
+     "xUln": true
+    },
+    {
+     "k": "lab",
+     "analyte": "CRCL",
+     "op": ">=",
+     "value": 30
+    }
+   ]
+  },
+  "omitted": [
+   "Cockcroft-Gault",
+   "within 28 days prior to sub-study randomization"
+  ],
+  "confidence": "high"
+ },
+ "S157": {
+  "category": "review",
+  "pred": null,
+  "omitted": [
+   "HCC cohort (Phase 2a Cohort 6) only; different cancer"
+  ],
+  "confidence": "high"
+ },
+ "S158": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ },
+ "S159": {
+  "category": "check",
+  "pred": {
+   "k": "and",
+   "all": [
+    {
+     "k": "histology",
+     "anyOf": [
+      "adenocarcinoma",
+      "squamous",
+      "large_cell",
+      "nos"
+     ]
+    },
+    {
+     "k": "stage",
+     "anyOf": [
+      "IV"
+     ]
+    }
+   ]
+  },
+  "omitted": [
+   "not amenable to curative treatment",
+   "AJCC 8th edition"
+  ],
+  "confidence": "high"
+ },
+ "S160": {
+  "category": "review",
+  "pred": null,
+  "omitted": [],
+  "confidence": "high"
+ }
+}

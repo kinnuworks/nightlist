@@ -1,0 +1,21 @@
+{
+  "name": "@nightlist/world-model",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Event-sourced world model for Nightlist: the canonical log of trials, patient facts and match verdicts.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./clinic": "./src/clinic.ts"
+  },
+  "scripts": {
+    "conformance": "tsx conformance/runner.ts",
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

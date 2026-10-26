@@ -1,0 +1,171 @@
+# Nightlist
+
+Every night, Nightlist re-screens a community cancer clinic's lung cancer patients against every recruiting lung cancer trial near the clinic, and hands the research coordinator a worklist in the morning.
+
+The model reads the trials. It never reads the patients. Each eligibility criterion is compiled from public trial text into a typed check, a second model checks the compilation, and Zetaris runs the checks as SQL over patient data that stays in the clinic's systems.
+
+Track: Solving Fragmented Intelligence (Open Agent Hackathon 2026).
+
+## The problem
+
+About 7% of adult cancer patients in the US enroll in a treatment trial, and the rate at community hospitals is closer to 4% ([Unger et al., JCO 2024](https://www.healthday.com/healthpro-news/cancer/patient-enrollment-in-cancer-treatment-trials-about-7-percent)). Poor accrual is the most common non-scientific reason cancer trials close early. Screening one patient against one trial by hand takes 45 to 56 minutes ([Penberthy et al., J Oncol Pract 2012](https://pmc.ncbi.nlm.nih.gov/articles/PMC3500483/)), and a community clinic sees hundreds of lung cancer patients against hundreds of open trials, with new trials opening and patients' results changing every week.
+
+The data a coordinator needs sits in systems that do not share identifiers: the EHR, the lab system (with its own MRN format), free-text medication orders, molecular reports, and ClinicalTrials.gov. In advanced NSCLC about half of potentially eligible patients are lost to gaps in biomarker testing ([Sadik et al., JCO Precis Oncol 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC9666118/)), so "we do not know yet" is as important an answer as "yes" or "no".
+
+## What it does
+
+- Pulls the recruiting NSCLC trials with a US site from ClinicalTrials.gov (471 today; the demo clinic is in Montgomery, Alabama, and screens the 106 within 250 miles).
+- Splits each trial's eligibility text into atomic criteria and compiles each one into a check in a small typed language (age, histology, stage, ECOG, biomarkers, PD-L1, prior therapy, lines of therapy, labs, conditions, brain metastases, measurable disease). Criteria it cannot express go to "needs a human read"; consent, contraception and washouts go to "confirmed at screening".
+- Runs every check for every patient inside the data layer and returns met, not met, or unknown per criterion. Unknown names the data item that would resolve it.
+- Re-reads the source rows behind every clean match before it reaches the worklist.
+- Keeps an append-only log of trials, patient facts and verdicts, so the morning view shows what changed overnight: trials that opened, new lab results, new and lost matches.
+- Remembers coordinator decisions ("will not travel more than 100 miles") and applies them on later nights.
+- Lists patients who are one data item away from several trials, for example "a comprehensive NGS panel would open 28 trials for Gloria Haynes", flagging items that need tissue.
+
+Nightlist never says a patient is eligible. It says "no blocking criteria found in N checked criteria" and shows what still needs a person.
+
+## Run it
+
+Requirements: Node 20 or newer. No accounts, keys or Docker needed for sample mode.
+
+```bash
+npm run setup
+```
+
+```bash
+npm run demo
+```
+
+```bash
+npm start
+```
+
+Open http://localhost:8787. `npm run demo` builds two overnight runs a day apart (night 2: two trials open, Gloria Haynes's NGS result arrives, a coordinator records a travel limit), so the "what changed overnight" panel has real events. `npm run night` runs one more night on the current state.
+
+Sample mode (`SAMPLE_MODE=true`, the default) runs the same semantic-layer SQL that Zetaris runs in live mode, in an embedded DuckDB over the same source files. It runs the real agent logic on cached trial data and cached model compilations; nothing is replayed from saved outputs.
+
+Live mode: copy `.env.example` to `.env`, set the Zetaris and Nightshift values, and follow [docs/SETUP.md](docs/SETUP.md).
+
+### Without the UI
+
+Every screen is backed by a JSON route:
+
+```bash
+curl localhost:8787/api/worklist
+```
+
+```bash
+curl localhost:8787/api/match/P10001/NCT07100080
+```
+
+The second returns every criterion of one trial for one patient, with the compiled rule, the SQL that decided it, and the source rows behind it. Other routes: `/api/patient/:id`, `/api/trial/:nct`, `/api/trace`, `/api/usl`, `/api/summary`, `/api/status`, `POST /api/memory`, `POST /api/run`.
+
+## How it works
+
+```mermaid
+flowchart LR
+  CT[ClinicalTrials.gov API] --> W[Watcher]
+  W -->|trials opened, amended, closed| WM[(World Model log)]
+  W --> G[Guard: Scout Intent]
+  G -->|signed compile contract| C[Compiler: rules, then model]
+  C --> K[Checker: back-translation]
+  K -->|disagree| R[Needs a human read]
+  K -->|agree| F[(Compiled trial feed)]
+  subgraph Zetaris
+    EHR[(EHR, PostgreSQL)]
+    LAB[(Lab system files)]
+    TERM[(RxNav, NCI Thesaurus, Census ZIPs)]
+    F
+    USL[[USL trialmatch + DQ rules]]
+  end
+  EHR --> USL
+  LAB --> USL
+  TERM --> USL
+  F --> USL
+  S[Steward] -->|DQ rules| USL
+  USL --> SC[Screener]
+  SC --> V[Verifier]
+  V -->|challenge| SC
+  V --> N[Navigator]
+  M[(H-MEM)] --> N
+  N --> WL[Morning worklist]
+  N --> WM
+```
+
+| Agent | Job | Can block or send back |
+|---|---|---|
+| Watcher | Pulls the trial snapshot, records what opened, changed or closed in the World Model | |
+| Guard | Runs Scout Intent on untrusted trial text before any model sees it; issues a signed contract that only allows compiling that criterion | Blocks injected instructions |
+| Compiler | Deterministic rules first, then the model through Nightshift for the rest; validates every output against the schema, retries once | Sends uncompilable criteria to review |
+| Checker | A second, smaller model restates the compiled rule and judges it against the sentence | Disagreement sends the criterion to review |
+| Steward | Runs the semantic layer's data-quality rules | Rows that fail are excluded and reported |
+| Screener | One SQL pass per trial evaluates every check for every patient | |
+| Verifier | Re-reads the evidence rows behind every clean match | Downgrades matches whose evidence does not hold |
+| Navigator | Applies remembered coordinator decisions, records verdicts, writes the worklist | Sets matches aside per recorded preferences |
+
+Every action is written to `logs/<run>.jsonl` and stdout with the agent, the target, the model that served the request and the duration. The Run page in the UI shows the same trace.
+
+The model only ever sees public trial text. Patient rows are touched only by SQL that code generated from a validated predicate, so the design holds even when the model runs in the cloud.
+
+## Sponsor technology
+
+**Zetaris (data layer).** Six sources with no shared identifiers are registered in Zetaris and queried in place: the clinic EHR (PostgreSQL datasource), the lab system's result and molecular files (its MRN is `MRN0001234` where the EHR has `0001234`), ClinicalTrials.gov, RxNav and the NCI Thesaurus as live REST tables, resolved terminology tables, and the nightly compiled trial feed. A Unified Semantic Layer, `trialmatch`, joins them into ten tables (patient, diagnosis, metastasis, biomarker, lab, therapy, condition, trial, site, criterion). Its activation queries are where the fragmentation is resolved: lab MRNs to EHR patients, free-text medication orders to RxNav ingredients and ATC classes, free-text histology to NCI Thesaurus concepts, molecular report wording to alterations. Six data-quality rules run every night; on the demo data they catch six lab results filed under a mistyped MRN and nine lab values exported without a unit, which are excluded from screening and listed on the Run page. All the SQL is generated from one schema file into [sql/](sql/) and applied with `npm run zetaris:setup`. Our notes for the Zetaris team are in [docs/zetaris/](docs/zetaris/).
+
+**Meterless (engines and model runtime).** Three Meterless engines, each implemented by us from the published spec and tested with the official suite:
+
+| Engine | What it does here | Official test |
+|---|---|---|
+| World Model | Canonical event log of trials, sites, criteria, patient facts and match verdicts; powers "what changed overnight" with provenance | conformance 8/8 ([engines/world-model](engines/world-model/CONFORMANCE.txt)) |
+| H-MEM | Remembers coordinator preferences, decisions and corrections across nights, with a ledger, conflict resolution and sleep cycle | conformance 13/13 ([engines/hmem](engines/hmem/CONFORMANCE.txt)) |
+| Scout Intent | Guards the compiler against instructions hidden in trial text; signs a contract that allows only `compile_criterion` | eval harness, all 7 gates ([engines/scout-intent](engines/scout-intent/EVAL.txt)) |
+
+Nightshift is the app's AI provider: every model call goes through its OpenAI-compatible runtime with the `meterless-app` header, using routing modes (`meterless/deep` to compile, `meterless/fast` to check), and the trace records the model that served each request.
+
+**NVIDIA.** Nemotron models run behind Nightshift: the larger model compiles criteria, the smaller one back-translates. This follows NVIDIA's own split for agents (a bigger model to plan, a fast one for checks).
+
+## Evaluation
+
+The compiler is measured by behaviour. A random sample of real criteria from the screened trials was labeled blind (the labeler never saw compiler output). For every labeled criterion, the compiled check and the gold label are both run against all 240 patients; a criterion counts as correct only when every patient gets the same verdict. Rules were tuned on a development sample and a second sample; the numbers we report come from a third sample that was drawn and labeled after the last rule change. Results: [docs/EVALUATION.md](docs/EVALUATION.md).
+
+Run it yourself:
+
+```bash
+npm run eval
+```
+
+## Tests
+
+```bash
+npm test
+```
+
+Server: criterion splitting, rule compilation including traps (KRAS G12D vs G12C, eGFR vs EGFR), three-valued logic, the model path against a stand-in Nightshift runtime, and a full overnight run checked against what the demo patients' records say. Engines: the official Meterless suites plus our own unit tests.
+
+## Data
+
+- Trials: live ClinicalTrials.gov API v2 snapshot (`data/sources/ctgov_nsclc_us.json.gz`; refresh with `npm run trials -w server`).
+- Patients: 240 synthetic patients generated by `server/scripts/generate-clinic.ts`, with distributions taken from published NSCLC figures (histology, stage, driver mutation rates, incomplete biomarker testing). Eight hand-written patients carry the demo stories. No real patient data is used anywhere.
+- Terminology: RxNav (NLM) and NCI Thesaurus (EVS) lookups made live by `server/scripts/resolve-terminology.ts`; US Census ZCTA centroids for distances.
+
+## Limitations
+
+- The rule compiler covers the criteria that recur in lung cancer trials. The rest depend on the model path; with Nightshift offline they are shown as needing a human read rather than guessed.
+- Time windows, assay requirements and some exceptions are not checked. Every compiled criterion lists what it ignores, and the UI shows it.
+- Patients are synthetic. Real EHR data would need mapping from FHIR or a clinic's export into the same source tables.
+- Nightlist ranks and explains; a coordinator and the trial team decide.
+
+## Repository
+
+| Path | Contents |
+|---|---|
+| `server/src` | Agents, compiler, evaluator, data layer, API |
+| `server/scripts` | Data generation, terminology resolution, Zetaris SQL generator and runner, evaluation, demo |
+| `engines/` | World Model, H-MEM and Scout Intent engines with the official Meterless test suites |
+| `web/` | The worklist UI (also builds as a static replay) |
+| `sql/` | Generated Zetaris Lightning SQL |
+| `data/` | Source files, evaluation sets |
+| `docs/` | Setup, evaluation, Zetaris notes, sponsor technology |
+
+## Pre-existing work
+
+None. The repository was created during the build window. Open-source libraries are listed in the package files. The Meterless conformance and eval suites under `engines/*/conformance` and `engines/scout-intent/evals` are copied from the Meterless repository under Apache-2.0, as their NOTICE files state.

@@ -1,0 +1,5 @@
+ncit_code,histology_key,preferred_name,ncit_version
+C2926,nsclc,Lung Non-Small Cell Carcinoma,26.09d
+C3512,adenocarcinoma,Lung Adenocarcinoma,26.09d
+C3493,squamous,Lung Squamous Cell Carcinoma,26.09d
+C4450,large_cell,Lung Large Cell Carcinoma,26.09d

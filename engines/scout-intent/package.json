@@ -1,0 +1,27 @@
+{
+  "name": "@nightlist/scout-intent",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Scout Intent engine for Nightlist: intent sensing, injection and policy guard, tool routing and signed execution contracts. Also guards untrusted trial eligibility text before it reaches the criterion compiler.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./trialtext": "./src/trialtext.ts"
+  },
+  "scripts": {
+    "eval": "tsx evals/runner/index.ts all",
+    "evals": "tsx evals/runner/index.ts all",
+    "eval:intent": "tsx evals/runner/index.ts intent",
+    "eval:injection": "tsx evals/runner/index.ts injection",
+    "eval:multi-intent": "tsx evals/runner/index.ts multi-intent",
+    "eval:add": "tsx evals/runner/add.ts",
+    "test": "tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "yaml": "^2.5.0"
+  }
+}

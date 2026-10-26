@@ -1,0 +1,28 @@
+{
+  "name": "nightlist",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "engines/hmem",
+    "engines/world-model",
+    "engines/scout-intent",
+    "server",
+    "web"
+  ],
+  "scripts": {
+    "setup": "npm install && npm run build -w web",
+    "demo": "npm run demo -w server",
+    "start": "npm start -w server",
+    "night": "npm run night -w server",
+    "test": "npm test -w server && npm run engines",
+    "engines": "npm run conformance -w engines/hmem && npm run conformance -w engines/world-model && npm run eval -w engines/scout-intent && npm test -w engines/hmem && npm test -w engines/world-model && npm test -w engines/scout-intent",
+    "eval": "npm run eval -w server -- --set=final",
+    "zetaris:sql": "npm run zetaris:sql -w server",
+    "zetaris:setup": "npm run zetaris:setup -w server",
+    "replay": "npm run export:replay -w web && npm run build:static -w web"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

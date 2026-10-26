@@ -1,0 +1,13 @@
+# The clinic EHR as a PostgreSQL database that Zetaris queries in place.
+services:
+  ehr:
+    image: postgres:16.4
+    environment:
+      POSTGRES_DB: ehr
+      POSTGRES_USER: nightlist
+      POSTGRES_PASSWORD: nightlist
+    ports:
+      - "5433:5432"
+    volumes:
+      - ../data/sources/ehr:/seed:ro
+      - ./ehr-init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro

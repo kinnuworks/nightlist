@@ -1,0 +1,1122 @@
+[
+ {
+  "sampleId": "S001",
+  "criterionId": "NCT07488676-E19",
+  "nctId": "NCT07488676",
+  "kind": "exclusion",
+  "text": "Participant has ongoing or previous interstitial lung disease, active diverticulitis or solid organ or stem cell transplant."
+ },
+ {
+  "sampleId": "S002",
+  "criterionId": "NCT05493566-E05",
+  "nctId": "NCT05493566",
+  "kind": "exclusion",
+  "text": "Patients with prior allogeneic bone marrow transplantation or prior solid organ transplantation."
+ },
+ {
+  "sampleId": "S003",
+  "criterionId": "NCT06170788-E03",
+  "nctId": "NCT06170788",
+  "kind": "exclusion",
+  "text": "History of documented severe dry eye syndrome, severe Meibomian gland disease and/or blepharitis, or severe corneal disease that prevents/delays corneal healing."
+ },
+ {
+  "sampleId": "S004",
+  "criterionId": "NCT06150664-E04",
+  "nctId": "NCT06150664",
+  "kind": "exclusion",
+  "text": "Prior organ transplantation"
+ },
+ {
+  "sampleId": "S005",
+  "criterionId": "NCT06008730-I08",
+  "nctId": "NCT06008730",
+  "kind": "inclusion",
+  "text": "Platelets >= 100,000/mcL (no transfusions allowed within 7 days of cycle 1 day 1 to meet entry criteria) (within 28 days of cycle 1 day 1)"
+ },
+ {
+  "sampleId": "S006",
+  "criterionId": "NCT06793215-I04",
+  "nctId": "NCT06793215",
+  "kind": "inclusion",
+  "text": "No prior systemic treatment for advanced or metastatic NSCLC"
+ },
+ {
+  "sampleId": "S007",
+  "criterionId": "NCT04300556-I13",
+  "nctId": "NCT04300556",
+  "kind": "inclusion",
+  "text": "Participants at risk for DVT secondary to central venous catheters or with past medical history of DVT or clinical symptoms suggestive of DVT must have venous Doppler ultrasonography to rule out DVT during the screening period and before to initiation of study treatment."
+ },
+ {
+  "sampleId": "S008",
+  "criterionId": "NCT05493566-E02",
+  "nctId": "NCT05493566",
+  "kind": "exclusion",
+  "text": "Any prior chemotherapy or immunotherapy for advanced lung cancer."
+ },
+ {
+  "sampleId": "S009",
+  "criterionId": "NCT06899126-E03",
+  "nctId": "NCT06899126",
+  "kind": "exclusion",
+  "text": "Has a history of (non-infectious) ILD/pneumonitis that required steroids, has current ILD/pneumonitis, or where suspected ILD/pneumonitis cannot be ruled out by imaging at Screening."
+ },
+ {
+  "sampleId": "S010",
+  "criterionId": "NCT06400472-E08",
+  "nctId": "NCT06400472",
+  "kind": "exclusion",
+  "text": "History of pneumonitis/interstitial lung disease"
+ },
+ {
+  "sampleId": "S011",
+  "criterionId": "NCT06868277-E03",
+  "nctId": "NCT06868277",
+  "kind": "exclusion",
+  "text": "Active or prior documented autoimmune or inflammatory disorders requiring chronic treatment with steroids or other immunosuppressive treatment."
+ },
+ {
+  "sampleId": "S012",
+  "criterionId": "NCT03191149-I06",
+  "nctId": "NCT03191149",
+  "kind": "inclusion",
+  "text": "Participants must not have previously received osimertinib"
+ },
+ {
+  "sampleId": "S013",
+  "criterionId": "NCT06008730-I04",
+  "nctId": "NCT06008730",
+  "kind": "inclusion",
+  "text": "Eastern Cooperative Oncology Group Performance (ECOG) performance status =< 2 (Karnofsky >= 60%)"
+ },
+ {
+  "sampleId": "S014",
+  "criterionId": "NCT04613596-E01",
+  "nctId": "NCT04613596",
+  "kind": "exclusion",
+  "text": "Phase 2 and Phase 3: Prior systemic treatment for locally advanced or metastatic NSCLC including chemotherapy, immune checkpoint inhibitor therapy, or a therapy targeting KRAS G12C mutation (e.g., AMG 510)."
+ },
+ {
+  "sampleId": "S015",
+  "criterionId": "NCT07070232-I09",
+  "nctId": "NCT07070232",
+  "kind": "inclusion",
+  "text": "Cohort 1C:; Have documented positive test results for an EGFR-sensitizing mutation (EGFR-sensitizing mutation Exon 21-L858R and 19del).; Participants must have received one or two prior lines of systemic therapy for advanced and/or metastatic disease, which must include treatment with an approved EGFR Tyrosine Kinase Inhibitors (TKI), with at least one being a third-generation EGFR TKI. If there is no third-generation EGFR TKI approved as part of SoC by local health authorities in a certain country, failure/progression on any EGFR TKI is acceptable for eligibility.; Participants receiving an EGFR TKI at the time of signing informed consent may continue to take the EGFR TKI until 5 days prior to Cycle 1 Day 1.; Prior chemotherapy and amivantamab are permitted only if administered in combination with an EGFR TKI as part of a single line of therapy and as the initial (first-line) treatment for advanced/metastatic disease. Participants must not have received any other systemic therapies (such as chemotherapy, immunotherapy, or targeted agents) for advanced/metastatic disease, unless those treatments were given in combination with an EGFR TKI.; Have experienced progression during or after treatment or discontinued from prior therapy due to intolerance."
+ },
+ {
+  "sampleId": "S016",
+  "criterionId": "NCT06953089-I02",
+  "nctId": "NCT06953089",
+  "kind": "inclusion",
+  "text": "At least one measurable lesion as assessed by the Investigator according to RECIST v1.1 criteria."
+ },
+ {
+  "sampleId": "S017",
+  "criterionId": "NCT07189871-E01",
+  "nctId": "NCT07189871",
+  "kind": "exclusion",
+  "text": "Participants with previously treated brain metastases are eligible to participate if:; they are neurologically and radiologically stable for at least 28 days prior to the first dose of 177Lu-BetaBart; and; have no history of leptomeningeal disease or spinal cord compression."
+ },
+ {
+  "sampleId": "S018",
+  "criterionId": "NCT07393555-I12",
+  "nctId": "NCT07393555",
+  "kind": "inclusion",
+  "text": "Participants must not have received any systemic lung cancer therapy (except orally administered drugs) within 21 days prior to randomization. Orally administered lung cancer therapies must not have been administered within 10 days prior to randomization."
+ },
+ {
+  "sampleId": "S019",
+  "criterionId": "NCT06312137-I10",
+  "nctId": "NCT06312137",
+  "kind": "inclusion",
+  "text": "Participants who are hepatitis B surface antigen (HBsAg) positive are eligible if they have received hepatitis B virus (HBV) antiviral therapy for at least 4 weeks, and have undetectable HBV viral load at screening"
+ },
+ {
+  "sampleId": "S020",
+  "criterionId": "NCT06422143-E19",
+  "nctId": "NCT06422143",
+  "kind": "exclusion",
+  "text": "Has a history of (noninfectious)pneumonitis/ILD that required steroids, has current pneumonitis/ILD, or has suspected ILD or pneumonitis that cannot be ruled out by standard diagnostic assessments at Screening"
+ },
+ {
+  "sampleId": "S021",
+  "criterionId": "NCT06498635-I14",
+  "nctId": "NCT06498635",
+  "kind": "inclusion",
+  "text": "Participant must have Zubrod performance status of 0-2"
+ },
+ {
+  "sampleId": "S022",
+  "criterionId": "NCT07070232-I16",
+  "nctId": "NCT07070232",
+  "kind": "inclusion",
+  "text": "Cohort 1G and 2F:; Histologically and/or cytologically documented recurrent unresectable metastatic cervical cancer with squamous cell, adenocarcinoma, or adenosquamous histology.; Must have received platinum-based chemotherapy, with or without an anti-PD-(L)1 agent and bevacizumab for metastatic/recurrent disease, unless the patient is not a candidate in the opinion of the treating physician."
+ },
+ {
+  "sampleId": "S023",
+  "criterionId": "NCT06881784-I08",
+  "nctId": "NCT06881784",
+  "kind": "inclusion",
+  "text": "Able to take oral medications."
+ },
+ {
+  "sampleId": "S024",
+  "criterionId": "NCT06745908-E24",
+  "nctId": "NCT06745908",
+  "kind": "exclusion",
+  "text": "History of allogeneic hematopoietic stem cell transplant or organ transplant requiring immunosuppression; or history of pneumonitis or interstitial lung disease requiring active treatment with systemic steroids or other systemic therapy; or a history of receiving systemic steroid therapy or any other immunosuppressive medication ≤ 3 days prior to study initiation. Daily steroid replacement therapy (eg, prednisone or hydrocortisone) and corticosteroids used to manage AEs are permitted."
+ },
+ {
+  "sampleId": "S025",
+  "criterionId": "NCT07222566-E18",
+  "nctId": "NCT07222566",
+  "kind": "exclusion",
+  "text": "Previous systemic anti-tumor therapy including:; Prior systemic therapy, including anti-PD-(L)1 therapy, for locally advanced, unresectable, or metastatic NSCLC.; Previous treatment with immunotherapy; Prior radiotherapy > 30 Gy to the lung < 6 months of first dose of study intervention; Palliative local therapy < 2 weeks before the first dose of study intervention;; Non-specific immunomodulatory therapy < 2 weeks before the first dose.; Prior systemic anti-angiogenic therapy"
+ },
+ {
+  "sampleId": "S026",
+  "criterionId": "NCT06568939-I03",
+  "nctId": "NCT06568939",
+  "kind": "inclusion",
+  "text": "Must have histologically or cytologically documented NSCLC that is locally advanced or metastatic."
+ },
+ {
+  "sampleId": "S027",
+  "criterionId": "NCT04267848-I07",
+  "nctId": "NCT04267848",
+  "kind": "inclusion",
+  "text": "No prior neoadjuvant or adjuvant therapy for current lung cancer diagnosis"
+ },
+ {
+  "sampleId": "S028",
+  "criterionId": "NCT06616584-I03",
+  "nctId": "NCT06616584",
+  "kind": "inclusion",
+  "text": "Participants must have a CT or MRI scan of the brain to evaluate for central nervous system (CNS) disease within 42 days prior to randomization"
+ },
+ {
+  "sampleId": "S029",
+  "criterionId": "NCT05208762-E02",
+  "nctId": "NCT05208762",
+  "kind": "exclusion",
+  "text": "Known active central nervous system metastases. Participants with previously-treated brain metastases may participate provided they:; Are clinically stable for at least 4 weeks prior to study entry after brain metastasis treatment; Have no new or enlarging brain metastases; And are off of corticosteroids prescribed for symptoms associate with brain metastases for at least 7 days prior to first dose of study treatment"
+ },
+ {
+  "sampleId": "S030",
+  "criterionId": "NCT06692738-E09",
+  "nctId": "NCT06692738",
+  "kind": "exclusion",
+  "text": "Active tuberculosis infection."
+ },
+ {
+  "sampleId": "S031",
+  "criterionId": "NCT03093116-I13",
+  "nctId": "NCT03093116",
+  "kind": "inclusion",
+  "text": "Subject must have a documented ROS1 or NTRK1-3 gene fusion determined by tissue-based local testing using either:; a next-generation sequencing (NGS) or quantitative polymerase chain reaction (qPCR) test will be accepted to determine molecular eligibility.; Adequate tumor tissue needs to be sent to the Sponsor designated central diagnostic laboratory for retrospective confirmation by a central diagnostic laboratory test selected by the Sponsor. OR; a fluorescence in situ hybridization (FISH) test AND prospective confirmation of fusion status by a central diagnostic laboratory test selected by the Sponsor PRIOR to enrollment will be accepted to determine molecular eligibility.; Adequate tumor tissue must be sent to the Sponsor designated central diagnostic laboratory for prospective confirmation by a central diagnostic laboratory test selected by the Sponsor PRIOR to enrollment."
+ },
+ {
+  "sampleId": "S032",
+  "criterionId": "NCT06010329-I02",
+  "nctId": "NCT06010329",
+  "kind": "inclusion",
+  "text": "Histopathological and/or cytopathological confirmation of locally advanced or metastatic NSCLC"
+ },
+ {
+  "sampleId": "S033",
+  "criterionId": "NCT06270706-E06",
+  "nctId": "NCT06270706",
+  "kind": "exclusion",
+  "text": "Has an active autoimmune disease that has required systemic treatment in the past 2 years"
+ },
+ {
+  "sampleId": "S034",
+  "criterionId": "NCT04300556-E10",
+  "nctId": "NCT04300556",
+  "kind": "exclusion",
+  "text": "Known to be Human Immunodeficiency Virus (HIV) positive. Testing at entry not required."
+ },
+ {
+  "sampleId": "S035",
+  "criterionId": "NCT07094113-E13",
+  "nctId": "NCT07094113",
+  "kind": "exclusion",
+  "text": "History or evidence of any other clinically significant disorder, condition, or disease that, in the opinion of the investigator, would pose a risk to participant safety."
+ },
+ {
+  "sampleId": "S036",
+  "criterionId": "NCT06616584-I12",
+  "nctId": "NCT06616584",
+  "kind": "inclusion",
+  "text": "Participants must not be planning to receive any concurrent chemotherapy, immunotherapy, or biologic therapy for cancer treatment while receiving treatment on this study"
+ },
+ {
+  "sampleId": "S037",
+  "criterionId": "NCT06150664-I01",
+  "nctId": "NCT06150664",
+  "kind": "inclusion",
+  "text": "Age 18 years or older"
+ },
+ {
+  "sampleId": "S038",
+  "criterionId": "NCT06767514-I05",
+  "nctId": "NCT06767514",
+  "kind": "inclusion",
+  "text": "Histologically or cytologically confirmed squamous or non-squamous NSCLC"
+ },
+ {
+  "sampleId": "S039",
+  "criterionId": "NCT06498635-I27",
+  "nctId": "NCT06498635",
+  "kind": "inclusion",
+  "text": "Participants must not have a prior or concurrent malignancy whose natural history or treatment (in the opinion of the treating physician) has the potential to interfere with the safety or efficacy assessment of the investigational regimen"
+ },
+ {
+  "sampleId": "S040",
+  "criterionId": "NCT05642572-I25",
+  "nctId": "NCT05642572",
+  "kind": "inclusion",
+  "text": "Participants must also be offered participation in specimen banking. With participant consent, specimens must be collected and submitted via the SWOG Specimen Tracking System"
+ },
+ {
+  "sampleId": "S041",
+  "criterionId": "NCT07189871-E07",
+  "nctId": "NCT07189871",
+  "kind": "exclusion",
+  "text": "Inadequate organ functions as reflected in laboratory parameters:; Estimated glomerular filtration rate (eGFR) < 50 mL/min; Platelet count of < 100 x 109/L; Absolute neutrophil count (ANC) < 1.5 x 109/L; Hemoglobin < 9 g/dL; Alanine aminotransferase (ALT) or aspartate aminotransferase (AST) > 3 x upper limit of normal (ULN), or > 5 x ULN for participants with known liver metastases; Total bilirubin > 1.5 x ULN"
+ },
+ {
+  "sampleId": "S042",
+  "criterionId": "NCT07140016-E16",
+  "nctId": "NCT07140016",
+  "kind": "exclusion",
+  "text": "Participant has a known history of human immunodeficiency virus (HIV) infection with acquired immunodeficiency syndrome (AIDS)-related complications."
+ },
+ {
+  "sampleId": "S043",
+  "criterionId": "NCT06357533-E07",
+  "nctId": "NCT06357533",
+  "kind": "exclusion",
+  "text": "History of any ILD/pneumonitis, including radiation pneumonitis (apart from radiation pneumonitis that did not require steroids), or drug-induced ILD/pneumonitis, has current or suspected ILD/pneumonitis that cannot be ruled out by imaging at screening."
+ },
+ {
+  "sampleId": "S044",
+  "criterionId": "NCT07288177-I05",
+  "nctId": "NCT07288177",
+  "kind": "inclusion",
+  "text": "Participant has an Eastern Cooperative Oncology Group (ECOG) Performance Status (PS) score of 0 or 1 within 7 days of Cycle 1 Day 1."
+ },
+ {
+  "sampleId": "S045",
+  "criterionId": "NCT06953089-E04",
+  "nctId": "NCT06953089",
+  "kind": "exclusion",
+  "text": "Has an uncontrolled concomitant or intercurrent illness, that in the opinion of the investigator, contra-indicates trial participation, limits compliance with trial procedures or substantially increases the risk of incurring AEs."
+ },
+ {
+  "sampleId": "S046",
+  "criterionId": "NCT07094204-I14",
+  "nctId": "NCT07094204",
+  "kind": "inclusion",
+  "text": "Male participant must agree to remain abstinent or use a condom with pregnant partner(s) for the duration of the pregnancy throughout the investigational period and for 3 months after final investigational study intervention administration."
+ },
+ {
+  "sampleId": "S047",
+  "criterionId": "NCT04300556-I18",
+  "nctId": "NCT04300556",
+  "kind": "inclusion",
+  "text": "For cohorts where MORAb-202 is used in combination with lenvatinib: Has adequately controlled blood pressure (BP) with or without antihypertensive medications, defined as BP <=150/90 millimeter of mercury (mm Hg) and no change in antihypertensive medications within 1 week before the first administration of the study drug."
+ },
+ {
+  "sampleId": "S048",
+  "criterionId": "NCT06119581-I03",
+  "nctId": "NCT06119581",
+  "kind": "inclusion",
+  "text": "Must have disease with evidence of KRAS G12C mutation."
+ },
+ {
+  "sampleId": "S049",
+  "criterionId": "NCT03191149-I12",
+  "nctId": "NCT03191149",
+  "kind": "inclusion",
+  "text": "Absolute neutrophil count >= 1,500/mcL (within 4 weeks before registration)"
+ },
+ {
+  "sampleId": "S050",
+  "criterionId": "NCT05967689-I02",
+  "nctId": "NCT05967689",
+  "kind": "inclusion",
+  "text": "≥18 years of age (or meets the country's regulatory definition of legal adult age, whichever is greater."
+ },
+ {
+  "sampleId": "S051",
+  "criterionId": "NCT06228326-I03",
+  "nctId": "NCT06228326",
+  "kind": "inclusion",
+  "text": "Eastern Cooperative Oncology Group (ECOG) performance status of 0 or 1"
+ },
+ {
+  "sampleId": "S052",
+  "criterionId": "NCT06881784-I05",
+  "nctId": "NCT06881784",
+  "kind": "inclusion",
+  "text": "Adequate organ function (bone marrow, liver, kidney, coagulation)."
+ },
+ {
+  "sampleId": "S053",
+  "criterionId": "NCT07154290-E03",
+  "nctId": "NCT07154290",
+  "kind": "exclusion",
+  "text": "Has untreated or active primary brain tumor, Central Nervous System (CNS) metastases, leptomeningeal disease, or spinal cord compression, as described in the protocol"
+ },
+ {
+  "sampleId": "S054",
+  "criterionId": "NCT06495125-I01",
+  "nctId": "NCT06495125",
+  "kind": "inclusion",
+  "text": "Patients must have been histologically or cytologically diagnosed with non-small cell lung cancer, specifically lung adenocarcinoma"
+ },
+ {
+  "sampleId": "S055",
+  "criterionId": "NCT07098338-E08",
+  "nctId": "NCT07098338",
+  "kind": "exclusion",
+  "text": "Uncontrolled or significant cardiac disease"
+ },
+ {
+  "sampleId": "S056",
+  "criterionId": "NCT06692738-I01",
+  "nctId": "NCT06692738",
+  "kind": "inclusion",
+  "text": "Histologically or cytologically documented squamous NSCLC."
+ },
+ {
+  "sampleId": "S057",
+  "criterionId": "NCT06116682-I36",
+  "nctId": "NCT06116682",
+  "kind": "inclusion",
+  "text": "Participants must not have impaired oxygenation requiring continuous oxygen supplementation as determined by the treating investigator"
+ },
+ {
+  "sampleId": "S058",
+  "criterionId": "NCT07222566-I05",
+  "nctId": "NCT07222566",
+  "kind": "inclusion",
+  "text": "Measurable disease based on RECIST v1.1 per investigator."
+ },
+ {
+  "sampleId": "S059",
+  "criterionId": "NCT05086692-E05",
+  "nctId": "NCT05086692",
+  "kind": "exclusion",
+  "text": "Clinically significant active, known or suspected autoimmune disease, or diseases that can be exacerbated with immunotherapy."
+ },
+ {
+  "sampleId": "S060",
+  "criterionId": "NCT07357597-E02",
+  "nctId": "NCT07357597",
+  "kind": "exclusion",
+  "text": "Has received Dato-DXd prior to enrollment. Medical Conditions"
+ },
+ {
+  "sampleId": "S061",
+  "criterionId": "NCT07098338-E02",
+  "nctId": "NCT07098338",
+  "kind": "exclusion",
+  "text": "Active or prior documented autoimmune or inflammatory disorders"
+ },
+ {
+  "sampleId": "S062",
+  "criterionId": "NCT06096844-I06",
+  "nctId": "NCT06096844",
+  "kind": "inclusion",
+  "text": "Patient must have an Eastern Cooperative Oncology Group (ECOG) Performance Status of 0-2"
+ },
+ {
+  "sampleId": "S063",
+  "criterionId": "NCT06562192-I02",
+  "nctId": "NCT06562192",
+  "kind": "inclusion",
+  "text": "Patients with one of the following indications:"
+ },
+ {
+  "sampleId": "S064",
+  "criterionId": "NCT06228326-I02",
+  "nctId": "NCT06228326",
+  "kind": "inclusion",
+  "text": "Life expectancy >12 weeks"
+ },
+ {
+  "sampleId": "S065",
+  "criterionId": "NCT05914116-E19",
+  "nctId": "NCT05914116",
+  "kind": "exclusion",
+  "text": "Has spinal cord compression or clinically active central nervous system metastases, defined as untreated and symptomatic, or requiring therapy with corticosteroids or anticonvulsants to control associated symptoms. Subjects with clinically inactive brain metastases may be included in the study. Subjects with treated brain metastases that are no longer symptomatic and who require no treatment with corticosteroids or anticonvulsants may be included in the study if they have recovered from the acute toxic effect of radiotherapy. A minimum of 2 weeks must have elapsed between the end of whole brain radiotherapy and study randomization."
+ },
+ {
+  "sampleId": "S066",
+  "criterionId": "NCT06745908-E27",
+  "nctId": "NCT06745908",
+  "kind": "exclusion",
+  "text": "Have known active central nervous system (CNS) metastases, carcinomatous meningitis, and/or spinal cord compression."
+ },
+ {
+  "sampleId": "S067",
+  "criterionId": "NCT06890598-I06",
+  "nctId": "NCT06890598",
+  "kind": "inclusion",
+  "text": "Must have adequate laboratory parameters."
+ },
+ {
+  "sampleId": "S068",
+  "criterionId": "NCT07070232-E06",
+  "nctId": "NCT07070232",
+  "kind": "exclusion",
+  "text": "Are a participant of child-bearing potential who are pregnant or breastfeeding or are planning pregnancy within 225 days (\\~7.5 months) after receiving last dose of BNT326 and within 6 months after last dose of pumitamig, whichever is longer."
+ },
+ {
+  "sampleId": "S069",
+  "criterionId": "NCT06765109-E05",
+  "nctId": "NCT06765109",
+  "kind": "exclusion",
+  "text": "Uncontrolled clinically relevant infection requiring systemic therapy"
+ },
+ {
+  "sampleId": "S070",
+  "criterionId": "NCT06627647-I01",
+  "nctId": "NCT06627647",
+  "kind": "inclusion",
+  "text": "Histologically or cytologically documented non-squamous NSCLC."
+ },
+ {
+  "sampleId": "S071",
+  "criterionId": "NCT06745908-E23",
+  "nctId": "NCT06745908",
+  "kind": "exclusion",
+  "text": "History of any of the following: drug-induced severe cutaneous adverse reaction (SCAR), including, but not limited to Stevens-Johnson syndrome/toxic epidermal necrolysis (SJS/TEN), drug reaction with eosinophilia and systemic symptoms (DRESS), or dose-limiting immune-mediated reactions."
+ },
+ {
+  "sampleId": "S072",
+  "criterionId": "NCT06692738-E06",
+  "nctId": "NCT06692738",
+  "kind": "exclusion",
+  "text": "History of another primary malignancy except for malignancy treated with curative intent with no known active disease ≥ 2 years before the first dose of study intervention and of low potential risk for recurrence."
+ },
+ {
+  "sampleId": "S073",
+  "criterionId": "NCT03191149-I09",
+  "nctId": "NCT03191149",
+  "kind": "inclusion",
+  "text": "Eastern Cooperative Oncology Group (ECOG) performance status =< 1"
+ },
+ {
+  "sampleId": "S074",
+  "criterionId": "NCT06270706-E07",
+  "nctId": "NCT06270706",
+  "kind": "exclusion",
+  "text": "Has known active CNS metastases (brain and/or leptomeningeal metastases)"
+ },
+ {
+  "sampleId": "S075",
+  "criterionId": "NCT05099172-I10",
+  "nctId": "NCT05099172",
+  "kind": "inclusion",
+  "text": "Adequate liver function as assessed by following laboratory tests to be conducted within 7 days before the first dose of study treatment:; Total bilirubin ≤ 1.5 × ULN (or ≤ 3 × ULN for participants with documented Gilbert-Meulengracht Syndrome, or for participants with hyperbilirubinemia considered due to liver metastasis).; Aspartate transaminase and alanine transaminase ≤ 2.5 × ULN (or ≤ 5 × ULN if due to liver involvement by tumor)."
+ },
+ {
+  "sampleId": "S076",
+  "criterionId": "NCT06793215-E16",
+  "nctId": "NCT06793215",
+  "kind": "exclusion",
+  "text": "History of idiopathic pulmonary fibrosis, organizing pneumonia (e.g., bronchiolitis obliterans), drug-induced pneumonitis, or idiopathic pneumonitis, or evidence of active pneumonitis on the screening chest computed tomography scan"
+ },
+ {
+  "sampleId": "S077",
+  "criterionId": "NCT05297734-E01",
+  "nctId": "NCT05297734",
+  "kind": "exclusion",
+  "text": "Inability to consent to the study"
+ },
+ {
+  "sampleId": "S078",
+  "criterionId": "NCT06270706-E02",
+  "nctId": "NCT06270706",
+  "kind": "exclusion",
+  "text": "Has a known additional malignancy that is progressing or has required active treatment within the past 2 years"
+ },
+ {
+  "sampleId": "S079",
+  "criterionId": "NCT05642572-I05",
+  "nctId": "NCT05642572",
+  "kind": "inclusion",
+  "text": "Participants must have either measurable disease or non-measurable disease documented by CT or MRI. The CT from a combined PET/CT may be used to document only non-measurable disease unless it is of diagnostic quality. Measurable disease must be assessed within 28 days prior to sub-study randomization. Non-measurable disease must be assessed within 42 days prior to sub-study randomization. All known sites of disease must be assessed and documented on the Baseline Tumor Assessment Form. Participants whose only measurable disease is within a previous radiation therapy port must demonstrate clearly progressive disease (in the opinion of the treating investigator) prior to sub-study randomization to be considered measurable"
+ },
+ {
+  "sampleId": "S080",
+  "criterionId": "NCT07288034-E11",
+  "nctId": "NCT07288034",
+  "kind": "exclusion",
+  "text": "PART II: Surgical intervention within 4 weeks prior to study treatment, except for minor procedures such as port placement"
+ },
+ {
+  "sampleId": "S081",
+  "criterionId": "NCT06427941-E02",
+  "nctId": "NCT06427941",
+  "kind": "exclusion",
+  "text": "Active leptomeningeal disease or uncontrolled/untreated brain metastases."
+ },
+ {
+  "sampleId": "S082",
+  "criterionId": "NCT06667908-E01",
+  "nctId": "NCT06667908",
+  "kind": "exclusion",
+  "text": "Medical history of: (a) Primary immunodeficiency (b) Organ transplant that requires therapeutic immunosuppression"
+ },
+ {
+  "sampleId": "S083",
+  "criterionId": "NCT05099172-E06",
+  "nctId": "NCT05099172",
+  "kind": "exclusion",
+  "text": "Any history of primary brain or leptomeningeal disease (symptomatic or asymptomatic), presence of symptomatic central nervous system (CNS) metastases, or CNS metastases that require local treatment (such as radiotherapy or surgery)."
+ },
+ {
+  "sampleId": "S084",
+  "criterionId": "NCT07288034-I03",
+  "nctId": "NCT07288034",
+  "kind": "inclusion",
+  "text": "Agreement to blood collection for ctDNA research"
+ },
+ {
+  "sampleId": "S085",
+  "criterionId": "NCT06616584-I04",
+  "nctId": "NCT06616584",
+  "kind": "inclusion",
+  "text": "Participants must have received exactly one anti-PD-1 or anti-PD-L1 therapy for advanced disease (stage IV or recurrent disease, or stage I-III disease in certain circumstances outlined below). Anti-PD-1 or anti-PD-L1 therapy may have been given alone or in combination with other therapy. For participants who received neoadjuvant, adjuvant, and/or consolidation anti-PD-1 or anti-PD-L1 therapy for stage I-III disease:; If they experienced disease progression within (≤) 365 days from initiation (cycle 1 day 1) or anti-PD-1 or anti-PD-L1 therapy, this counts as the single allowed anti-PD-1 or anti-PD-L1 therapy for advanced disease; If they experienced disease progression more than (>) 365 days from initiation (cycle 1 day 1) or anti-PD-1 or anti-PD-L1 therapy, this is not considered anti-PD-1 or anti-PD-L1 therapy for advance disease. These participants must have received anti-PD-1 or anti-PD-L1 therapy for stage IV or recurrent disease"
+ },
+ {
+  "sampleId": "S086",
+  "criterionId": "NCT04928846-I04",
+  "nctId": "NCT04928846",
+  "kind": "inclusion",
+  "text": "A histologically or cytologically documented non-squamous cell NSCLC that is locally advanced or metastatic."
+ },
+ {
+  "sampleId": "S087",
+  "criterionId": "NCT06364917-I04",
+  "nctId": "NCT06364917",
+  "kind": "inclusion",
+  "text": "Participants must have histologically or cytologically confirmed non-small cell lung cancer which is stage IV"
+ },
+ {
+  "sampleId": "S088",
+  "criterionId": "NCT06008730-E06",
+  "nctId": "NCT06008730",
+  "kind": "exclusion",
+  "text": "Patients whose tumors exhibit targetable alterations in EGFR or ALK"
+ },
+ {
+  "sampleId": "S089",
+  "criterionId": "NCT07070232-I13",
+  "nctId": "NCT07070232",
+  "kind": "inclusion",
+  "text": "Cohort 2B: Have histologically or cytologically confirmed diagnosis of recurrent unresectable or metastatic breast cancer that is documented as HER2-negative and either HR-negative or HR-positive per American Society of Clinical Oncology/College of American Pathologists guidelines."
+ },
+ {
+  "sampleId": "S090",
+  "criterionId": "NCT05493566-E04",
+  "nctId": "NCT05493566",
+  "kind": "exclusion",
+  "text": "Any targetable driver mutation (e.g. ALK, EGFR exon 19 del, etc)."
+ },
+ {
+  "sampleId": "S091",
+  "criterionId": "NCT06116682-I05",
+  "nctId": "NCT06116682",
+  "kind": "inclusion",
+  "text": "Participants with asymptomatic CNS metastasis (brain metastases or leptomeningeal disease) must be clinically stable and asymptomatic for at least 14 days prior to sub-study registration; NOTE: Participants can be on a low-dose corticosteroid treatment (≤ 10 mg prednisone or equivalent) for at least 14 days prior to study treatment"
+ },
+ {
+  "sampleId": "S092",
+  "criterionId": "NCT06495125-I18",
+  "nctId": "NCT06495125",
+  "kind": "inclusion",
+  "text": "Patients must be able to understand and be willing to sign a written informed consent document"
+ },
+ {
+  "sampleId": "S093",
+  "criterionId": "NCT05914116-I16",
+  "nctId": "NCT05914116",
+  "kind": "inclusion",
+  "text": "ESCC subjects (Phase 2a Cohort 3 ONLY):; Pathologically documented locally advanced, or metastatic ESCC and is not amenable to curative surgery or radiation.; Having received at least one prior therapy for unresectable disease. Patients with recurrence within 6 months of completion of neoadjuvant or adjuvant therapy will be considered as having received one prior therapy for unresectable disease."
+ },
+ {
+  "sampleId": "S094",
+  "criterionId": "NCT04181060-I02",
+  "nctId": "NCT04181060",
+  "kind": "inclusion",
+  "text": "Patient must have advanced disease, defined as - either stage IV disease, stage IIIB disease not amenable to definitive multi-modality therapy, or recurrent disease after a prior diagnosis of stage I-III disease. All staging is via the American Joint Committee on Cancer (AJCC)/International Association for the Study of Lung Cancer (IASLC) 8th edition staging criteria"
+ },
+ {
+  "sampleId": "S095",
+  "criterionId": "NCT06686771-I07",
+  "nctId": "NCT06686771",
+  "kind": "inclusion",
+  "text": "ECOG performance status of 0, 1 or 2."
+ },
+ {
+  "sampleId": "S096",
+  "criterionId": "NCT06170788-E21",
+  "nctId": "NCT06170788",
+  "kind": "exclusion",
+  "text": "Human immunodeficiency virus (HIV)-infected participants with a history of Kaposi's sarcoma and/or Multicentric Castleman's Disease."
+ },
+ {
+  "sampleId": "S097",
+  "criterionId": "NCT07100080-E01",
+  "nctId": "NCT07100080",
+  "kind": "exclusion",
+  "text": "Inadequate organ function and/or bone marrow reserve."
+ },
+ {
+  "sampleId": "S098",
+  "criterionId": "NCT07098338-E11",
+  "nctId": "NCT07098338",
+  "kind": "exclusion",
+  "text": "History of uncontrolled hypertension, and active bleeding diseases, and high risks of bleeding and disorders of coagulation"
+ },
+ {
+  "sampleId": "S099",
+  "criterionId": "NCT03093116-I10",
+  "nctId": "NCT03093116",
+  "kind": "inclusion",
+  "text": "Baseline laboratory values fulfilling the following requirements:Absolute neutrophils count (ANC) ≥1500/mm3 (1.5 × 109/L); Platelets (PLTs) ≥100,000/mm3 (100 × 109/L); Hemoglobin ≥ 9.0 g/dL transfusions are allowed; Serum creatinine or creatinine clearance Within normal limits or > 40 mL/min; Total serum bilirubin < 1.5 × ULN; Liver transaminases (ASTs/ALTs) < 2.5 × ULN; < 5 × ULN if liver metastases are present Alkaline phosphatase (ALP); < 2.5 × ULN; < 5 × ULN if liver and/or bone metastasis are present; Serum calcium, magnesium, and potassium Normal or CTCAE grade ≤ 1 with or without supplementation"
+ },
+ {
+  "sampleId": "S100",
+  "criterionId": "NCT07291037-I03",
+  "nctId": "NCT07291037",
+  "kind": "inclusion",
+  "text": "Has no known tumour genomic alterations in NTRK, BRAF V600, RET, MET exon 14 skipping, KRAS G12C, or HER2. Additionally, participants must not have known tumour genomic alteration of any other actionable driver oncogenes for which there are locally approved targeted first-line therapies. Note: Participants whose tumours harbour BRAF (exception V600) or KRAS (exception G12C) mutations are eligible for the study."
+ },
+ {
+  "sampleId": "S101",
+  "criterionId": "NCT06616584-I19",
+  "nctId": "NCT06616584",
+  "kind": "inclusion",
+  "text": "Participants must have a creatinine ≤ the institutional (I)ULN or calculated creatinine clearance ≥ 50 mL/min using the following Cockcroft-Gault formula. This specimen must have been drawn and processed within 28 days prior to randomization"
+ },
+ {
+  "sampleId": "S102",
+  "criterionId": "NCT04267848-I14",
+  "nctId": "NCT04267848",
+  "kind": "inclusion",
+  "text": "No active auto-immune disease that has required systemic treatment within the last 2 years (e.g., disease-modifying agents, corticosteroids, or immunosuppressive drugs). Replacement therapy (e.g., thyroxine, insulin, or physiologic corticosteroid release therapy for adrenal or pituitary insufficiency) is not considered a form of systemic treatment"
+ },
+ {
+  "sampleId": "S103",
+  "criterionId": "NCT06495125-I06",
+  "nctId": "NCT06495125",
+  "kind": "inclusion",
+  "text": "Patients must have measurable disease, defined as at least one lesion that can be accurately measured in at least one dimension (longest diameter to be recorded for non-nodal lesions and short axis for nodal lesions) as ≥ 20 mm with conventional techniques or as ≥ 10 mm with spiral CT scan"
+ },
+ {
+  "sampleId": "S104",
+  "criterionId": "NCT06758401-I01",
+  "nctId": "NCT06758401",
+  "kind": "inclusion",
+  "text": "Participants must meet the following criteria:; Have pathologically confirmed Stage IIIB or IIIC NSCLC and not be a candidate for surgical resection or definitive chemoradiation, or Stage IV NSCLC per the AJCC Staging Manual (Version 8.0) and the UICC Staging System (Eighth edition).; Participants with known AGAs including EGFR, ALK, ROS1, NTRK, BRAF, RET, and MET, for which there are approved and available first-line therapies per local SOC are ineligible. Documented negative results for EGFR, ALK, and ROS1 AGAs are required for participants with non-squamous histology.; Participants with large cell neuroendocrine carcinoma are excluded.; Must be an appropriate candidate for treatment with pembrolizumab monotherapy per local guidelines."
+ },
+ {
+  "sampleId": "S105",
+  "criterionId": "NCT06618287-I06",
+  "nctId": "NCT06618287",
+  "kind": "inclusion",
+  "text": "Group C: Participants must have pathologically confirmed locally-advanced, recurrent inoperable, or metastatic TNBC or ER-low, HER2-negative BC."
+ },
+ {
+  "sampleId": "S106",
+  "criterionId": "NCT07288034-E21",
+  "nctId": "NCT07288034",
+  "kind": "exclusion",
+  "text": "PART II: Active infection requiring antibiotics"
+ },
+ {
+  "sampleId": "S107",
+  "criterionId": "NCT07393555-I22",
+  "nctId": "NCT07393555",
+  "kind": "inclusion",
+  "text": "Aspartate aminotransferase (AST) and alanine aminotransferase (ALT) ≤ 3 × institutional ULN (within 28 days prior to randomization). Participants with history of liver metastasis must have AST and ALT ≤ 5 x ULN"
+ },
+ {
+  "sampleId": "S108",
+  "criterionId": "NCT05967689-I04",
+  "nctId": "NCT05967689",
+  "kind": "inclusion",
+  "text": "Measurable disease per Response Evaluation Criteria in Solid Tumors version 1.1 (RECIST 1.1)."
+ },
+ {
+  "sampleId": "S109",
+  "criterionId": "NCT06767514-I02",
+  "nctId": "NCT06767514",
+  "kind": "inclusion",
+  "text": "Eastern Cooperative Oncology Group (ECOG) performance status score of 0 - 1"
+ },
+ {
+  "sampleId": "S110",
+  "criterionId": "NCT05785741-E15",
+  "nctId": "NCT05785741",
+  "kind": "exclusion",
+  "text": "Has unresolved toxicities from previous anticancer therapy, defined as toxicities (other than alopecia) not yet resolved to NCI-CTCAE version 5.0, grade ≤ 1 or baseline."
+ },
+ {
+  "sampleId": "S111",
+  "criterionId": "NCT07357597-E06",
+  "nctId": "NCT07357597",
+  "kind": "exclusion",
+  "text": "Uncontrolled infection requiring IV antibiotics, antivirals, or antifungals; suspected infections (eg, prodromal symptoms); or inability to rule out infections (participants with localized fungal infections of skin or nails are eligible)."
+ },
+ {
+  "sampleId": "S112",
+  "criterionId": "NCT07098338-I04",
+  "nctId": "NCT07098338",
+  "kind": "inclusion",
+  "text": "Adequate bone marrow and organ function"
+ },
+ {
+  "sampleId": "S113",
+  "criterionId": "NCT03191149-I32",
+  "nctId": "NCT03191149",
+  "kind": "inclusion",
+  "text": "Women must not be pregnant or breast-feeding because osimertinib (AZD9291) has been shown to cause fetal harm in animal models. All females of childbearing potential must have a blood test or urine study within 2 weeks prior to registration to rule out pregnancy. A female of childbearing potential is any woman, regardless of sexual orientation or whether they have undergone tubal ligation, who meets the following criteria: 1) has not undergone a hysterectomy or bilateral oophorectomy; or 2) has not been naturally postmenopausal for at least 24 consecutive months (i.e., has had menses at any time in the preceding 24 consecutive months)"
+ },
+ {
+  "sampleId": "S114",
+  "criterionId": "NCT05624996-I08",
+  "nctId": "NCT05624996",
+  "kind": "inclusion",
+  "text": "Creatinine clearance >= 25 mL/min by the Cockcroft-Gault (C-G) equation"
+ },
+ {
+  "sampleId": "S115",
+  "criterionId": "NCT05493566-I07",
+  "nctId": "NCT05493566",
+  "kind": "inclusion",
+  "text": "Life expectancy of greater than 12 weeks."
+ },
+ {
+  "sampleId": "S116",
+  "criterionId": "NCT04300556-E18",
+  "nctId": "NCT04300556",
+  "kind": "exclusion",
+  "text": "Lung-specific clinically significant illnesses including, but not limited to any underlying pulmonary disorder (example, pulmonary embolism), asthma, chronic obstructive pulmonary disease (COPD), and restrictive lung disease, or currently receiving any medication that is associated with a clinically significant risk of developing ILD."
+ },
+ {
+  "sampleId": "S117",
+  "criterionId": "NCT03191149-I05",
+  "nctId": "NCT03191149",
+  "kind": "inclusion",
+  "text": "Patients must have previously received at least one line of therapy for their advanced lung cancer; there are no restrictions on the maximum number of prior therapies allowed"
+ },
+ {
+  "sampleId": "S118",
+  "criterionId": "NCT06686771-I11",
+  "nctId": "NCT06686771",
+  "kind": "inclusion",
+  "text": "Prior external beam radiation related to NSCLC in the metastatic disease setting is permitted provided a minimum of 14 days (2 weeks) have elapsed between the last dose of radiation and date of enrollment. Patients that received prior external beam radiation therapy in the NSCLC curative disease setting (including the primary lesion) are eligible. Oligoprogressive lesions previously treated with external beam radiation are eligible as long they are clinically asymptomatic, and re-treatment is possible according to the investigator."
+ },
+ {
+  "sampleId": "S119",
+  "criterionId": "NCT06792552-I03",
+  "nctId": "NCT06792552",
+  "kind": "inclusion",
+  "text": "In Part 1:; Participants with histologically or cytologically confirmed advanced solid tumors, who have failed or are ineligible for standard of care therapies.; Have progressed on at least one prior systematic anti-tumor regimen, and presence of at least one evaluable lesion according to RECIST Version 1.1. Measurable lesions are required in the backfill period.; In the backfill period, eligible tumor types are limited to high-grade serous ovarian cancer, high-grade endometrioid ovarian cancer, USC, clear cell RCC, papillary RCC and adenocarcinoma of NSCLC without actionable mutation of epidermal growth factor receptor (EGFR). For participants with NSCLC, presence of CDH6 expression through immunohistochemical examination of tumor tissue by central laboratory is required."
+ },
+ {
+  "sampleId": "S120",
+  "criterionId": "NCT05099172-I07",
+  "nctId": "NCT05099172",
+  "kind": "inclusion",
+  "text": "Minimum life expectancy of 12 weeks."
+ },
+ {
+  "sampleId": "S121",
+  "criterionId": "NCT06495125-I16",
+  "nctId": "NCT06495125",
+  "kind": "inclusion",
+  "text": "Patients must have the ability to ingest oral medications"
+ },
+ {
+  "sampleId": "S122",
+  "criterionId": "NCT05914116-E08",
+  "nctId": "NCT05914116",
+  "kind": "exclusion",
+  "text": "Has a medical history of interstitial lung diseases (e.g., non-infectious interstitial pneumonia, pneumonitis, pulmonary fibrosis, and severe radiation pneumonitis) or current interstitial lung diseases or who are suspected to have these diseases by imaging at screening."
+ },
+ {
+  "sampleId": "S123",
+  "criterionId": "NCT06119581-I11",
+  "nctId": "NCT06119581",
+  "kind": "inclusion",
+  "text": "Women of childbearing potential must; Have a negative pregnancy test.; Not be breastfeeding during treatment"
+ },
+ {
+  "sampleId": "S124",
+  "criterionId": "NCT06616584-I08",
+  "nctId": "NCT06616584",
+  "kind": "inclusion",
+  "text": "Participants with a known sensitizing molecular alteration for which a Food and Drug Administration (FDA)-approved targeted therapy for NSCLC exists (e.g., EGFR, ALK, ROS1, BRAF, RET, NTRK, KRAS, HER2, and MET sensitizing mutations), must have previously received at least one of the approved therapy(s). Prior targeted therapy for participants with targetable alterations is allowed if all other eligibility criteria are also met"
+ },
+ {
+  "sampleId": "S125",
+  "criterionId": "NCT06875310-E05",
+  "nctId": "NCT06875310",
+  "kind": "exclusion",
+  "text": "Treatment targeting KRAS G12C mutation (eg, sotorasib, adagrasib) in any setting."
+ },
+ {
+  "sampleId": "S126",
+  "criterionId": "NCT06793215-I02",
+  "nctId": "NCT06793215",
+  "kind": "inclusion",
+  "text": "Histologically or cytologically confirmed diagnosis of advanced or metastatic non squamous NSCLC that is not eligible for curative surgery and/or definitive chemoradiotherapy"
+ },
+ {
+  "sampleId": "S127",
+  "criterionId": "NCT03093116-I01",
+  "nctId": "NCT03093116",
+  "kind": "inclusion",
+  "text": "Histologically or cytologically confirmed diagnosis of locally advanced, or metastatic solid tumor (including primary CNS tumors) (Stage IV, American Joint Committee on Cancer v.7) that harbors an ALK, ROS1, NTRK1, NTRK2, or NTRK3 gene rearrangement by protocol specified tests."
+ },
+ {
+  "sampleId": "S128",
+  "criterionId": "NCT06357533-I03",
+  "nctId": "NCT06357533",
+  "kind": "inclusion",
+  "text": "Absence of sensitising EGFR mutations, and ALK and ROS1 rearrangements, and absence of documented local test result for any other known genomic alteration for which there are locally approved and available targeted first-line therapies."
+ },
+ {
+  "sampleId": "S129",
+  "criterionId": "NCT07365319-I03",
+  "nctId": "NCT07365319",
+  "kind": "inclusion",
+  "text": "Participant has histologically or cytologically confirmed Stage 4 NSCLC predominately squamous or non-squamous) and is considered a candidate for standard therapy with pembrolizumab and chemotherapy. Participants with NSCLC-NOS (not otherwise specified) will be considered as non-squamous NSCLC."
+ },
+ {
+  "sampleId": "S130",
+  "criterionId": "NCT07393555-I16",
+  "nctId": "NCT07393555",
+  "kind": "inclusion",
+  "text": "Participants' most recent Zubrod performance status must be 0-1 and be documented within 28 days prior to randomization."
+ },
+ {
+  "sampleId": "S131",
+  "criterionId": "NCT06914128-I04",
+  "nctId": "NCT06914128",
+  "kind": "inclusion",
+  "text": "Eastern Cooperative Oncology Group (ECOG) performance status of 0 or 1."
+ },
+ {
+  "sampleId": "S132",
+  "criterionId": "NCT06792552-I01",
+  "nctId": "NCT06792552",
+  "kind": "inclusion",
+  "text": "Written informed consent is obtained prior to any procedures that are not considered standard of care."
+ },
+ {
+  "sampleId": "S133",
+  "criterionId": "NCT07659782-I02",
+  "nctId": "NCT07659782",
+  "kind": "inclusion",
+  "text": "Measurable disease per RECIST 1.1"
+ },
+ {
+  "sampleId": "S134",
+  "criterionId": "NCT06953089-E08",
+  "nctId": "NCT06953089",
+  "kind": "exclusion",
+  "text": "Has spinal cord compression or clinically active central nervous system (CNS) metastases."
+ },
+ {
+  "sampleId": "S135",
+  "criterionId": "NCT03093116-I06",
+  "nctId": "NCT03093116",
+  "kind": "inclusion",
+  "text": "Prior cytotoxic chemotherapy is allowed."
+ },
+ {
+  "sampleId": "S136",
+  "criterionId": "NCT06953089-I01",
+  "nctId": "NCT06953089",
+  "kind": "inclusion",
+  "text": "Adults aged ≥ 18 years or acceptable age according to local regulations at the time of voluntarily signing informed consent."
+ },
+ {
+  "sampleId": "S137",
+  "criterionId": "NCT06498635-I21",
+  "nctId": "NCT06498635",
+  "kind": "inclusion",
+  "text": "Participants must have a calculated creatinine clearance ≥ 40 mL/min using the following Cockcroft-Gault formula. This specimen must have been drawn and processed within 28 days prior to randomization. For creatinine clearance formula see the tools on the Clinical Research Associate (CRA) Workbench https://txwb.crab.org/TXWB/Tools.aspx"
+ },
+ {
+  "sampleId": "S138",
+  "criterionId": "NCT05914116-I15",
+  "nctId": "NCT05914116",
+  "kind": "inclusion",
+  "text": "NSCLC subjects (Phase 2a Cohort 2 ONLY):; Pathologically documented locally advanced, or metastatic NSCLC and is not amenable to curative surgery or radiation.; Has received prior treatment with platinum-based chemotherapy regimen and/or anti-PD-1/PD-L1 antibody-based regimen in the advanced/unresectable, or metastatic setting unless unable or unwilling. Subjects with NSCLC known to harbor a genomic alteration(s) other than EGFR mutation(s) (e.g., ALK rearrangement, ROS1 rearrangement, KRAS G12C mutation, BRAF V600E mutation, NTRK1/2/3 Gene fusion, MET Exon 14 skipping, RET rearrangement etc.) for which treatment is available must have also received prior treatment with at least 1 genotype-directed therapy."
+ },
+ {
+  "sampleId": "S139",
+  "criterionId": "NCT06170788-E04",
+  "nctId": "NCT06170788",
+  "kind": "exclusion",
+  "text": "Has active inflammatory bowel disease requiring immunosuppressive medication or previous clear history of inflammatory bowel disease (eg, Crohn's disease, ulcerative colitis, or chronic diarrhea)."
+ },
+ {
+  "sampleId": "S140",
+  "criterionId": "NCT06031688-I15",
+  "nctId": "NCT06031688",
+  "kind": "inclusion",
+  "text": "Participants must not be planning to receive any concurrent chemotherapy, immunotherapy, biologic or hormonal therapy for cancer treatment while receiving treatment on this study"
+ },
+ {
+  "sampleId": "S141",
+  "criterionId": "NCT06422143-I03",
+  "nctId": "NCT06422143",
+  "kind": "inclusion",
+  "text": "Has life expectancy ≥3 months"
+ },
+ {
+  "sampleId": "S142",
+  "criterionId": "NCT05967689-I07",
+  "nctId": "NCT05967689",
+  "kind": "inclusion",
+  "text": "Adequate organ function, as defined by the hematologic, renal and hepatic laboratory values."
+ },
+ {
+  "sampleId": "S143",
+  "criterionId": "NCT06422143-I02",
+  "nctId": "NCT06422143",
+  "kind": "inclusion",
+  "text": "Measurable disease per Response Evaluation Criteria in Solid Tumours (RECIST) 1.1 as assessed by the local site investigator/radiology"
+ },
+ {
+  "sampleId": "S144",
+  "criterionId": "NCT07488676-E24",
+  "nctId": "NCT07488676",
+  "kind": "exclusion",
+  "text": "Participant has received a live or live-attenuated vaccine within 30 days prior to the first dose of study intervention."
+ },
+ {
+  "sampleId": "S145",
+  "criterionId": "NCT04300556-I02",
+  "nctId": "NCT04300556",
+  "kind": "inclusion",
+  "text": "For Dose-Escalation: Females (TNBC, EC and OC) or males/females (NSCLC, adenocarcinoma). Participants with the following disease characteristics: Participants with the following tumor types, each as a separate arm:; TNBC: Histologically confirmed diagnosis of metastatic TNBC (that is, estrogen receptor (ER) negative/progesterone receptor negative/ human epidermal growth factor receptor 2 (HER2) negative (defined as immunohistochemistry (IHC) less than (<) 2 plus (+) or fluorescence in situ hybridization (FISH) negative) breast cancer). Previously treated with at least one line of systemic anticancer therapy (cytotoxic or targeted anticancer agents) in the metastatic setting.; NSCLC adenocarcinoma: Histologically or cytologically confirmed metastatic NSCLC adenocarcinoma: participants who have failed previous treatment for metastatic disease, are not indicated or failed epidermal growth factor receptor (EGFR)-, Anaplastic lymphoma kinase (ALK) -, B-Raf proto-oncogene (BRAF) - or c-ros oncogene 1 (ROS1) - targeted therapy, and for whom no alternative standard therapy exists.; EC: Histologically confirmed diagnosis of advanced, recurrent or metastatic EC. Relapsed or failure of at least one platinum-based regimen or one immunotherapy-based regimen.; OC or primary peritoneal cancer or fallopian tube cancer: Histologically confirmed diagnosis of high grade serous epithelial ovarian cancer or primary peritoneal cancer or fallopian tube cancer. Participants must have:; platinum-resistant disease (defined as progression within 6 months after the last dose of at least 4 cycles of the last platinum containing chemotherapy regimen); received up to 4 lines of systemic therapy post development of platinum resistance. For Dose-Confirmation and Dose Optimization: Note: Only participants with histologically confirmed diagnosis of advanced, recurrent, or metastatic EC will be enrolled at sites in France. High-grade serous ovarian cancer or primary peritoneal cancer or fallopian tube cancer:; Platinum-resistant disease:; For participant with 1 line of platinum-containing therapy: progression greater than (>) 1 month and less than or equal to (<=) 6 months after the last dose of the first platinum-containing chemotherapy regimen (of at least 4 cycles); For participant with 2-3 lines of platinum-containing therapy: progression during or within 6 months after the last dose of the 2nd or 3rd platinum-containing chemotherapy regimen.; Have received up to 3 prior lines of systemic therapy and for whom single-agent therapy is appropriate as the next line of therapy. Participants may have been treated with up to one line of therapy subsequent to determination of platinum-resistance. In Dose Optimization Part B participants may have received up to 3 prior lines of systemic therapy, up to 4 prior lines is permitted for participants who have received prior mirvetuximab soravtansine; Neoadjuvant plus/minus (±) adjuvant will be considered 1 line of therapy.; Maintenance therapy (example, bevacizumab, PARP inhibitors) will be considered part of the preceding line of therapy (will not be counted as an independent line of therapy).; Hormonal therapy will be counted as a separate line of therapy unless it was given as maintenance.; Therapy changed due to toxicity in the absence of progression will be considered part of the same line. Endometrial cancer (not enrolled in Dose Optimization Part B):; Participants must have histologically confirmed diagnosis of advanced, recurrent, or metastatic EC. All histologic (including carcinosarcoma [no more than one participant at any dose level]) and molecular subtypes will be included. Participants may have been treated with an Immune Checkpoint Inhibitor (ICI) containing regimen (or be ineligible for ICI treatment) and must have had no more than 2 prior regimens (not including adjuvant therapy if progression or recurrent/metastatic disease occurred more than 6 months after the completion of the last cycle of adjuvant therapy).; Note: There is no restriction regarding prior hormonal therapy."
+ },
+ {
+  "sampleId": "S146",
+  "criterionId": "NCT06119581-E06",
+  "nctId": "NCT06119581",
+  "kind": "exclusion",
+  "text": "Is unable or unwilling to take folic acid or vitamin B12 supplementation."
+ },
+ {
+  "sampleId": "S147",
+  "criterionId": "NCT06008730-I11",
+  "nctId": "NCT06008730",
+  "kind": "inclusion",
+  "text": "FCBP and men must agree to use adequate contraception (hormonal or barrier method of birth control; abstinence) prior to study entry and for the duration of study participation. Should a woman become pregnant or suspect she is pregnant while she or her partner is participating in this study, she should inform her treating physician immediately. Men treated or enrolled on this protocol must also agree to use adequate contraception prior to the study, for the duration of study participation, and 3 months after completion of radiotherapy. A female of childbearing potential (FCBP) is a sexually mature woman who: 1) has not undergone a hysterectomy or bilateral oophorectomy; or 2) has not been naturally postmenopausal for at least 24 consecutive months (i.e., has had menses at any time in the preceding 24 consecutive months"
+ },
+ {
+  "sampleId": "S148",
+  "criterionId": "NCT06616584-I23",
+  "nctId": "NCT06616584",
+  "kind": "inclusion",
+  "text": "Participants with evidence of chronic hepatitis B virus (HBV) infection must have undetectable HBV viral load while on suppressive therapy on the most recent test results obtained within 6 months prior to randomization, if indicated by the treating investigator"
+ },
+ {
+  "sampleId": "S149",
+  "criterionId": "NCT05297734-E03",
+  "nctId": "NCT05297734",
+  "kind": "exclusion",
+  "text": "Employed by the practice site"
+ },
+ {
+  "sampleId": "S150",
+  "criterionId": "NCT06616584-I43",
+  "nctId": "NCT06616584",
+  "kind": "inclusion",
+  "text": "Participants must agree to have blood specimens submitted for circulating tumor DNA (ctDNA)"
+ },
+ {
+  "sampleId": "S151",
+  "criterionId": "NCT05061550-E18",
+  "nctId": "NCT05061550",
+  "kind": "exclusion",
+  "text": "Active or uncontrolled infections including HBA, HBV, HCV, and HIV."
+ },
+ {
+  "sampleId": "S152",
+  "criterionId": "NCT06096844-I16",
+  "nctId": "NCT06096844",
+  "kind": "inclusion",
+  "text": "For patients with evidence of chronic hepatitis B virus (HBV) infection, the HBV viral load must be undetectable on suppressive therapy, if indicated"
+ },
+ {
+  "sampleId": "S153",
+  "criterionId": "NCT06096844-I22",
+  "nctId": "NCT06096844",
+  "kind": "inclusion",
+  "text": "Patient must not have had any prior immunotherapy for metastatic disease. Immunotherapy given in the setting of adjuvant therapy or locally advanced disease is allowed as long as treatment was completed greater than 6 months prior to Step 1 registration"
+ },
+ {
+  "sampleId": "S154",
+  "criterionId": "NCT06627647-I04",
+  "nctId": "NCT06627647",
+  "kind": "inclusion",
+  "text": "Absence of documented tumor genomic mutation results from tests conducted as part of standard local practice in any other actionable driver oncogenes for which there are locally approved and available targeted 1L therapies."
+ },
+ {
+  "sampleId": "S155",
+  "criterionId": "NCT06899126-I02",
+  "nctId": "NCT06899126",
+  "kind": "inclusion",
+  "text": "Adults ≥18 years of age on the day of signing the ICF. Follow local regulatory requirements if the legal age of consent for trial participation is >18 years old."
+ },
+ {
+  "sampleId": "S156",
+  "criterionId": "NCT06031688-I02",
+  "nctId": "NCT06031688",
+  "kind": "inclusion",
+  "text": "Participants must have documentation of stage IV or recurrent NSCLC with a MET exon 14 skipping mutation determined by tissue-based or blood-based (circulating tumor DNA [ctDNA]) next generation sequencing (NGS) assay done within a laboratory with Clinical Laboratory Improvement Act (CLIA), International Organization for Standardization (ISO)/ International Electrotechnical Commission (IEC), College of American Pathologists (CAP), or similar certification. Documentation must either be:; NGS test results from tissue submitted for LUNGMAP screening, or; Submitted documentation in the LUNGMAP Rave Electronic Data Capture System of a MET exon 14 skipping mutation from a previously completed tissue or blood-based NGS test"
+ },
+ {
+  "sampleId": "S157",
+  "criterionId": "NCT06170788-E09",
+  "nctId": "NCT06170788",
+  "kind": "exclusion",
+  "text": "Received radiation therapy to the lung that is >30 Gy within 6 months of start of study intervention."
+ },
+ {
+  "sampleId": "S158",
+  "criterionId": "NCT06031688-I22",
+  "nctId": "NCT06031688",
+  "kind": "inclusion",
+  "text": "Aspartate aminotransferase (AST) and alanine aminotransferase (ALT) =< 2.5 × institutional ULN. Participants with history of liver metastasis must have AST and ALT =< 5 x ULN (within 28 days prior to sub-study randomization)"
+ },
+ {
+  "sampleId": "S159",
+  "criterionId": "NCT03191149-I29",
+  "nctId": "NCT03191149",
+  "kind": "inclusion",
+  "text": "Subjects taking warfarin should be monitored regularly for changes in prothrombin time or international normalized ratio (INR)"
+ },
+ {
+  "sampleId": "S160",
+  "criterionId": "NCT05379985-I03",
+  "nctId": "NCT05379985",
+  "kind": "inclusion",
+  "text": "Have Eastern Cooperative Oncology Group (ECOG) performance status of 0 or 1"
+ }
+]

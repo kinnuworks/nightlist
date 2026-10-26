@@ -1,0 +1,24 @@
+order_text,query_term,rxcui,ingredient,atc_code,atc_name,therapy_class
+ALECENSA 150 MG PO CAPS,ALECENSA,1727455,alectinib,L01ED,Anaplastic lymphoma kinase (ALK) inhibitors,ALK_TKI
+ALIMTA 500 MG IV SOLR,ALIMTA,68446,pemetrexed,L01BA,Folic acid analogues,PEMETREXED
+CARBOplatin 450 MG/45ML IV SOLN,CARBOplatin,40048,carboplatin,L01XA,Platinum compounds,PLATINUM
+CYRAMZA 500 MG/50ML IV SOLN,CYRAMZA,1535922,ramucirumab,L01FG,VEGF/VEGFR (Vascular Endothelial Growth Factor / -Receptor) inhibitors,ANTI_VEGF
+DOCEtaxel 80 MG/4ML IV CONC,DOCEtaxel,72962,docetaxel,L01CD,Taxanes,TAXANE
+IMFINZI 500 MG/10ML IV SOLN,IMFINZI,1919503,durvalumab,L01FF,PD-1/PD-L1 (Programmed cell death protein 1/death ligand 1) inhibitors,PD1_PDL1
+KEYTRUDA 200 MG/8ML IV SOLN,KEYTRUDA,1547545,pembrolizumab,L01FF,PD-1/PD-L1 (Programmed cell death protein 1/death ligand 1) inhibitors,PD1_PDL1
+Keytruda (pembrolizumab) infusion,pembrolizumab,1547545,pembrolizumab,L01FF,PD-1/PD-L1 (Programmed cell death protein 1/death ligand 1) inhibitors,PD1_PDL1
+LORBRENA 100 MG PO TABS,LORBRENA,2103164,lorlatinib,L01ED,Anaplastic lymphoma kinase (ALK) inhibitors,ALK_TKI
+LUMAKRAS 120 MG PO TABS,LUMAKRAS,2550714,sotorasib,L01XX,Other antineoplastic agents,KRAS_G12C
+PACLitaxel 300 MG/50ML IV CONC,PACLitaxel,56946,paclitaxel,L01CD,Taxanes,TAXANE
+RETEVMO 80 MG PO CAPS,RETEVMO,2370147,selpercatinib,L01EX,Other protein kinase inhibitors,RET_TKI
+TABRECTA 200 MG PO TABS,TABRECTA,2362165,capmatinib,L01EP,Cellular-mesenchymal-epithelial transition factor (c-MET) kinase inhibitors,MET_TKI
+TAGRISSO 80 MG PO TABS,TAGRISSO,1721560,osimertinib,L01EB,Epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors,EGFR_TKI
+alectinib 600 mg BID,alectinib,1727455,alectinib,L01ED,Anaplastic lymphoma kinase (ALK) inhibitors,ALK_TKI
+carboplatin AUC 5 IV,carboplatin AUC,40048,carboplatin,L01XA,Platinum compounds,PLATINUM
+docetaxel 75 mg/m2 q3w,docetaxel,72962,docetaxel,L01CD,Taxanes,TAXANE
+durvalumab 10 mg/kg consolidation,durvalumab,1919503,durvalumab,L01FF,PD-1/PD-L1 (Programmed cell death protein 1/death ligand 1) inhibitors,PD1_PDL1
+nab-paclitaxel (Abraxane) 100 mg/m2,Abraxane,56946,paclitaxel,L01CD,Taxanes,TAXANE
+osimertinib 80 mg daily,osimertinib,1721560,osimertinib,L01EB,Epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors,EGFR_TKI
+pembrolizumab 200 mg IV q3w,pembrolizumab,1547545,pembrolizumab,L01FF,PD-1/PD-L1 (Programmed cell death protein 1/death ligand 1) inhibitors,PD1_PDL1
+pemetrexed 500 mg/m2,pemetrexed,68446,pemetrexed,L01BA,Folic acid analogues,PEMETREXED
+sotorasib 960 mg daily,sotorasib,2550714,sotorasib,L01XX,Other antineoplastic agents,KRAS_G12C
