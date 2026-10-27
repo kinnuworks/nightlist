@@ -162,6 +162,12 @@ export async function compileTrials(trials: Trial[], trace: Trace, opts: Compile
     if (c.method === "structured") continue;
     if (!c.pred && c.category === "check") c.category = "review";
     if (c.pred && (!predSchema.safeParse(c.pred).success || hasUnboundedRange(c.pred))) { c.category = "review"; c.pred = undefined; c.method = "none"; }
+    // Model compilations are drafts. On the blind final sample, 1 of 9 that reached
+    // screening matched the gold label, so a person confirms them before they screen.
+    if (c.method === "model" && c.pred && c.category === "check") {
+      c.category = "review";
+      c.caveat = [`model draft: ${describe(c.pred)}; confirm before it screens patients`, c.caveat].filter(Boolean).join("; ");
+    }
     if (!(c.caveat ?? "").startsWith("blocked by Scout") && (c.method === "model" || c.check?.model || (c as any).modelReviewed)) {
       cache[keyOf(c)] = { category: c.category, method: c.method, pred: c.pred, caveat: c.caveat, check: c.check, model: c.check?.model ?? (c as any).modelReviewed, compiledAt: new Date().toISOString() };
     }

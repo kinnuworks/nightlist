@@ -134,7 +134,7 @@ export function normalizeRows(out: any): Row[] {
   const data = out?.data ?? out?.rows ?? out?.result ?? out;
   if (!Array.isArray(data)) return [];
   if (!data.length || !Array.isArray(data[0])) return data as Row[];
-  const cols: string[] = (out.columns ?? out.schema ?? out.header ?? []).map((c: any) => (typeof c === "string" ? c : c.name ?? c.columnName));
+  const cols: string[] = (out.headers ?? out.columns ?? out.schema ?? out.header ?? []).map((c: any) => (typeof c === "string" ? c : c.name ?? c.columnName));
   return data.map((r: unknown[]) => Object.fromEntries(r.map((v, i) => [cols[i] ?? `c${i}`, v])));
 }
 

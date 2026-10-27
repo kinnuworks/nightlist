@@ -64,7 +64,8 @@ test("model compile, back-translation and the trace", async () => {
   const met = criteria.find((c) => c.text.includes("companion diagnostic"))!;
   const other = criteria.find((c) => c.text.includes("composite scale"))!;
   assert.equal(met.method, "model");
-  assert.equal(met.category, "check");
+  assert.equal(met.category, "review", "a model compilation is a draft a person confirms");
+  assert.match(met.caveat ?? "", /^model draft: /);
   assert.equal(met.check?.status, "agree");
   assert.equal(other.category, "review", "a disagreeing back-translation sends the criterion to review");
   assert.equal(other.check?.status, "disagree");

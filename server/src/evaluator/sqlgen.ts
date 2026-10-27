@@ -71,11 +71,13 @@ export function leafSql(l: Leaf, t: Tables, labCutoff: string): string {
     }
     case "lab": {
       // Latest result for the analyte; results older than the cutoff count as missing.
-      const latest = `FROM ${t("lab")} r WHERE r.patient_id = ${pid} AND r.analyte = '${l.analyte}' AND r.value IS NOT NULL AND r.unit IS NOT NULL
-        AND r.collected_date = (SELECT MAX(r2.collected_date) FROM ${t("lab")} r2 WHERE r2.patient_id = ${pid} AND r2.analyte = '${l.analyte}' AND r2.unit IS NOT NULL)`;
-      const lhs = l.xUln ? `MAX(r.value) / NULLIF(MAX(r.uln), 0)` : "MAX(r.value)";
-      return `(SELECT CASE WHEN COUNT(*) = 0 OR MAX(r.collected_date) < DATE '${labCutoff}' ${l.xUln ? "OR MAX(r.uln) IS NULL" : ""} THEN 'U'
-        WHEN ${lhs} ${l.op} ${l.value} THEN 'T' ELSE 'F' END ${latest})`;
+      // MAX_BY keeps the correlation one level deep, which Spark (Zetaris) requires.
+      const v = `MAX_BY(r.value, r.collected_date)`;
+      const uln = `MAX_BY(r.uln, r.collected_date)`;
+      const lhs = l.xUln ? `${v} / NULLIF(${uln}, 0)` : v;
+      return `(SELECT CASE WHEN COUNT(*) = 0 OR MAX(r.collected_date) < DATE '${labCutoff}' ${l.xUln ? `OR ${uln} IS NULL` : ""} THEN 'U'
+        WHEN ${lhs} ${l.op} ${l.value} THEN 'T' ELSE 'F' END
+        FROM ${t("lab")} r WHERE r.patient_id = ${pid} AND r.analyte = '${l.analyte}' AND r.value IS NOT NULL AND r.unit IS NOT NULL)`;
     }
     case "condition":
       return `CASE WHEN EXISTS (SELECT 1 FROM ${t("condition")} c WHERE c.patient_id = ${pid} AND c.category = '${l.category}') THEN 'T' ELSE 'F' END`;

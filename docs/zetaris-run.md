@@ -1499,3 +1499,28 @@ SHOW DQ INVALID RECORD therapy_class_resolved TABLE lightning.metastore.rrcc.tri
 SHOW DQ INVALID RECORD trial_is_recruiting TABLE lightning.metastore.rrcc.trialmatch.trial
 ```
 0 rows
+
+
+## Live night through Zetaris
+
+Run `night-20261027-202347` with `SAMPLE_MODE=false`: every patient check ran as SQL inside Zetaris against the `lightning.metastore.rrcc.trialmatch` semantic layer. Trace: [logs/night-20261027-202347.jsonl](../logs/night-20261027-202347.jsonl).
+
+- Screener: 106 of 106 trial queries returned from Zetaris (106 trial queries, 25440 patient-trial pairs evaluated); median 4624 ms per trial query.
+- Steward, data-quality rules run in Zetaris:
+  - lab_row_resolves_to_patient on lab: 6 invalid rows (excluded from screening)
+  - lab_has_unit_and_value on lab: 9 invalid rows (excluded from screening)
+  - biomarker_resolves_to_patient on biomarker: 0 invalid rows
+  - biomarker_has_assay_and_date on biomarker: 0 invalid rows
+  - therapy_class_resolved on therapy: 0 invalid rows
+  - trial_is_recruiting on trial: 0 invalid rows
+- Verifier: 400 open matches re-read against source rows, 0 sent back for a human read
+- Navigator: World Model: 19 new matches, 7 changed, 0 dropped since the last run; 240 patients with at least one trial to review; 283 patients one data item away
+- Result: 10,266 pairs ruled out with evidence and 15,174 needing a person. The same night in sample mode (DuckDB over the same source files) gives 10,285 and 15,155.
+
+| Trial | Checks in one Zetaris query | ms |
+|---|---:|---:|
+| NCT05967689 | 5 | 3232 |
+| NCT05208762 | 5 | 1999 |
+| NCT06452277 | 1 | 2352 |
+| NCT07288177 | 5 | 2206 |
+| NCT07659782 | 8 | 7931 |
