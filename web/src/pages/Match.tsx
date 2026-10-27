@@ -10,6 +10,7 @@ import {
   ErrorView,
   EvidenceTable,
   IconChevron,
+  IconRead,
   IconTissue,
   Loading,
   MethodBadge,
@@ -19,7 +20,7 @@ import {
   VerdictChip,
 } from "../components/ui";
 import { cell, fmtDate, href, miles, phaseLabel, plural, sexShort, tableOfSql, useLoad } from "../lib";
-import type { CriterionResult, MatchDetail, NotChecked, PatientDetail, Status } from "../types";
+import type { CriterionResult, KeyReview, MatchDetail, NotChecked, PatientDetail, Status } from "../types";
 import { MemoryPanel } from "./Patient";
 
 export function MatchPage({ pid, nct }: { pid: string; nct: string }) {
@@ -31,11 +32,19 @@ export function MatchPage({ pid, nct }: { pid: string; nct: string }) {
   return <MatchView m={m.data} patient={p.data} status={s.data} />;
 }
 
+// Key criteria come on the match itself or on the patient's worklist entry for this trial.
+function keyReviewOf(m: MatchDetail, patient?: PatientDetail): KeyReview[] {
+  if (m.keyReview?.length) return m.keyReview;
+  return patient?.worklist?.matches.find((x) => x.nctId === m.nctId)?.keyReview ?? [];
+}
+
 function summarySentence(m: MatchDetail) {
   const checked = m.results.length;
   const notMet = m.results.filter((r) => r.verdict === "not_met").length;
   const unknown = m.results.filter((r) => r.verdict === "unknown").length;
   if (m.status === "eligible_no_blockers") return `No blocking criteria found in ${plural(checked, "checked criterion", "checked criteria")}.`;
+  if (m.status === "needs_review")
+    return `No blocking criteria found in ${plural(checked, "checked criterion", "checked criteria")}, but a disease-defining criterion could not be checked from records and needs a human read.`;
   if (m.status === "possible_unknowns")
     return `No blocking criteria found in ${checked} checked criteria, but ${plural(unknown, "criterion", "criteria")} could not be answered from records.`;
   return `${plural(notMet, "criterion", "criteria")} not met among ${checked} checked from records.`;
@@ -48,8 +57,10 @@ function MatchView({ m, patient, status }: { m: MatchDetail; patient?: PatientDe
   const name = patient ? `${patient.patient.given_name ?? ""} ${patient.patient.family_name ?? ""}`.trim() : m.patientId;
   const incl = m.results.filter((r) => r.kind === "inclusion");
   const excl = m.results.filter((r) => r.kind === "exclusion");
-  const screening = m.notChecked.filter((x) => x.category === "screening");
-  const review = m.notChecked.filter((x) => x.category === "review");
+  const keyReview = keyReviewOf(m, patient);
+  const keyIds = new Set(keyReview.map((k) => k.criterionId));
+  const screening = m.notChecked.filter((x) => x.category === "screening" && !keyIds.has(x.criterionId));
+  const review = m.notChecked.filter((x) => x.category === "review" && !keyIds.has(x.criterionId));
   const counts = {
     met: m.results.filter((r) => r.verdict === "met").length,
     notMet: m.results.filter((r) => r.verdict === "not_met").length,
@@ -101,7 +112,7 @@ function MatchView({ m, patient, status }: { m: MatchDetail; patient?: PatientDe
         </div>
         <p className="small" style={{ color: "var(--ink-2)" }}>
           This is a worklist result, not an eligibility decision. {plural(screening.length, "item")} {screening.length === 1 ? "is" : "are"} confirmed at the screening visit and{" "}
-          {plural(review.length, "criterion", "criteria")} {review.length === 1 ? "needs" : "need"} a human read; both are listed below.
+          {plural(review.length + keyReview.length, "criterion", "criteria")} {review.length + keyReview.length === 1 ? "needs" : "need"} a human read; both are listed below.
         </p>
         <div className="stack" style={{ gap: 6 }}>
           <StackBar
@@ -145,7 +156,7 @@ function MatchView({ m, patient, status }: { m: MatchDetail; patient?: PatientDe
           </p>
         )}
         <div className="row">
-          <button type="button" className="btn btn-primary" onClick={() => setNote(referralNote(m, patient, status))} aria-controls="referral">
+          <button type="button" className="btn btn-primary" onClick={() => setNote(referralNote(m, keyReview, patient, status))} aria-controls="referral">
             Draft referral note
           </button>
           <button type="button" className="btn" onClick={() => setOpenAll(openAll ? false : true)}>
@@ -181,7 +192,7 @@ function MatchView({ m, patient, status }: { m: MatchDetail; patient?: PatientDe
         <CriteriaGroup title="Exclusion" rows={excl} openAll={openAll} kind="exclusion" />
       </section>
 
-      <NotCheckedCard screening={screening} review={review} />
+      <NotCheckedCard screening={screening} review={review} keyReview={keyReview} />
 
       <div className="grid-main-side">
         <SitesCard m={m} maxMiles={status?.clinic.maxMiles ?? 250} />
@@ -225,8 +236,8 @@ function CriteriaGroup({ title, rows, openAll, kind }: { title: string; rows: Cr
         <p className="empty">No {title.toLowerCase()} criteria were compiled into checks.</p>
       ) : (
         <div role="list">
-          {rows.map((r) => (
-            <CriterionRow key={r.criterionId} r={r} openAll={openAll} />
+          {rows.map((r, i) => (
+            <CriterionRow key={r.criterionId} r={r} openAll={openAll} sameAs={sameAsEarlier(rows, i)} />
           ))}
         </div>
       )}
@@ -234,9 +245,17 @@ function CriteriaGroup({ title, rows, openAll, kind }: { title: string; rows: Cr
   );
 }
 
+// The first earlier row with the same sentence and verdict, so repeated criteria read as one.
+function sameAsEarlier(rows: CriterionResult[], i: number): string | undefined {
+  const key = (r: CriterionResult) => `${(r.text ?? "").trim().toLowerCase()}|${r.verdict}`;
+  const k = key(rows[i]);
+  if (!rows[i].text) return undefined;
+  return rows.slice(0, i).find((r) => key(r) === k)?.criterionId;
+}
+
 const TRI_LABEL = { T: "true", F: "false", U: "unknown" } as const;
 
-function CriterionRow({ r, openAll }: { r: CriterionResult; openAll: boolean | null }) {
+function CriterionRow({ r, openAll, sameAs }: { r: CriterionResult; openAll: boolean | null; sameAs?: string }) {
   const [open, setOpen] = useState(false);
   const [lastAll, setLastAll] = useState(openAll);
   if (openAll !== lastAll) {
@@ -261,6 +280,7 @@ function CriterionRow({ r, openAll }: { r: CriterionResult; openAll: boolean | n
             <MethodBadge method={r.method} />
             <CheckBadge check={r.check} method={r.method} />
             <span className="tiny muted mono">{r.criterionId}</span>
+            {sameAs && <span className="tiny muted">Same sentence and result as {sameAs}</span>}
           </div>
           {r.caveat && <p className="crit-caveat">Caveat: {r.caveat}</p>}
           {r.verdict === "unknown" && r.items && r.items.length > 0 && (
@@ -312,15 +332,36 @@ function CriterionRow({ r, openAll }: { r: CriterionResult; openAll: boolean | n
   );
 }
 
-function NotCheckedCard({ screening, review }: { screening: NotChecked[]; review: NotChecked[] }) {
+function NotCheckedCard({ screening, review, keyReview }: { screening: NotChecked[]; review: NotChecked[]; keyReview: KeyReview[] }) {
+  const total = screening.length + review.length + keyReview.length;
   return (
     <section className="card" aria-labelledby="nc-title">
       <div className="card-head">
         <div>
           <h2 id="nc-title">Not checked from records</h2>
-          <p>{screening.length + review.length} criteria were not compiled into checks. They are listed so nothing is silently skipped.</p>
+          <p>{plural(total, "criterion", "criteria")} could not be checked from records. They are listed so nothing is silently skipped.</p>
         </div>
       </div>
+      {keyReview.length > 0 && (
+        <div className="card-body" style={{ borderBottom: "1px solid var(--border)" }}>
+          <div className="note note-warn stack" style={{ gap: 6 }}>
+            <h3 id="nc-key" className="row" style={{ gap: 6 }}>
+              <span style={{ width: 16, height: 16, display: "inline-flex" }}>
+                <IconRead />
+              </span>
+              Key criteria a person must read ({keyReview.length})
+            </h3>
+            <p className="small">These define the disease the trial is for. Records could not settle them, so a person has to read the chart.</p>
+            <ul className="list" aria-labelledby="nc-key">
+              {keyReview.map((k) => (
+                <li key={k.criterionId} className="small" style={{ padding: "6px 0" }}>
+                  {k.text} <span className="tiny muted mono">{k.criterionId}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
       <div className="card-body grid-2">
         <NotCheckedColumn title="Screening visit" help="Confirmed in person: consent, contraception, pregnancy test, ability to swallow and similar." xs={screening} id="nc-screening" />
         <NotCheckedColumn title="Needs a human read" help="Requires clinical judgement or detail the records do not hold in structured form." xs={review} id="nc-review" />
@@ -438,7 +479,7 @@ function evidenceLine(r: CriterionResult) {
   return parts.join(" | ");
 }
 
-function referralNote(m: MatchDetail, patient?: PatientDetail, status?: Status) {
+function referralNote(m: MatchDetail, keyReview: KeyReview[], patient?: PatientDetail, status?: Status) {
   const t = m.trial;
   const p = patient?.patient;
   const dx = patient?.diagnosis[0];
@@ -470,11 +511,13 @@ function referralNote(m: MatchDetail, patient?: PatientDetail, status?: Status) 
   }
   lines.push("");
   lines.push("Open items:");
-  if (!unknown.length && !m.notChecked.length) lines.push("- None");
+  if (!unknown.length && !m.notChecked.length && !keyReview.length) lines.push("- None");
+  const keyIds = new Set(keyReview.map((k) => k.criterionId));
+  for (const k of keyReview) lines.push(`- Key criterion, needs human read: ${k.text}`);
   for (const r of unknown)
     lines.push(`- Unknown [${r.kind}] ${r.text}${r.items?.length ? `\n    Obtain: ${r.items.map((i) => `${i.label}${i.needsTissue ? " (needs tissue)" : ""}`).join("; ")}` : ""}`);
-  for (const x of m.notChecked.filter((x) => x.category === "screening")) lines.push(`- Screening visit [${x.kind}] ${x.text}`);
-  for (const x of m.notChecked.filter((x) => x.category === "review")) lines.push(`- Needs human read [${x.kind}] ${x.text}`);
+  for (const x of m.notChecked.filter((x) => x.category === "screening" && !keyIds.has(x.criterionId))) lines.push(`- Screening visit [${x.kind}] ${x.text}`);
+  for (const x of m.notChecked.filter((x) => x.category === "review" && !keyIds.has(x.criterionId))) lines.push(`- Needs human read [${x.kind}] ${x.text}`);
   lines.push("");
   lines.push(`Checks and source rows: ${window.location.origin}${window.location.pathname}#/match/${m.patientId}/${m.nctId}`);
   return lines.join("\n");

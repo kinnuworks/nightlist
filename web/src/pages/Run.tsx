@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { getStatus, getSummary, getTrace, getUsl, postRun, STATIC, STATIC_NOTE } from "../api";
 import { CodeBlock, Disclosure, ErrorView, EvidenceTable, Loading, SourceBadge, StackBar } from "../components/ui";
-import { fmtDate, fmtTime, plural, SOURCE_OF_TABLE, useLoad } from "../lib";
+import { criteriaBreakdown, fmtDate, fmtTime, MODEL_IDLE_NOTE, modelPathIdle, plural, SOURCE_OF_TABLE, useLoad } from "../lib";
 import type { Status, Summary, TraceEvent, Usl } from "../types";
 
 const AGENTS: { name: string; role: string }[] = [
@@ -48,14 +48,14 @@ export function RunPage({ section }: { section?: string }) {
           Run <span className="mono" style={{ fontSize: "0.85em" }}>{sm.runId}</span>
         </h1>
         <p className="lede">
-          Screen as of {fmtDate(sm.asOf)}. {sm.trialsInSnapshot} recruiting lung cancer trials in the snapshot, {sm.trialsScreened} with a site within{" "}
+          Screened as of {fmtDate(sm.asOf)}. {sm.trialsInSnapshot} recruiting lung cancer trials in the snapshot, {sm.trialsScreened} with a site within{" "}
           {s.clinic.maxMiles} miles of {s.clinic.name}. {sm.patients} patients, {sm.pairs.toLocaleString()} patient and trial pairs evaluated.
         </p>
       </section>
 
       <div className="grid-2">
         <RunNow onDone={() => setGen(gen + 1)} />
-        <StatusCard s={s} />
+        <StatusCard s={s} sm={sm} />
       </div>
 
       <ResultsCard sm={sm} />
@@ -147,9 +147,38 @@ function RunNow({ onDone }: { onDone: () => void }) {
   );
 }
 
-function StatusCard({ s }: { s: Status }) {
+// Engine status strings can arrive as markdown ("## Verdict: PASS" with an emoji).
+// Strip that down to plain text for a badge.
+function cleanEngine(v?: string): string {
+  return (v ?? "")
+    .replace(/\p{Extended_Pictographic}|\uFE0F|\u200D/gu, "")
+    .replace(/^\s*#+\s*/gm, "")
+    .replace(/[*_`>]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function ScoutBadge({ v }: { v?: string }) {
+  const text = cleanEngine(v);
+  if (!text) return <span className="badge">not run</span>;
+  if (/\bPASS(ED)?\b/i.test(text) && !/\bFAIL/i.test(text))
+    return (
+      <span className="badge badge-ok" title={text}>
+        Eval gates passed
+      </span>
+    );
+  return <span className="badge badge-warn">{text}</span>;
+}
+
+function modelNote(sm: Summary): string {
+  const b = criteriaBreakdown(sm);
+  if (modelPathIdle(b)) return MODEL_IDLE_NOTE;
+  return `${plural(b.checkByModel, "model-compiled check")} in use; back-translation: ${b.backTranslationAgree} agree, ${b.backTranslationDisagree} disagree.`;
+}
+
+function StatusCard({ s, sm }: { s: Status; sm: Summary }) {
   const models = (s.nightshift.models ?? []).map((m) => (typeof m === "string" ? m : (m.id ?? m.name ?? JSON.stringify(m))));
-  const eng = (v: string) => (v ?? "").trim() || "not run";
+  const eng = (v: string) => cleanEngine(v) || "not run";
   const engTone = (v: string) => (/not run/.test(v) || !v.trim() ? "" : /(\d+)\/\1/.test(v) ? "badge-ok" : "badge-warn");
   return (
     <section className="card card-pad stack" aria-labelledby="st-title" style={{ gap: 10 }}>
@@ -167,19 +196,19 @@ function StatusCard({ s }: { s: Status }) {
         <dt>Nightshift</dt>
         <dd>
           <span className={`badge ${s.nightshift.state === "online" || s.nightshift.state === "ready" ? "badge-ok" : ""}`}>{s.nightshift.state}</span>{" "}
-          <span className="small muted">{models.length ? `models: ${models.join(", ")}` : "no model endpoint; cached compilations were used"}</span>
+          <span className="small muted">{models.length ? `Models: ${models.join(", ")}. ${modelNote(sm)}` : `No model endpoint. ${modelNote(sm)}`}</span>
         </dd>
         <dt>World Model</dt>
         <dd>
-          <span className={`badge ${engTone(s.engines.worldModel)}`}>{eng(s.engines.worldModel)}</span> <span className="small muted">conformance</span>
+          <span className={`badge ${engTone(eng(s.engines.worldModel))}`}>{eng(s.engines.worldModel)}</span> <span className="small muted">conformance</span>
         </dd>
         <dt>H-MEM</dt>
         <dd>
-          <span className={`badge ${engTone(s.engines.hmem)}`}>{eng(s.engines.hmem)}</span> <span className="small muted">conformance</span>
+          <span className={`badge ${engTone(eng(s.engines.hmem))}`}>{eng(s.engines.hmem)}</span> <span className="small muted">conformance</span>
         </dd>
         <dt>Scout Intent</dt>
         <dd>
-          <span className={`badge ${engTone(s.engines.scoutIntent)}`}>{eng(s.engines.scoutIntent)}</span> <span className="small muted">trial text guard eval</span>
+          <ScoutBadge v={s.engines.scoutIntent} /> <span className="small muted">trial text guard eval</span>
         </dd>
       </dl>
     </section>
@@ -188,8 +217,18 @@ function StatusCard({ s }: { s: Status }) {
 
 function ResultsCard({ sm }: { sm: Summary }) {
   const sc = sm.statusCounts;
-  const c = sm.criteria ?? {};
-  const critRows = Object.entries(c).filter(([, v]) => typeof v === "number");
+  const b = criteriaBreakdown(sm);
+  const idle = modelPathIdle(b);
+  const critRows: [string, number][] = [
+    ["Total criteria in screened trials", b.total],
+    ["Checked from records by a pattern rule", b.checkByRule],
+    ["Checked from records by a model-compiled check", b.checkByModel],
+    ["Taken from structured registry fields (age, sex)", b.structured],
+    ["Confirmed at the screening visit", b.screening],
+    ["Need a human read", b.review],
+    ["Model checks where back-translation agrees", b.backTranslationAgree],
+    ["Model checks where back-translation disagrees", b.backTranslationDisagree],
+  ];
   return (
     <section className="card" aria-labelledby="res-title">
       <div className="card-head">
@@ -202,6 +241,7 @@ function ResultsCard({ sm }: { sm: Summary }) {
             label="Pairs by status"
             parts={[
               { value: sc.eligible_no_blockers ?? 0, cls: "b-ok", label: "no blockers found" },
+              { value: sc.needs_review ?? 0, cls: "b-review", label: "key criterion needs a human read" },
               { value: sc.possible_unknowns ?? 0, cls: "b-warn", label: "open items" },
               { value: sc.not_eligible ?? 0, cls: "b-bad", label: "blocked" },
             ]}
@@ -209,6 +249,12 @@ function ResultsCard({ sm }: { sm: Summary }) {
           <dl className="kv small">
             <dt>No blocking criteria found</dt>
             <dd>{(sc.eligible_no_blockers ?? 0).toLocaleString()}</dd>
+            {sc.needs_review !== undefined && (
+              <>
+                <dt>Key criterion needs a human read</dt>
+                <dd>{sc.needs_review.toLocaleString()}</dd>
+              </>
+            )}
             <dt>Open items (unknowns)</dt>
             <dd>{(sc.possible_unknowns ?? 0).toLocaleString()}</dd>
             <dt>Blocked</dt>
@@ -218,15 +264,15 @@ function ResultsCard({ sm }: { sm: Summary }) {
           </dl>
         </div>
         <div className="stack" style={{ gap: 8 }}>
-          <h3>Criteria compilation</h3>
+          <h3>How criteria were handled</h3>
           <div className="table-wrap">
             <table className="t compact">
-              <caption className="sr-only">Criteria by compilation outcome</caption>
+              <caption className="sr-only">Criteria by how they were handled</caption>
               <tbody>
-                {critRows.map(([k, v]) => (
-                  <tr key={k}>
+                {critRows.map(([label, v]) => (
+                  <tr key={label}>
                     <th scope="row" style={{ textTransform: "none", letterSpacing: 0, background: "transparent", fontSize: 13, color: "var(--ink-2)" }}>
-                      {CRIT_LABEL[k] ?? k}
+                      {label}
                     </th>
                     <td className="num">{v.toLocaleString()}</td>
                   </tr>
@@ -234,24 +280,12 @@ function ResultsCard({ sm }: { sm: Summary }) {
               </tbody>
             </table>
           </div>
+          {idle && <p className="note small">{MODEL_IDLE_NOTE}</p>}
         </div>
       </div>
     </section>
   );
 }
-
-const CRIT_LABEL: Record<string, string> = {
-  rule: "Compiled by rule this run",
-  model: "Compiled by the model this run",
-  cached: "Reused from the compile cache (text unchanged)",
-  screening: "Screening visit items",
-  review: "Need a human read",
-  structured: "Structured registry fields",
-  blocked: "Blocked by the Guard",
-  agree: "Back-translation agrees",
-  disagree: "Back-translation disagrees",
-  retries: "Model retries",
-};
 
 function TraceView({ events }: { events: TraceEvent[] }) {
   const known = new Set(AGENTS.map((a) => a.name));

@@ -8,3 +8,4 @@ data/runtime/
 .DS_Store
 web/replay-data/
 data/sources/ctgov_nsclc_us.json
+engines/scout-intent/evals/reports/latest.md

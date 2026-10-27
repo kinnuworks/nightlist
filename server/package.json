@@ -7,7 +7,6 @@
     "dev": "tsx watch src/main.ts",
     "start": "tsx src/main.ts",
     "night": "tsx src/cli/night.ts",
-    "compile": "tsx src/cli/compile.ts",
     "test": "tsx --test test/*.test.ts",
     "zetaris:sql": "tsx scripts/zetaris-sql.ts",
     "zetaris:setup": "tsx scripts/zetaris-setup.ts",

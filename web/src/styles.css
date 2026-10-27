@@ -172,6 +172,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 20px var(--gutter) 64px;
 .chip-bad { background: var(--bad-soft); color: var(--bad); border-color: var(--bad-line); }
 .chip-warn { background: var(--warn-soft); color: var(--warn); border-color: var(--warn-line); }
 .chip-neutral { background: var(--neutral-soft); color: var(--ink-2); border-color: var(--border); }
+.chip-review { background: var(--neutral-soft); color: var(--warn); border-color: var(--warn-line); }
 .chip-new { background: var(--accent-soft); color: var(--accent-ink); border-color: #b8d2e6; }
 
 .badge {
@@ -188,6 +189,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 20px var(--gutter) 64px;
 .badge-warn { background: var(--warn-soft); color: var(--warn); border-color: var(--warn-line); }
 .badge-accent { background: var(--accent-soft); color: var(--accent-ink); border-color: #b8d2e6; }
 .badge-outline { background: transparent; }
+.badge-muted { color: var(--ink-3); }
 
 .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: var(--ink-3); }
 .dot-ok { background: var(--ok); }
@@ -313,6 +315,7 @@ table.evidence td.null { color: var(--ink-3); font-style: italic; }
 .bar > span { display: block; height: 100%; }
 .bar .b-ok { background: var(--ok); }
 .bar .b-warn { background: #c9870f; }
+.bar .b-review { background: #e2b45c; }
 .bar .b-bad { background: var(--bad); }
 .bar .b-muted { background: #9aa6b4; }
 

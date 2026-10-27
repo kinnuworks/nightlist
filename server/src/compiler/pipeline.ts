@@ -24,10 +24,11 @@ function loadCache(): Record<string, Cached> {
 export interface GuardResult { allowed: boolean; risk: number; findings: string[]; sanitized: string; contract?: unknown }
 export type Guard = (input: { nctId: string; criterionId: string; text: string }) => GuardResult;
 
-export async function loadGuard(): Promise<Guard | null> {
+export interface GuardApi { guard: Guard; verify: (contract: unknown, expect: { criterionId?: string; nctId?: string; text?: string }) => boolean }
+export async function loadGuard(): Promise<GuardApi | null> {
   try {
     const mod: any = await import("@nightlist/scout-intent/trialtext");
-    return mod.guardTrialText as Guard;
+    return { guard: mod.guardTrialText as Guard, verify: mod.verifyContract };
   } catch {
     return null;
   }
@@ -68,8 +69,13 @@ export async function compileTrials(trials: Trial[], trace: Trace, opts: Compile
   for (const c of all) {
     if (c.method === "structured") { counts.structured++; continue; }
     if (guard) {
-      const g = guard({ nctId: c.nctId, criterionId: c.criterionId, text: c.text });
-      if (!g.allowed) {
+      const g = guard.guard({ nctId: c.nctId, criterionId: c.criterionId, text: c.text });
+      // The compiler only proceeds on a valid signed contract for this exact criterion,
+      // and it compiles the sanitized text (links and markup removed).
+      const contractOk = g.allowed && guard.verify(g.contract, { criterionId: c.criterionId, nctId: c.nctId, text: g.sanitized });
+      if (g.allowed && !contractOk) g.findings.push("execution contract did not verify");
+      if (g.allowed && contractOk && g.sanitized && g.sanitized !== c.text) c.text = g.sanitized;
+      if (!g.allowed || !contractOk) {
         c.category = "review";
         c.caveat = `blocked by Scout Intent guard: ${g.findings.join("; ")}`;
         counts.blocked++;

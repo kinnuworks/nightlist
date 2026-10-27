@@ -17,9 +17,13 @@ const LATE = ["NCT05967689", "NCT07100080"];
 const night1 = { ...full, studies: full.studies.filter((s: any) => !LATE.includes(s.protocolSection.identificationModule.nctId)) };
 writeFileSync(join(RUNTIME, "demo", "snapshot-night1.json"), JSON.stringify(night1));
 
-const quiet = !process.argv.includes("--verbose");
+const quiet = process.argv.includes("--quiet");
+console.log("Night 1: two trials not yet open, Gloria Haynes has no molecular results.");
 const n1 = await runNight({ snapshotFile: join(RUNTIME, "demo", "snapshot-night1.json"), quiet });
 console.log(`night 1: ${n1.id}`);
+const w1 = JSON.parse(readFileSync(join(n1.outDir, "worklist.json"), "utf8"));
+const gloriaAway = w1.oneItemAway.find((o: any) => o.patientId === "P10003" && o.item === "ngs_panel")?.trials.length ?? 0;
+console.log(`Between nights: Gloria's NGS arrives, two trials open, a coordinator records a travel limit.`);
 
 const patients = readFileSync(join(SOURCES, "ehr", "patients.csv"), "utf8").split("\n");
 const gloria = patients.find((l) => l.includes("Gloria,Haynes"))!.split(",");
@@ -32,9 +36,10 @@ writeFileSync(join(RUNTIME, "inbox", "lab", "molecular.csv"), "report_id,patient
 
 const memory = NavigatorMemory.open(join(RUNTIME, "hmem.json"));
 memory.remember({ patientId: "P10005", kind: "preference", text: "Patient will not travel more than 100 miles for a trial; daughter drives her.", actor: "R. Calloway (research coordinator)" });
-memory.remember({ patientId: "P10003", kind: "decision", text: "Ordered plasma NGS (Guardant360) after Nightlist flagged 28 trials one data item away.", actor: "R. Calloway (research coordinator)" });
+memory.remember({ patientId: "P10003", kind: "decision", text: `Ordered plasma NGS (Guardant360) after Nightlist flagged ${gloriaAway} trials one data item away.`, actor: "R. Calloway (research coordinator)" });
 memory.save();
 
+console.log("Night 2:");
 const n2 = await runNight({ quiet });
 console.log(`night 2: ${n2.id}`);
 console.log(JSON.stringify({ night1: n1.summary.statusCounts, night2: n2.summary.statusCounts, newMatchesNight2: n2.summary.newMatches }));

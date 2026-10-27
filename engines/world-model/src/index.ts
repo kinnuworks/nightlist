@@ -757,7 +757,11 @@ export class WorldModel {
       source,
       payload: clone(payload),
     };
-    if (this.file) fs.appendFileSync(this.file, JSON.stringify(event) + "\n");
+    if (this.file) {
+      const line = JSON.stringify(event) + "\n";
+      if (this.pending) this.pending.push(line);
+      else fs.appendFileSync(this.file, line);
+    }
     this.log.push(event);
     if (kind === "unalias") this.rebuild();
     else this.projector.apply(event);
@@ -766,6 +770,22 @@ export class WorldModel {
   }
 
   // ---------------------------------------------------------- writes
+
+  private pending: string[] | null = null;
+
+  /** Runs fn with log appends buffered, then writes them in one append. Events are
+   * still applied in order as they happen; only the file write is deferred. */
+  batch<T>(fn: () => T): T {
+    if (this.pending) return fn();
+    this.pending = [];
+    try {
+      return fn();
+    } finally {
+      const lines = this.pending;
+      this.pending = null;
+      if (this.file && lines.length) fs.appendFileSync(this.file, lines.join(""));
+    }
+  }
 
   resolveId(id: string): string {
     return this.projector.resolve(id);

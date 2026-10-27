@@ -17,12 +17,21 @@ The data a coordinator needs sits in systems that do not share identifiers: the 
 - Pulls the recruiting NSCLC trials with a US site from ClinicalTrials.gov (471 today; the demo clinic is in Montgomery, Alabama, and screens the 106 within 250 miles).
 - Splits each trial's eligibility text into atomic criteria and compiles each one into a check in a small typed language (age, histology, stage, ECOG, biomarkers, PD-L1, prior therapy, lines of therapy, labs, conditions, brain metastases, measurable disease). Criteria it cannot express go to "needs a human read"; consent, contraception and washouts go to "confirmed at screening".
 - Runs every check for every patient inside the data layer and returns met, not met, or unknown per criterion. Unknown names the data item that would resolve it.
-- Re-reads the source rows behind every clean match before it reaches the worklist.
+- Re-reads the source rows behind every open match and challenges it when the evidence does not hold up, for example when a tissue panel and a plasma panel disagree about the same gene.
 - Keeps an append-only log of trials, patient facts and verdicts, so the morning view shows what changed overnight: trials that opened, new lab results, new and lost matches.
 - Remembers coordinator decisions ("will not travel more than 100 miles") and applies them on later nights.
-- Lists patients who are one data item away from several trials, for example "a comprehensive NGS panel would open 28 trials for Gloria Haynes", flagging items that need tissue.
+- Lists patients who are one data item away from several trials, for example "a comprehensive NGS panel would settle the open checks on 18 trials for Gloria Haynes", ordered so treatment-changing tests come first and flagging items that need tissue.
 
-Nightlist never says a patient is eligible. It says "no blocking criteria found in N checked criteria" and shows what still needs a person.
+Nightlist never says a patient is eligible. Every patient and trial pair lands in one of four groups:
+
+| Group | Meaning |
+|---|---|
+| No blockers found | Every disease-defining criterion was checked from records and none blocks the patient |
+| Key criterion needs a human read | Nothing checked blocks the patient, but a criterion about the disease, its stage, a gene or prior therapy could not be checked from records (or the Verifier found conflicting evidence) |
+| Open items | Nothing blocks; some checks are unknown because data is missing, and the data item to obtain is named |
+| Blocked | At least one criterion is not met, with the source row that decided it |
+
+With the model path off (rules only), the demo night puts 111 of 25,440 pairs in "no blockers found" and 12,548 in "key criterion needs a human read". That is deliberate: the system only says "no blockers" when the criteria that define the trial's population were actually checked.
 
 ## Run it
 
@@ -42,7 +51,7 @@ npm start
 
 Open http://localhost:8787. `npm run demo` builds two overnight runs a day apart (night 2: two trials open, Gloria Haynes's NGS result arrives, a coordinator records a travel limit), so the "what changed overnight" panel has real events. `npm run night` runs one more night on the current state.
 
-Sample mode (`SAMPLE_MODE=true`, the default) runs the same semantic-layer SQL that Zetaris runs in live mode, in an embedded DuckDB over the same source files. It runs the real agent logic on cached trial data and cached model compilations; nothing is replayed from saved outputs.
+Sample mode (`SAMPLE_MODE=true`, the default) runs the same semantic-layer SQL that Zetaris runs in live mode, in an embedded DuckDB over the same source files. It runs the real agent logic on cached trial data; nothing is replayed from saved outputs. When Nightshift has been run, its model compilations and checks are cached with the serving model recorded, and sample mode reuses them; until then, sample mode uses the rule compiler only and the Run page says so.
 
 Live mode: copy `.env.example` to `.env`, set the Zetaris and Nightshift values, and follow [docs/SETUP.md](docs/SETUP.md).
 
@@ -95,12 +104,12 @@ flowchart LR
 | Agent | Job | Can block or send back |
 |---|---|---|
 | Watcher | Pulls the trial snapshot, records what opened, changed or closed in the World Model | |
-| Guard | Runs Scout Intent on untrusted trial text before any model sees it; issues a signed contract that only allows compiling that criterion | Blocks injected instructions |
+| Guard | Runs Scout Intent on untrusted trial text before any model sees it; the compiler proceeds only on a verified signed contract for that exact criterion, and compiles the sanitized text | Blocks injected instructions |
 | Compiler | Deterministic rules first, then the model through Nightshift for the rest; validates every output against the schema, retries once | Sends uncompilable criteria to review |
 | Checker | A second, smaller model restates the compiled rule and judges it against the sentence | Disagreement sends the criterion to review |
 | Steward | Runs the semantic layer's data-quality rules | Rows that fail are excluded and reported |
 | Screener | One SQL pass per trial evaluates every check for every patient | |
-| Verifier | Re-reads the evidence rows behind every clean match | Downgrades matches whose evidence does not hold |
+| Verifier | Re-reads the evidence rows behind every open match: rows must exist, and results for the same gene must not conflict across reports | Sends the match back for a human read (12 challenges on the demo data) |
 | Navigator | Applies remembered coordinator decisions, records verdicts, writes the worklist | Sets matches aside per recorded preferences |
 
 Every action is written to `logs/<run>.jsonl` and stdout with the agent, the target, the model that served the request and the duration. The Run page in the UI shows the same trace.
@@ -125,13 +134,15 @@ Nightshift is the app's AI provider: every model call goes through its OpenAI-co
 
 ## Evaluation
 
-The compiler is measured by behaviour. A random sample of real criteria from the screened trials was labeled blind (the labeler never saw compiler output). For every labeled criterion, the compiled check and the gold label are both run against all 240 patients; a criterion counts as correct only when every patient gets the same verdict. Rules were tuned on a development sample and a second sample; the numbers we report come from a third sample that was drawn and labeled after the last rule change. Results: [docs/EVALUATION.md](docs/EVALUATION.md).
+The compiler is measured by behaviour. A random sample of real criteria from the screened trials was labeled blind (the labeler never saw compiler output). For every labeled criterion, the compiled check and the gold label are both run against all 240 patients; a criterion counts as correct only when every patient gets the same verdict. Rules were tuned on a development sample and a second sample. A third sample was drawn and labeled after those rule changes and scored once, before anything else changed: on it the rule compiler gave the gold verdict for every patient on 83.8% of the criteria it compiled, and compiled 84.7% of the criteria that can be compiled. That is the number we quote. Rules fixed after that test score 87.0% on the same sample, but that sample is no longer blind. Results and every error: [docs/EVALUATION.md](docs/EVALUATION.md).
 
 Run it yourself:
 
 ```bash
 npm run eval
 ```
+
+This re-scores the current code on the final sample and writes the report to `data/runtime/eval/`.
 
 ## Tests
 

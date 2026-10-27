@@ -100,8 +100,13 @@ export function splitCriteria(trial: Pick<Trial, "nctId" | "eligibility">): Crit
   for (const raw of lines) {
     const line = raw.replace(/\s+$/, "");
     if (!line.trim()) continue;
-    if (/^\s*(key\s+)?inclusion criteria/i.test(line)) { flush(); kind = "inclusion"; continue; }
-    if (/^\s*(key\s+)?exclusion criteria/i.test(line)) { flush(); kind = "exclusion"; continue; }
+    // Headings come as "Inclusion Criteria:", "Key Inclusion Criteria", "Select Exclusion
+    // Criteria:", "Main Inclusion Criteria:" and similar short lines.
+    const heading = line.trim().replace(/[*_#]/g, "");
+    if (heading.length <= 60 && /\binclusion criteria\b/i.test(heading) && !/\bexclusion\b/i.test(heading)) { flush(); kind = "inclusion"; continue; }
+    if (heading.length <= 60 && /\bexclusion criteria\b/i.test(heading)) { flush(); kind = "exclusion"; continue; }
+    // A list with no heading at all is read as inclusion criteria.
+    if (kind === null && /^\s*(?:[*\-•]|\d+[.)])\s+/.test(line)) kind = "inclusion";
     const bullet = line.match(/^(\s*)(?:[*\-•]|\d+[.)]|[a-z][.)])\s+(.*)$/i);
     if (bullet) {
       const indent = bullet[1].length;

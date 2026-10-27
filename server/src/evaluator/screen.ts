@@ -5,6 +5,7 @@ import type { DataLayer, Row } from "../datalayer.ts";
 import type { Criterion, Leaf, Pred } from "../dsl.ts";
 import type { Trace } from "../log.ts";
 import type { Trial } from "../trials.ts";
+import { isDiseaseDefining } from "../compiler/rules.ts";
 import { combine, dataItemFor, evidenceSql, leafKey, leafSql, leaves, type DataItem, type Tri } from "./sqlgen.ts";
 
 export type Verdict = "met" | "not_met" | "unknown";
@@ -18,7 +19,7 @@ export interface CriterionResult {
   leaves: { leaf: Leaf; value: Tri; sql: string }[];
   items?: DataItem[];
 }
-export type MatchStatus = "eligible_no_blockers" | "possible_unknowns" | "not_eligible";
+export type MatchStatus = "eligible_no_blockers" | "possible_unknowns" | "needs_review" | "not_eligible";
 export interface Match {
   patientId: string;
   nctId: string;
@@ -29,6 +30,9 @@ export interface Match {
   review: number;
   blocking: CriterionResult[];
   unknowns: CriterionResult[];
+  // Disease-defining criteria (gene, stage, histology, therapy history) that could not
+  // be checked from records. While any remain, the match is never "no blockers".
+  keyReview: { criterionId: string; kind: Criterion["kind"]; text: string }[];
   results: CriterionResult[];
   nearestMiles: number;
   // how many met inclusion checks are specific to this patient's disease (biomarker,
@@ -38,7 +42,24 @@ export interface Match {
   verified?: { ok: boolean; notes: string[] };
 }
 
-const SPECIFIC = new Set(["biomarker", "pdl1", "prior_therapy", "histology", "stage", "lines"]);
+// How much a met inclusion check says the trial was designed for this patient: a
+// confirmed driver mutation counts most, then therapy history, then disease features.
+const SPECIFIC_WEIGHT: Record<string, number> = { biomarker: 4, prior_therapy: 2, pdl1: 2, lines: 1, histology: 1, stage: 1 };
+function specificityOf(results: CriterionResult[]): number {
+  let score = 0;
+  for (const r of results) {
+    if (r.kind !== "inclusion" || r.verdict !== "met") continue;
+    let best = 0;
+    for (const l of r.leaves) {
+      if (l.value !== "T") continue;
+      if (l.leaf.k === "histology" && l.leaf.anyOf.length === 4) continue;
+      if (l.leaf.k === "biomarker" && l.leaf.status !== "detected") continue;
+      best = Math.max(best, SPECIFIC_WEIGHT[l.leaf.k] ?? 0);
+    }
+    score += best;
+  }
+  return score;
+}
 // The leaf that decided a verdict: for a failed inclusion the FALSE leaf, for a
 // triggered exclusion the TRUE leaf.
 export function decidingLeaf(r: CriterionResult) {
@@ -88,10 +109,15 @@ export async function screen(layer: DataLayer, trials: Trial[], criteria: Criter
       });
       const blocking = results.filter((r) => r.verdict === "not_met");
       const unknowns = results.filter((r) => r.verdict === "unknown");
+      const keyReview = cs.filter((c) => c.category === "review" && isDiseaseDefining(c.text)).map((c) => ({ criterionId: c.criterionId, kind: c.kind, text: c.text }));
+      // A trial whose eligibility text produced no criteria beyond structured fields has
+      // not really been checked.
+      if (!cs.some((c) => c.method !== "structured")) keyReview.push({ criterionId: `${trial.nctId}-TEXT`, kind: "inclusion", text: "Eligibility text could not be split into criteria; read the full listing" });
       matches.push({
         patientId: pid,
         nctId: trial.nctId,
-        status: blocking.length ? "not_eligible" : unknowns.length ? "possible_unknowns" : "eligible_no_blockers",
+        status: blocking.length ? "not_eligible" : keyReview.length ? "needs_review" : unknowns.length ? "possible_unknowns" : "eligible_no_blockers",
+        keyReview,
         met: results.filter((r) => r.verdict === "met").length,
         unknown: unknowns.length,
         screening: cs.filter((c) => c.category === "screening").length,
@@ -100,7 +126,7 @@ export async function screen(layer: DataLayer, trials: Trial[], criteria: Criter
         unknowns,
         results,
         nearestMiles: trial.nearestMiles,
-        specificity: results.filter((r) => r.kind === "inclusion" && r.verdict === "met" && r.leaves.some((l) => l.value === "T" && SPECIFIC.has(l.leaf.k) && !(l.leaf.k === "histology" && l.leaf.anyOf.length === 4))).length,
+        specificity: specificityOf(results),
         coverage: checks.length / Math.max(1, checks.length + cs.filter((c) => c.category === "review").length),
       });
     }
@@ -114,15 +140,17 @@ function dedupeItems(items: DataItem[]): DataItem[] {
   return items.filter((i) => !seen.has(i.id) && seen.add(i.id));
 }
 
-// For each clean match, re-read the evidence rows for every met criterion that depends
-// on patient data and confirm the rows exist and agree. A missing or contradictory row
-// downgrades the match and is logged as a critique.
+// Verifier: for every match that is not blocked, re-read the source rows behind each TRUE
+// biomarker, PD-L1 or lab check and test them independently of the screening SQL:
+// the rows must exist, and the patient must not have conflicting results for the same
+// gene across reports (tissue and plasma tests can disagree). A failed check downgrades
+// the match to "needs a human read" and is logged as a challenge to the Screener.
 export async function verify(layer: DataLayer, matches: Match[], trace: Trace, limit = layer.kind === "duckdb" ? Infinity : 400) {
   const t = (n: string) => layer.table(n as any);
-  const clean = matches.filter((m) => m.status === "eligible_no_blockers").slice(0, limit);
+  const open = matches.filter((m) => m.status !== "not_eligible").slice(0, limit);
   let downgraded = 0;
   const cache = new Map<string, Row[]>();
-  for (const m of clean) {
+  for (const m of open) {
     const notes: string[] = [];
     for (const r of m.results) {
       for (const x of r.leaves) {
@@ -131,15 +159,22 @@ export async function verify(layer: DataLayer, matches: Match[], trace: Trace, l
         if (!cache.has(sql)) cache.set(sql, await layer.query(sql));
         const rows = cache.get(sql)!;
         if (!rows.length) notes.push(`${r.criterionId}: no source row behind a TRUE ${x.leaf.k} check`);
-        if (x.leaf.k === "biomarker" && x.leaf.status === "detected" && !rows.some((row) => row.status === "detected")) notes.push(`${r.criterionId}: report does not show a detected ${x.leaf.gene} result`);
+        if (x.leaf.k === "biomarker") {
+          const detected = rows.filter((row) => row.status === "detected");
+          const negative = rows.filter((row) => row.status === "not_detected");
+          if (detected.length && negative.length) {
+            notes.push(`${r.criterionId}: conflicting ${x.leaf.gene} results across reports (${detected[0].assay} detected, ${negative[0].assay} not detected); confirm before referral`);
+          }
+        }
       }
     }
     m.verified = { ok: notes.length === 0, notes };
     if (notes.length) {
       downgraded++;
-      m.status = "possible_unknowns";
+      m.status = "needs_review";
+      m.keyReview = [...(m.keyReview ?? []), ...notes.map((n) => ({ criterionId: n.split(":")[0], kind: "inclusion" as const, text: `Verifier: ${n.slice(n.indexOf(":") + 2)}` }))];
       trace.emit({ agent: "Verifier", action: "challenge_match", status: "revise", target: "Screener", summary: `${m.patientId} x ${m.nctId}: ${notes.join("; ")}` });
     }
   }
-  trace.emit({ agent: "Verifier", action: "verify_summary", status: "ok", summary: `${clean.length} clean matches re-read against source rows, ${downgraded} downgraded`, data: { checked: clean.length, downgraded } });
+  trace.emit({ agent: "Verifier", action: "verify_summary", status: "ok", summary: `${open.length} open matches re-read against source rows, ${downgraded} sent back for a human read`, data: { checked: open.length, downgraded } });
 }

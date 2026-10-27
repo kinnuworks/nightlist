@@ -22,6 +22,13 @@ export const IconQ = () =>
     </>,
   );
 export const IconMinus = () => svg(<path d="M4 8h8" />);
+export const IconRead = () =>
+  svg(
+    <>
+      <path d="M1.5 8s2.4-4.5 6.5-4.5S14.5 8 14.5 8s-2.4 4.5-6.5 4.5S1.5 8 1.5 8z" />
+      <circle cx="8" cy="8" r="1.8" />
+    </>,
+  );
 export const IconChevron = ({ open }: { open: boolean }) =>
   svg(<path d={open ? "M4 10l4-4 4 4" : "M4 6l4 4 4-4"} />);
 export const IconCopy = () =>
@@ -55,6 +62,13 @@ export function StatusChip({ status }: { status: MatchStatus }) {
     return (
       <span className="chip chip-ok" title="No blocking criteria found among the criteria checked from records">
         <IconCheck />
+        {STATUS_LABEL[status]}
+      </span>
+    );
+  if (status === "needs_review")
+    return (
+      <span className="chip chip-review" title="No criterion failed, but a disease-defining criterion could not be checked from records and a person has to read it">
+        <IconRead />
         {STATUS_LABEL[status]}
       </span>
     );
@@ -104,19 +118,19 @@ export function CheckBadge({ check, method }: { check?: CheckInfo; method: Metho
     return (
       <span className="badge badge-ok" title={check?.backTranslation ? `Back-translation: ${check.backTranslation}` : undefined}>
         <IconCheck />
-        Back-translation agrees
+        Model check: agrees{check?.model ? ` (${check.model})` : ""}
       </span>
     );
   if (s === "disagree")
     return (
       <span className="badge badge-bad" title={check?.reason}>
         <IconX />
-        Back-translation disagrees
+        Model check: disagrees{check?.model ? ` (${check.model})` : ""}
       </span>
     );
   return (
-    <span className="badge badge-outline" title={check?.reason ?? "No back-translation check was run for this criterion"}>
-      Unchecked
+    <span className="badge badge-outline badge-muted" title="Back-translation check runs when Nightshift is connected">
+      Not model-checked
     </span>
   );
 }

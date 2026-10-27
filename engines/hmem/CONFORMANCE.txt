@@ -1,6 +1,6 @@
 Output of: npm run conformance (engines/hmem), 2026-10-27, exit code 0
 Suite: Meterless H-MEM conformance runner and vectors, see conformance/NOTICE.md
-H-MEM conformance: implementation = /Users/kinnu/genai/nightlist/engines/hmem/src/index.ts
+H-MEM conformance: implementation = engines/hmem/src/index.ts
 
   record-validation
     PASS rv-001 a record with no source is rejected by construction

@@ -338,7 +338,7 @@ function heroes(start: number): Patient[] {
       problems: [PROBLEMS.dm], labs: { ANC: 3.3, PLT: 198, HGB: 11.0, CREAT: 0.9, CRCL: 60, TBILI: 0.6, AST: 27, ALT: 22 }, labsDays: 10,
     }),
     base(5, {
-      hero: "Low neutrophil count blocks most trials",
+      hero: "Neutrophil count 1.1 blocks trials that require at least 1.5",
       given: "James", family: "Tolliver", sex: "male", birth: new Date("1960-04-17"), zip: "36109",
       histology: "adenocarcinoma", stage: "IVA", measurable: "Y", ecog: 1, ecogDate: daysAgo(6), brainMets: "", otherMets: [],
       tested: all, driver: null, pdl1: 35,
@@ -482,6 +482,16 @@ function main() {
         assay: "PD-L1 IHC 22C3 pharmDx", reported_date: reported,
       });
     }
+  }
+  // Tissue and plasma tests sometimes disagree. Four driver-positive patients also have
+  // an older plasma panel that missed the variant; the Verifier should catch these.
+  const discordant = patients.filter((p) => !p.hero && p.driver && ["EGFR", "KRAS", "ALK"].includes(p.driver.gene)).slice(0, 4);
+  for (const p of discordant) {
+    molRows.push({
+      report_id: `MOL-${String(rep++).padStart(5, "0")}`, patient_mrn: `MRN${p.mrn}`, gene: p.driver!.gene,
+      result_text: "No pathogenic variant detected (low ctDNA fraction)", interpretation: "Not detected",
+      assay: "Plasma ctDNA panel (Guardant360 CDx)", reported_date: iso(p.dxDate),
+    });
   }
   write("lab/molecular.csv", molRows);
 

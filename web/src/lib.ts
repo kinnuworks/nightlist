@@ -1,6 +1,7 @@
 // Hash routing, a small data-loading hook and formatting helpers.
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
-import type { MatchStatus, Method, Verdict } from "./types";
+import { dataVersion, onDataChange } from "./api";
+import type { CriteriaBreakdown, MatchStatus, Method, Summary, Verdict } from "./types";
 
 // ---------- routing ----------
 
@@ -64,6 +65,11 @@ export function useLoad<T>(load: () => Promise<T>, deps: unknown[]): Loaded<T> {
   return { ...state, reload };
 }
 
+// Bumps after a rerun replaces the cached run data, so long-lived views (the header) reload.
+export function useDataVersion(): number {
+  return useSyncExternalStore(onDataChange, dataVersion);
+}
+
 // ---------- formatting ----------
 
 export function fmtDate(d?: string | null, withYear = true): string {
@@ -93,9 +99,44 @@ export const pct = (x?: number) => (x === undefined ? "n/a" : `${Math.round(x * 
 
 export const STATUS_LABEL: Record<MatchStatus, string> = {
   eligible_no_blockers: "No blockers found",
+  needs_review: "Key criterion needs a human read",
   possible_unknowns: "Open items",
   not_eligible: "Blocked",
 };
+
+// Display order for statuses, best first.
+export const STATUS_RANK: Record<MatchStatus, number> = {
+  eligible_no_blockers: 0,
+  needs_review: 1,
+  possible_unknowns: 2,
+  not_eligible: 3,
+};
+
+export const statusRank = (s: string) => STATUS_RANK[s as MatchStatus] ?? 2;
+
+// Criteria counts for the run. Older summaries only carry the flat criteria record.
+export function criteriaBreakdown(sm: Summary): CriteriaBreakdown {
+  if (sm.criteriaBreakdown) return sm.criteriaBreakdown;
+  const c = sm.criteria ?? {};
+  const n = (k: string) => (typeof c[k] === "number" ? c[k] : 0);
+  const b = {
+    checkByRule: n("rule"),
+    checkByModel: n("model") + n("cached"),
+    structured: n("structured"),
+    screening: n("screening"),
+    review: n("review"),
+    backTranslationAgree: n("agree"),
+    backTranslationDisagree: n("disagree"),
+  };
+  return { total: b.checkByRule + b.checkByModel + b.structured + b.screening + b.review, ...b };
+}
+
+// True when no criterion was compiled or checked by the model in this build.
+export function modelPathIdle(b: CriteriaBreakdown) {
+  return b.checkByModel === 0 && b.backTranslationAgree + b.backTranslationDisagree === 0;
+}
+
+export const MODEL_IDLE_NOTE = "Model path not run in this build: rules and structured fields only. Connect Nightshift to compile the rest.";
 
 export const VERDICT_LABEL: Record<Verdict, string> = {
   met: "Met",

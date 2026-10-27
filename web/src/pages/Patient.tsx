@@ -17,6 +17,7 @@ function PatientView({ d }: { d: PatientDetail }) {
   const p = d.patient;
   const w = d.worklist;
   const name = `${p.given_name ?? ""} ${p.family_name ?? ""}`.trim() || p.patient_id;
+  const needsReview = w ? (w.counts.needsReview ?? w.matches.filter((m) => m.status === "needs_review").length) : 0;
   return (
     <div className="stack-lg">
       <nav className="crumbs" aria-label="Breadcrumb">
@@ -35,7 +36,8 @@ function PatientView({ d }: { d: PatientDetail }) {
         {p.demo_story && <p className="lede">{p.demo_story}</p>}
         {w && (
           <p className="small muted">
-            {plural(w.counts.eligible, "trial")} with no blocking criteria found · {w.counts.possible} with open items · {w.counts.blocked} blocked
+            {plural(w.counts.eligible, "trial")} with no blocking criteria found
+            {needsReview > 0 && <> · {needsReview} where a key criterion needs a human read</>} · {w.counts.possible} with open items · {w.counts.blocked} blocked
           </p>
         )}
       </section>
@@ -54,9 +56,13 @@ function PatientView({ d }: { d: PatientDetail }) {
   );
 }
 
+const MATCH_LIMIT = 10;
+
 function MatchesCard({ d }: { d: PatientDetail }) {
   const w = d.worklist;
   const ms = w?.matches ?? [];
+  const [all, setAll] = useState(false);
+  const shown = all ? ms : ms.slice(0, MATCH_LIMIT);
   return (
     <section className="card" aria-labelledby="pm-title">
       <div className="card-head">
@@ -69,7 +75,7 @@ function MatchesCard({ d }: { d: PatientDetail }) {
         <p className="empty">No trials to review. Every nearby trial has at least one criterion not met.</p>
       ) : (
         <ol className="list">
-          {ms.map((m, i) => (
+          {shown.map((m, i) => (
             <li key={m.nctId}>
               <div className="row" style={{ alignItems: "flex-start", flexWrap: "nowrap", gap: 12 }}>
                 <span className="mono tiny muted" style={{ paddingTop: 3, minWidth: 18 }} aria-hidden="true">
@@ -89,7 +95,9 @@ function MatchesCard({ d }: { d: PatientDetail }) {
                   <div className="small muted">
                     {m.status === "eligible_no_blockers"
                       ? `No blocking criteria found in ${m.met} checked criteria`
-                      : `${m.met} met, ${m.unknown} unknown`}
+                      : m.status === "needs_review"
+                        ? `No blocking criteria found in ${m.met} checked criteria, but ${plural(m.keyReview?.length || 1, "key criterion", "key criteria")} must be read by a person`
+                        : `${m.met} met, ${m.unknown} unknown`}
                     {" · "}
                     {m.screening} for the screening visit · {m.review} need a human read · {Math.round(m.coverage * 100)}% of criteria checked from records
                   </div>
@@ -116,6 +124,13 @@ function MatchesCard({ d }: { d: PatientDetail }) {
             </li>
           ))}
         </ol>
+      )}
+      {ms.length > MATCH_LIMIT && (
+        <div className="card-foot">
+          <button type="button" className="btn btn-sm" aria-expanded={all} onClick={() => setAll(!all)}>
+            {all ? `Show top ${MATCH_LIMIT}` : `Show all ${ms.length}`}
+          </button>
+        </div>
       )}
       {w && w.topBlockers.length > 0 && (
         <div className="card-foot small">

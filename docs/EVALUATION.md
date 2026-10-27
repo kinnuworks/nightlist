@@ -64,12 +64,18 @@ The gap between the first two rows and the final row is the overfitting we expec
   - ours: prior metastatic lines <= 1
   - gold: review
 
+## Current code on the same final sample (no longer blind)
+
+After the fixes below, the current code scores 87.0% exact precision, 88.3% without a verdict flip and 82.4% coverage on the same final sample (77 compiled, 2 wrong, 7 overreach, 41 patient-level flips). Because we had already seen this sample's errors, this is not a blind result; the 83.8% above is the one to quote.
+
 ## Fixed after the final test
 
 These were fixed after scoring; the fixes are not reflected in the numbers above.
 
 - "Uncommon EGFR mutation" was read as a common sensitising mutation (the pattern for "common" matched inside "uncommon"). It now compiles to EGFR other.
 - An inclusion sentence that says a group is "not eligible" is now left for review instead of compiled as written.
+- Sentences with exceptions ("with the exception of", "unless", "other than") go to review; one had compiled the exception as the exclusion.
+- Disease-defining sentences (gene, stage, histology, therapy history, resectability) are never filed as screening-visit items, and a match is never "no blockers found" while one of them is unchecked.
 
 ## Reproduce
 

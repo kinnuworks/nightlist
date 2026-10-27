@@ -4,7 +4,7 @@ $ npm run eval   (2026-10-26T22:29:50Z, node v26.12.0)
 > tsx evals/runner/index.ts all
 
 Loaded 32 examples from v1/all
-Report written: /Users/kinnu/genai/nightlist/engines/scout-intent/evals/reports/latest.md
+Report written: engines/scout-intent/evals/reports/latest.md
 ┌─────────────────────┬────────┐
 │ (index)             │ Values │
 ├─────────────────────┼────────┤

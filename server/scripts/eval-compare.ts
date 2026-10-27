@@ -2,8 +2,8 @@
 // match: both predicates are evaluated for every patient in the clinic, and a compiled
 // criterion is correct only if it gives the same met / not met / unknown answer as the
 // gold label for every patient. Writes data/eval/report.json and docs/EVALUATION-RESULTS.md.
-import { readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join, relative } from "node:path";
 import { DATA, ROOT, RUNTIME } from "../src/config.ts";
 import { DuckLayer } from "../src/datalayer.ts";
 import { describe, predSchema, type Criterion, type Pred } from "../src/dsl.ts";
@@ -13,6 +13,10 @@ import { combine, leafKey, leafSql, leaves, type Tri } from "../src/evaluator/sq
 type Gold = { category: Criterion["category"]; pred: Pred | null; omitted?: string[]; confidence?: string };
 const SET = (process.argv.find((a) => a.startsWith("--set=")) ?? (process.argv.includes("--holdout") ? "--set=holdout" : "--set=dev")).split("=")[1];
 const HOLD = SET !== "dev";
+// Results go to data/runtime/eval; --publish also refreshes the committed copies.
+const PUBLISH = process.argv.includes("--publish");
+const OUTDIR = PUBLISH ? join(DATA, "eval") : join(RUNTIME, "eval");
+mkdirSync(OUTDIR, { recursive: true });
 const sample: { sampleId: string; criterionId: string; kind: Criterion["kind"]; text: string }[] = JSON.parse(readFileSync(join(DATA, "eval", HOLD ? `${SET}-sample.json` : "sample.json"), "utf8"));
 const gold: Record<string, Gold> = JSON.parse(readFileSync(join(DATA, "eval", HOLD ? `${SET}-gold.json` : "gold.json"), "utf8"));
 const latest = JSON.parse(readFileSync(join(RUNTIME, "latest.json"), "utf8"));
@@ -76,7 +80,7 @@ const metrics = {
   verdictFlips: flipsTotal,
   patientCriterionPairs: rows.reduce((s, x) => s + (x.patients ?? 0), 0),
 };
-writeFileSync(join(DATA, "eval", HOLD ? `${SET}-report.json` : "report.json"), JSON.stringify({ metrics, rows }, null, 1));
+writeFileSync(join(OUTDIR, HOLD ? `${SET}-report.json` : "report.json"), JSON.stringify({ metrics, rows }, null, 1));
 const md = `# Compiler evaluation
 
 Sample: ${metrics.sample} real eligibility criteria drawn at random from the screened trials (half from criteria the rules compiled, half from the rest). Gold labels were written blind, without seeing compiler output.
@@ -100,6 +104,7 @@ A compiled criterion counts as **exact** when it gives the same verdict as the g
 
 ${rows.filter((r) => r.result === "wrong" || r.result === "overreach").map((r) => `- ${r.sampleId} (${r.kind}, ${r.method}): "${r.text.slice(0, 160)}"\n  - ours: ${r.ours}\n  - gold: ${r.gold ?? r.goldCategory}${r.flips ? `\n  - flips ${r.flips} patients` : ""}`).join("\n")}
 `;
-writeFileSync(join(ROOT, "docs", HOLD ? `EVALUATION-${SET.toUpperCase()}.md` : "EVALUATION-DEV.md"), md);
+writeFileSync(PUBLISH ? join(ROOT, "docs", HOLD ? `EVALUATION-${SET.toUpperCase()}.md` : "EVALUATION-DEV.md") : join(OUTDIR, HOLD ? `EVALUATION-${SET.toUpperCase()}.md` : "EVALUATION-DEV.md"), md);
+console.error(`report written to ${PUBLISH ? "docs/ and data/eval/" : relative(ROOT, OUTDIR)}`);
 console.log(JSON.stringify(metrics, null, 1));
 await layer.close();

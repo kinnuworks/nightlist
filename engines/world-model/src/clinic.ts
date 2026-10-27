@@ -51,7 +51,7 @@ export interface PatientFactInput {
   source: string;
 }
 
-export type VerdictStatus = "eligible_no_blockers" | "possible_unknowns" | "not_eligible";
+export type VerdictStatus = "eligible_no_blockers" | "possible_unknowns" | "needs_review" | "not_eligible";
 
 export interface VerdictInput {
   patientId: string;
@@ -206,14 +206,16 @@ const GROUPS: { kind: ChangeKind; label: string }[] = [
 ];
 
 const RUN_MARKER = "run_recorded";
-const STATUSES: VerdictStatus[] = ["eligible_no_blockers", "possible_unknowns", "not_eligible"];
+const STATUSES: VerdictStatus[] = ["eligible_no_blockers", "possible_unknowns", "needs_review", "not_eligible"];
 const FACT_KINDS: FactKind[] = ["lab", "biomarker", "diagnosis", "therapy"];
-const isMatch = (status: string | undefined) => status === "eligible_no_blockers" || status === "possible_unknowns";
+const isMatch = (status: string | undefined) => status === "eligible_no_blockers" || status === "possible_unknowns" || status === "needs_review";
 const statusLabel = (v: VerdictValue) =>
   v.status === "eligible_no_blockers"
-    ? "eligible, no blockers"
+    ? "no blockers found"
     : v.status === "possible_unknowns"
       ? `possible, ${v.unknownCount} unknown${v.unknownCount === 1 ? "" : "s"}`
+      : v.status === "needs_review"
+        ? "key criterion needs a human read"
       : v.status === "not_eligible"
         ? `not eligible${v.blockingCriterion ? ` (${v.blockingCriterion})` : ""}`
         : "not evaluated";

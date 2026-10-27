@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { getStatus, STATIC, STATIC_NOTE } from "./api";
 import { BrandMark } from "./components/ui";
-import { href, useLoad, useRoute } from "./lib";
+import { href, useDataVersion, useLoad, useRoute } from "./lib";
 import { MatchPage } from "./pages/Match";
 import { PatientPage } from "./pages/Patient";
 import { RunPage } from "./pages/Run";
@@ -10,7 +10,8 @@ import { WorklistPage } from "./pages/Worklist";
 
 export function App() {
   const route = useRoute();
-  const status = useLoad(getStatus, []);
+  const version = useDataVersion();
+  const status = useLoad(getStatus, [version]);
   const mainRef = useRef<HTMLElement>(null);
   const [section, a, b] = route.path;
 

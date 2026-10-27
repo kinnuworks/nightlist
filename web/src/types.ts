@@ -1,7 +1,9 @@
 // Shapes returned by the Nightlist API (server/src/main.ts). Optional fields are ones
 // the server omits in some runs.
 
-export type MatchStatus = "eligible_no_blockers" | "possible_unknowns" | "not_eligible";
+// "needs_review": no criterion failed, but a disease-defining criterion could not be
+// checked from records and a person has to read it.
+export type MatchStatus = "eligible_no_blockers" | "needs_review" | "possible_unknowns" | "not_eligible";
 export type Verdict = "met" | "not_met" | "unknown";
 export type Method = "rule" | "model" | "structured" | "none";
 export type Category = "check" | "screening" | "review";
@@ -32,6 +34,18 @@ export interface DqResult {
   sample: Row[];
 }
 
+// Criteria counts by how they were handled this run.
+export interface CriteriaBreakdown {
+  total: number;
+  checkByRule: number;
+  checkByModel: number;
+  structured: number;
+  screening: number;
+  review: number;
+  backTranslationAgree: number;
+  backTranslationDisagree: number;
+}
+
 export interface Summary {
   runId: string;
   asOf: string;
@@ -40,6 +54,7 @@ export interface Summary {
   trialsScreened: number;
   patients: number;
   criteria: Record<string, number>;
+  criteriaBreakdown?: CriteriaBreakdown;
   dq: DqResult[];
   pairs: number;
   statusCounts: Partial<Record<MatchStatus, number>>;
@@ -67,8 +82,15 @@ export interface WorklistMatch {
   nearestMiles: number;
   isNew: boolean;
   unknowns: { criterionId: string; text?: string; items?: DataItem[] }[];
+  keyReview?: KeyReview[];
   verified?: { ok: boolean; notes: string[] };
   notes?: string[];
+}
+
+// A disease-defining criterion that could not be checked from records.
+export interface KeyReview {
+  criterionId: string;
+  text: string;
 }
 
 export interface WorklistPatient {
@@ -80,7 +102,7 @@ export interface WorklistPatient {
   milesToClinic: number;
   ecog: number | null;
   story?: string;
-  counts: { eligible: number; possible: number; blocked: number };
+  counts: { eligible: number; possible: number; blocked: number; needsReview?: number };
   matches: WorklistMatch[];
   setAside: { nctId: string; notes: string[] }[];
   topBlockers: { reason: string; trials: number }[];
@@ -108,6 +130,8 @@ export interface Overnight {
   since?: string;
   sinceKind?: string;
   total?: number;
+  // Set when the latest run had no changes and these groups come from an earlier run.
+  fallbackFrom?: string;
   groups: { kind: string; label: string; count: number; items: ChangeItem[] }[];
 }
 
@@ -234,6 +258,7 @@ export interface MatchDetail {
   specificity?: number;
   coverage?: number;
   verified?: { ok: boolean; notes: string[] };
+  keyReview?: KeyReview[];
   results: CriterionResult[];
   notChecked: NotChecked[];
   trial: Trial;

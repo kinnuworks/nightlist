@@ -346,6 +346,12 @@ const CARDIAC_OTHERS = /(myocardial|stroke|angina|arrhythm|qtc|cerebrovascular|c
 export function compileByRules(c: Pick<Criterion, "text" | "kind">): { pred: Pred; caveats: string[] } | null {
   const t = c.text;
   if (OTHER_SCOPE.test(t)) return null;
+  // Exceptions turn a rule inside out ("targetable alterations, with the exception of
+  // HER2"); a person reads those.
+  // Brain metastases "unless treated and stable" and autoimmune "except vitiligo" are
+  // handled by their own matchers in the conservative direction.
+  const handledException = /(brain|cns|central nervous system)[^.;]{0,40}metasta/i.test(t) || /autoimmune/i.test(t);
+  if (!handledException && /(with the exception of|except(ing)? (for|those|patients|participants|in)|\bexcept\b|\bunless\b|other than|apart from)/i.test(t)) return null;
   // An inclusion sentence that also says who is not eligible needs a person to read it.
   if (c.kind === "inclusion" && /(not eligible|are excluded|will be excluded|ineligible)/i.test(t)) return null;
   if (/(including,? but not limited to|\be\.g\.|\beg,|such as|following criteria|any (other )?(targetable|actionable)|etc\b)/i.test(t)) return null;
@@ -366,6 +372,15 @@ export function compileByRules(c: Pick<Criterion, "text" | "kind">): { pred: Pre
   return null;
 }
 
+// Sentences that define who the trial is for: the disease, its stage, a driver gene,
+// therapy history or resectability. If one of these cannot be compiled it must stay in
+// front of a person, never be filed as a screening-visit formality.
+export const DISEASE_DEFINING = /\b(newly diagnosed|solid tumou?rs?|recurren(t|ce)|diagnos(is|ed) of|nsclc|non[- ]?small|carcinoma|adenocarcinoma|squamous|histolog|cytolog|stage\s*(i|ii|iii|iv|1|2|3|4)|metastatic|locally advanced|unresectable|resect|egfr|alk|ros-?1|kras|braf|MET|ret|her2|erbb2|ntrk|pd-?l1|mutation|fusion|rearrangement|alteration|biomarker|prior (systemic|therapy|treatment|line)|line[s]? of (systemic )?therapy|progress(ed|ion)|refractory|treatment[- ]na[iï]ve|tki|immunotherapy|checkpoint|platinum|chemotherapy|brain metasta|cns metasta)\b/i;
+
+export function isDiseaseDefining(text: string): boolean {
+  return DISEASE_DEFINING.test(text);
+}
+
 export function isScreeningItem(text: string): boolean {
-  return SCREENING.test(text);
+  return SCREENING.test(text) && !isDiseaseDefining(text);
 }

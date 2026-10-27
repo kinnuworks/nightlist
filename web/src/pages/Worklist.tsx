@@ -7,7 +7,7 @@ import { Disclosure, ErrorView, IconTissue, Loading, NewChip, StatusChip } from 
 import { fmtDate, href, miles, navigate, plural, sexShort, useLoad } from "../lib";
 import type { OneItemAway, Overnight, Summary, Worklist, WorklistPatient } from "../types";
 
-type StatusFilter = "any" | "clean" | "open" | "none";
+type StatusFilter = "any" | "clean" | "review" | "open" | "none";
 type Sort = "priority" | "name" | "distance";
 
 export function WorklistPage({ query }: { query: URLSearchParams }) {
@@ -49,6 +49,7 @@ function WorklistView({ worklist, summary, query }: { worklist: Worklist; summar
       if (onlyAway && !awayByPatient.has(p.patientId)) return false;
       const best = p.matches[0]?.status;
       if (status === "clean" && best !== "eligible_no_blockers") return false;
+      if (status === "review" && best !== "needs_review") return false;
       if (status === "open" && best !== "possible_unknowns") return false;
       if (status === "none" && p.matches.length > 0) return false;
       if (needle) {
@@ -76,7 +77,7 @@ function WorklistView({ worklist, summary, query }: { worklist: Worklist; summar
       <section className="page-head" aria-labelledby="wl-title">
         <span className="eyebrow">Morning worklist</span>
         <h1 id="wl-title">
-          Overnight screen · {fmtDate(summary.asOf)} · {plural(summary.trialsScreened, "trial")} · {plural(summary.patients, "patient")}
+          Screened as of {fmtDate(summary.asOf)} · {plural(summary.trialsScreened, "trial")} · {plural(summary.patients, "patient")}
         </h1>
         <p className="lede">
           Last night every recruiting lung cancer trial within reach of the clinic was compared with every patient on file.
@@ -156,6 +157,7 @@ function WorklistView({ worklist, summary, query }: { worklist: Worklist; summar
             <select id="pl-status" className="select" value={status} onChange={(e) => { setStatus(e.target.value as StatusFilter); setShown(20); }}>
               <option value="any">Any best status</option>
               <option value="clean">Best: no blockers found</option>
+              <option value="review">Best: key criterion needs a human read</option>
               <option value="open">Best: open items</option>
               <option value="none">No trials to review</option>
             </select>
@@ -207,12 +209,14 @@ export function shortItem(label: string) {
 function priority(p: WorklistPatient) {
   const best = p.matches[0];
   if (!best) return -1;
-  return (p.matches.some((m) => m.isNew) ? 1000 : 0) + best.specificity * 50 + (best.status === "eligible_no_blockers" ? 20 : 0) + Math.min(p.counts.eligible, 19);
+  const statusBonus = best.status === "eligible_no_blockers" ? 20 : best.status === "needs_review" ? 10 : 0;
+  return (p.matches.some((m) => m.isNew) ? 1000 : 0) + best.specificity * 50 + statusBonus + Math.min(p.counts.eligible, 19);
 }
 
 function PatientRow({ p, away }: { p: WorklistPatient; away?: OneItemAway[] }) {
   const best = p.matches[0];
   const newCount = p.matches.filter((m) => m.isNew).length;
+  const needsReview = p.counts.needsReview ?? p.matches.filter((m) => m.status === "needs_review").length;
   return (
     <li>
       <div className="prow">
@@ -248,6 +252,7 @@ function PatientRow({ p, away }: { p: WorklistPatient; away?: OneItemAway[] }) {
               </a>
               <div className="small muted">
                 {best.met} met
+                {(best.keyReview?.length ?? 0) > 0 && <> · {plural(best.keyReview!.length, "key criterion", "key criteria")} to read</>}
                 {best.unknown > 0 && <> · {best.unknown} unknown (to obtain: {best.unknowns.flatMap((u) => u.items ?? []).map((i) => shortItem(i.label)).filter((v, i, a) => a.indexOf(v) === i).join("; ") || "data item missing"})</>}
                 {" · "}
                 {best.screening + best.review} not checked from records
@@ -262,6 +267,11 @@ function PatientRow({ p, away }: { p: WorklistPatient; away?: OneItemAway[] }) {
             <a href={href.patient(p.patientId)} title="No blocking criteria found">
               <b>{p.counts.eligible}</b> no blockers
             </a>
+            {needsReview > 0 && (
+              <a href={href.patient(p.patientId)} title="Key criterion needs a human read: a disease-defining criterion could not be checked from records">
+                <b>{needsReview}</b> need a human read
+              </a>
+            )}
             <a href={href.patient(p.patientId)} title="Open items: at least one criterion unknown">
               <b>{p.counts.possible}</b> open items
             </a>
@@ -297,6 +307,11 @@ function OvernightPanel({ overnight, byId }: { overnight: Overnight; byId: Map<s
           <p>Events recorded by the World Model, each with where it came from.</p>
         </div>
       </div>
+      {overnight.fallbackFrom && (
+        <p className="note small" style={{ margin: "12px 16px 0" }}>
+          No changes since the previous run; showing the last run that had changes (<span className="mono tiny">{overnight.fallbackFrom}</span>)
+        </p>
+      )}
       {groups.length === 0 ? (
         <div className="card-body stack" style={{ gap: 8 }}>
           <p className="small">No trial, patient fact or match changes were recorded since the previous run.</p>

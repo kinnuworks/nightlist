@@ -72,6 +72,17 @@ function cached<T>(key: string, load: () => Promise<T>): Promise<T> {
   }
   return p;
 }
+// Listeners for "the run data changed" (after a rerun), used by views that stay mounted.
+let version = 0;
+const listeners = new Set<() => void>();
+export const dataVersion = () => version;
+export function onDataChange(cb: () => void) {
+  listeners.add(cb);
+  return () => {
+    listeners.delete(cb);
+  };
+}
+
 export function clearCache(prefix?: string) {
   for (const k of [...cache.keys()]) if (!prefix || k.startsWith(prefix)) cache.delete(k);
 }
@@ -143,6 +154,9 @@ export async function postRun(): Promise<Summary> {
   if (STATIC) throw new Error(STATIC_NOTE);
   const res = await fetch("/api/run", { method: "POST" });
   if (!res.ok) throw new HttpError(res.status, (await res.json().catch(() => ({})))?.error ?? res.statusText);
+  const out = (await res.json()) as Summary;
   clearCache();
-  return res.json();
+  version += 1;
+  for (const cb of listeners) cb();
+  return out;
 }
