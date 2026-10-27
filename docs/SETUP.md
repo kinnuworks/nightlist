@@ -27,7 +27,7 @@ docker login zetarishackathon.azurecr.io
 ```
 
 4. In `zetaris-platform/.env`, set `ZETARIS_ADMIN_EMAIL`, `ZETARIS_ADMIN_PASSWORD` and `ZETARIS_ADMIN_ORG` before the first start, and keep the laptop settings from the guide (`ZSPARK_MASTER_URL=local[2]`, `ZSPARK_DRIVER_MEM=2g`). That file belongs to Zetaris; never copy it into this project.
-5. Zetaris cannot read files on your laptop. Start it with the override in this repo, which mounts `data/` read-only into the query engine at `/opt/nightlist/data` (where `ZETARIS_FILE_ROOT` points):
+5. Zetaris cannot read files on your laptop. Start it with the override in this repo, which mounts `data/` read-only into the query engine at `/home/zetaris/customer-data/shared/nightlist` (where `ZETARIS_FILE_ROOT` points):
 
 ```bash
 export NIGHTLIST_DATA=/absolute/path/to/nightlist/data

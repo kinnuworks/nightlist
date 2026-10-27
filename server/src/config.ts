@@ -32,7 +32,7 @@ export const config = {
     restUrl: env("ZETARIS_REST_URL", "http://localhost:8888/api/v1.0"),
     apiKey: env("ZETARIS_API_KEY"),
     orgId: env("ZETARIS_ORG_ID", "1"),
-    uslNamespace: env("ZETARIS_USL_NAMESPACE", "lightning.metastore.nightlist"),
+    uslNamespace: env("ZETARIS_USL_NAMESPACE", "lightning.metastore.rrcc"),
     usl: env("ZETARIS_USL", "trialmatch"),
     timeoutMs: Number(env("ZETARIS_TIMEOUT_MS", "120000")),
   },

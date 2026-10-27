@@ -18,14 +18,14 @@ Agents then call checks by name, and the governance team owns their definitions.
 ## Mock of the proposed feature
 
 ```sql
-REGISTER CHECK egfr_sensitizing ON lightning.metastore.nightlist.trialmatch.patient
+REGISTER CHECK egfr_sensitizing ON lightning.metastore.rrcc.trialmatch.patient
   AS EXISTS biomarker (gene = 'EGFR' AND status = 'detected' AND alteration IN ('exon19del', 'L858R'))
   UNKNOWN WHEN NOT EXISTS biomarker (gene = 'EGFR' AND status IN ('detected', 'not_detected'));
 
-ALTER USL TABLE lightning.metastore.nightlist.trialmatch.lab VALID FOR INTERVAL 30 DAYS ON collected_date;
+ALTER USL TABLE lightning.metastore.rrcc.trialmatch.lab VALID FOR INTERVAL 30 DAYS ON collected_date;
 
 SELECT patient_id, CHECK(egfr_sensitizing) AS egfr, CHECK(anc_at_least_1_5) AS anc
-FROM lightning.metastore.nightlist.trialmatch.patient;
+FROM lightning.metastore.rrcc.trialmatch.patient;
 -- patient_id | egfr    | anc
 -- P10001     | TRUE    | TRUE
 -- P10003     | UNKNOWN | TRUE      (no EGFR result on file)

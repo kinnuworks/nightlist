@@ -13,7 +13,7 @@ import { activation, DQ_RULES, USL_DDL, USL_TABLES, zetaris, type SourceNames } 
 
 const NS = config.zetaris.uslNamespace;
 const USL = config.zetaris.usl;
-const FILES = process.env.ZETARIS_FILE_ROOT ?? "file:///opt/nightlist/data";
+const FILES = process.env.ZETARIS_FILE_ROOT ?? "file:///home/zetaris/customer-data/shared/nightlist";
 const PG = {
   url: process.env.EHR_JDBC_URL ?? "jdbc:postgresql://host.docker.internal:5433/ehr",
   user: process.env.EHR_DB_USER ?? "nightlist",
@@ -21,12 +21,12 @@ const PG = {
 };
 
 const src: SourceNames = {
-  patients: "ehr.public.patients",
-  diagnoses: "ehr.public.diagnoses",
-  metastases: "ehr.public.metastases",
-  medications: "ehr.public.medications",
-  problems: "ehr.public.problems",
-  ecog: "ehr.public.ecog",
+  patients: "ehr.patients",
+  diagnoses: "ehr.diagnoses",
+  metastases: "ehr.metastases",
+  medications: "ehr.medications",
+  problems: "ehr.problems",
+  ecog: "ehr.ecog",
   labResults: "labsys.results",
   molecular: "labsys.molecular",
   rxnavMap: "terminology.rxnav_medication_map",
@@ -41,12 +41,13 @@ const csvTable = (table: string, db: string, path: string) =>
   `CREATE LIGHTNING FILESTORE TABLE ${table} FROM ${db} FORMAT CSV OPTIONS (\n  path "${FILES}/${path}",\n  header "true",\n  delimiter ","\n);`;
 
 const sources = `-- Source 1: the clinic EHR (PostgreSQL), queried in place.
-CREATE DATASOURCE ehr DESCRIBE BY "Clinic EHR export (PostgreSQL)" OPTIONS (
+CREATE DATASOURCE ehr DESCRIBE BY "Clinic EHR export, PostgreSQL" OPTIONS (
   jdbcdriver "org.postgresql.Driver",
   jdbcurl "${PG.url}",
   username "${PG.user}",
   password "${PG.password}"
 );
+REGISTER DATASOURCE TABLES FROM ehr;
 
 -- Source 2: the lab system (results and molecular reports), its own MRN format.
 CREATE LIGHTNING DATABASE labsys DESCRIBE BY "Lab information system exports";
@@ -54,7 +55,7 @@ ${csvTable("results", "labsys", "sources/lab/results.csv")}
 ${csvTable("molecular", "labsys", "sources/lab/molecular.csv")}
 
 -- Source 3: ClinicalTrials.gov API v2, live. Used by the Watcher to see what opened or changed.
-CREATE LIGHTNING DATABASE ctgov DESCRIBE BY "ClinicalTrials.gov API v2 (live)";
+CREATE LIGHTNING DATABASE ctgov DESCRIBE BY "ClinicalTrials.gov API v2, live";
 CREATE LIGHTNING REST TABLE nsclc_recruiting FROM ctgov REQUEST (
   endpoint "https://clinicaltrials.gov/api/v2/studies?query.cond=non-small%20cell%20lung%20cancer&filter.overallStatus=RECRUITING&fields=NCTId,LastUpdatePostDate,OverallStatus&pageSize=1000&format=json",
   method "GET",
@@ -64,7 +65,7 @@ CREATE LIGHTNING REST TABLE nsclc_recruiting FROM ctgov REQUEST (
 ) HEADER () BODY ();
 
 -- Source 4: RxNav (NLM), live, for spot checks; the resolver writes the full map as a file table.
-CREATE LIGHTNING DATABASE rxnav DESCRIBE BY "NLM RxNav REST API (live)";
+CREATE LIGHTNING DATABASE rxnav DESCRIBE BY "NLM RxNav REST API, live";
 CREATE LIGHTNING REST TABLE osimertinib_class FROM rxnav REQUEST (
   endpoint "https://rxnav.nlm.nih.gov/REST/rxclass/class/byDrugName.json?drugName=osimertinib&relaSource=ATC",
   method "GET",
@@ -74,7 +75,7 @@ CREATE LIGHTNING REST TABLE osimertinib_class FROM rxnav REQUEST (
 ) HEADER () BODY ();
 
 -- Source 5: NCI Thesaurus (EVS), live, for histology concepts.
-CREATE LIGHTNING DATABASE nci DESCRIBE BY "NCI EVS REST API (live)";
+CREATE LIGHTNING DATABASE nci DESCRIBE BY "NCI EVS REST API, live";
 CREATE LIGHTNING REST TABLE nsclc_concept FROM nci REQUEST (
   endpoint "https://api-evsrest.nci.nih.gov/api/v1/concept/ncit/C2926",
   method "GET",
@@ -84,22 +85,22 @@ CREATE LIGHTNING REST TABLE nsclc_concept FROM nci REQUEST (
 ) HEADER () BODY ();
 
 -- Terminology tables resolved from RxNav and NCI EVS, plus Census ZIP centroids.
-CREATE LIGHTNING DATABASE terminology DESCRIBE BY "Resolved terminology (RxNav, NCI Thesaurus, Census ZCTA)";
+CREATE LIGHTNING DATABASE terminology DESCRIBE BY "Resolved terminology, RxNav, NCI Thesaurus, Census ZCTA";
 ${csvTable("rxnav_medication_map", "terminology", "sources/rxnav/medication_map.csv")}
 ${csvTable("ncit_histology", "terminology", "sources/nci/histology_ncit.csv")}
 ${csvTable("zcta", "terminology", "sources/geo/zcta_montgomery_90mi.csv")}
 
 -- Source 6: the compiled trial feed written by the nightly Compiler.
-CREATE LIGHTNING DATABASE trialfeed DESCRIBE BY "Compiled trial eligibility (written nightly)";
+CREATE LIGHTNING DATABASE trialfeed DESCRIBE BY "Compiled trial eligibility, written nightly";
 ${csvTable("trials", "trialfeed", "runtime/compiled/trials.csv")}
 ${csvTable("sites", "trialfeed", "runtime/compiled/sites.csv")}
 ${csvTable("criteria", "trialfeed", "runtime/compiled/criteria.csv")}
 `;
 
 const explore = `-- EHR (PostgreSQL)
-SELECT COUNT(*) AS patients, MIN(birth_date) AS oldest, MAX(birth_date) AS youngest FROM ehr.public.patients;
-SELECT stage_text, COUNT(*) AS n FROM ehr.public.diagnoses GROUP BY stage_text ORDER BY n DESC;
-SELECT order_text, COUNT(*) AS orders FROM ehr.public.medications GROUP BY order_text ORDER BY orders DESC LIMIT 10;
+SELECT COUNT(*) AS patients, MIN(birth_date) AS oldest, MAX(birth_date) AS youngest FROM ehr.patients;
+SELECT stage_text, COUNT(*) AS n FROM ehr.diagnoses GROUP BY stage_text ORDER BY n DESC;
+SELECT order_text, COUNT(*) AS orders FROM ehr.medications GROUP BY order_text ORDER BY orders DESC LIMIT 10;
 
 -- Lab system (file store): note the MRN format differs from the EHR
 SELECT patient_mrn, COUNT(*) AS results FROM labsys.results GROUP BY patient_mrn ORDER BY results DESC LIMIT 5;
@@ -128,7 +129,7 @@ const usl = `CREATE NAMESPACE IF NOT EXISTS lightning.metastore;
 CREATE NAMESPACE IF NOT EXISTS ${NS};
 
 COMPILE USL ${USL} DEPLOY NAMESPACE ${NS} DDL
-${USL_TABLES.map((t) => USL_DDL[t]).join(";\n")};
+${USL_TABLES.map((t) => USL_DDL[t].replace(/^(\s+)(text)(\s)/gm, "$1`$2`$3").replace(/ NOT NULL/g, "")).join(";\n")};
 `;
 
 const act = activation(src, zetaris, "2026-10-26", config.clinic);

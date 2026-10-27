@@ -73,7 +73,7 @@ export const USL_DDL: Record<UslTable, string> = {
 )`,
   diagnosis: `CREATE TABLE diagnosis (
   dx_id varchar(16) NOT NULL PRIMARY KEY,
-  patient_id varchar(16) NOT NULL REFERENCES patient(patient_id),
+  patient_id varchar(16) NOT NULL FOREIGN KEY REFERENCES patient(patient_id),
   icd10 varchar(10),
   diagnosis_text varchar(200),
   histology varchar(20),
@@ -86,14 +86,14 @@ export const USL_DDL: Record<UslTable, string> = {
 )`,
   metastasis: `CREATE TABLE metastasis (
   met_id varchar(16) NOT NULL PRIMARY KEY,
-  patient_id varchar(16) NOT NULL REFERENCES patient(patient_id),
+  patient_id varchar(16) NOT NULL FOREIGN KEY REFERENCES patient(patient_id),
   site varchar(40),
   status varchar(20),
   noted_date date
 )`,
   biomarker: `CREATE TABLE biomarker (
   result_key varchar(40) NOT NULL PRIMARY KEY,
-  patient_id varchar(16) REFERENCES patient(patient_id),
+  patient_id varchar(16) FOREIGN KEY REFERENCES patient(patient_id),
   lab_mrn varchar(16),
   gene varchar(10),
   status varchar(16),
@@ -105,7 +105,7 @@ export const USL_DDL: Record<UslTable, string> = {
 )`,
   lab: `CREATE TABLE lab (
   accession varchar(16) NOT NULL PRIMARY KEY,
-  patient_id varchar(16) REFERENCES patient(patient_id),
+  patient_id varchar(16) FOREIGN KEY REFERENCES patient(patient_id),
   lab_mrn varchar(16),
   loinc varchar(10),
   analyte varchar(8),
@@ -116,7 +116,7 @@ export const USL_DDL: Record<UslTable, string> = {
 )`,
   therapy: `CREATE TABLE therapy (
   med_order_id varchar(16) NOT NULL PRIMARY KEY,
-  patient_id varchar(16) NOT NULL REFERENCES patient(patient_id),
+  patient_id varchar(16) NOT NULL FOREIGN KEY REFERENCES patient(patient_id),
   order_text varchar(120),
   rxcui varchar(12),
   ingredient varchar(60),
@@ -129,7 +129,7 @@ export const USL_DDL: Record<UslTable, string> = {
 )`,
   condition: `CREATE TABLE condition (
   problem_id varchar(16) NOT NULL PRIMARY KEY,
-  patient_id varchar(16) NOT NULL REFERENCES patient(patient_id),
+  patient_id varchar(16) NOT NULL FOREIGN KEY REFERENCES patient(patient_id),
   icd10 varchar(10),
   description varchar(200),
   category varchar(24)
@@ -149,7 +149,7 @@ export const USL_DDL: Record<UslTable, string> = {
 )`,
   site: `CREATE TABLE site (
   site_id varchar(24) NOT NULL PRIMARY KEY,
-  nct_id varchar(12) NOT NULL REFERENCES trial(nct_id),
+  nct_id varchar(12) NOT NULL FOREIGN KEY REFERENCES trial(nct_id),
   facility varchar(200),
   city varchar(80),
   state varchar(40),
@@ -160,7 +160,7 @@ export const USL_DDL: Record<UslTable, string> = {
 )`,
   criterion: `CREATE TABLE criterion (
   criterion_id varchar(24) NOT NULL PRIMARY KEY,
-  nct_id varchar(12) NOT NULL REFERENCES trial(nct_id),
+  nct_id varchar(12) NOT NULL FOREIGN KEY REFERENCES trial(nct_id),
   kind varchar(10),
   ordinal int,
   text varchar(2000),
