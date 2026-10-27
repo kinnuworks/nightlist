@@ -15,7 +15,8 @@
     "trials": "tsx scripts/fetch-trials.ts",
     "demo": "tsx scripts/demo-two-nights.ts",
     "eval:sample": "tsx scripts/eval-sample.ts",
-    "eval": "tsx scripts/eval-compare.ts"
+    "eval": "tsx scripts/eval-compare.ts",
+    "nightshift:report": "tsx scripts/nightshift-report.ts"
   },
   "dependencies": {
     "@duckdb/node-api": "^2.0.0-r.1",

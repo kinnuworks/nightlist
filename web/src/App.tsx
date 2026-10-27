@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import { getStatus, STATIC, STATIC_NOTE } from "./api";
+import { getStatus, getSummary, getWorklist, STATIC, STATIC_NOTE } from "./api";
 import { BrandMark } from "./components/ui";
-import { href, useDataVersion, useLoad, useRoute } from "./lib";
+import { criteriaBreakdown, href, modelPathIdle, useDataVersion, useLoad, useRoute } from "./lib";
 import { MatchPage } from "./pages/Match";
 import { PatientPage } from "./pages/Patient";
 import { RunPage } from "./pages/Run";
@@ -12,6 +12,10 @@ export function App() {
   const route = useRoute();
   const version = useDataVersion();
   const status = useLoad(getStatus, [version]);
+  // The worklist is cached and shared with the worklist page; the summary is the fallback
+  // source for the model path when the worklist has no headline.
+  const worklist = useLoad(getWorklist, [version]);
+  const summary = useLoad(getSummary, [version]);
   const mainRef = useRef<HTMLElement>(null);
   const [section, a, b] = route.path;
 
@@ -45,7 +49,10 @@ export function App() {
   }, [title]);
 
   const s = status.data;
-  const layerLabel = s ? (s.dataLayer === "zetaris" ? "Zetaris" : "DuckDB sample") : "";
+  const layerLabel = s ? (s.dataLayer === "zetaris" ? "Zetaris" : s.dataLayer === "duckdb" ? "DuckDB" : s.dataLayer) : "";
+  const modelPath =
+    worklist.data?.headline?.mode?.modelPath ??
+    (summary.data ? (modelPathIdle(criteriaBreakdown(summary.data)) ? "rules only" : "rules and model") : undefined);
   return (
     <>
       <a className="skip-link" href="#main" onClick={(e) => { e.preventDefault(); mainRef.current?.focus(); }}>
@@ -73,9 +80,12 @@ export function App() {
           </nav>
           {s && (
             <div className="topbar-status">
-              <span className="row" title="Where the eligibility checks run">
+              <span className="mode-banner" title="How this run was produced: where the checks ran and which compile path was used">
                 <span className={`dot ${s.dataLayer === "zetaris" ? "dot-ok" : "dot-warn"}`} aria-hidden="true" />
-                Data layer: {layerLabel}
+                <span>
+                  <b>{s.sampleMode ? "Sample mode" : "Live"}</b> · data layer: {layerLabel}
+                  {modelPath && <> · model path: {modelPath}</>}
+                </span>
               </span>
               <span aria-hidden="true">·</span>
               <a href={href.run()} className="mono tiny">

@@ -1,7 +1,7 @@
 // Hash routing, a small data-loading hook and formatting helpers.
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { dataVersion, onDataChange } from "./api";
-import type { CriteriaBreakdown, MatchStatus, Method, Summary, Verdict } from "./types";
+import type { CriteriaBreakdown, HeadlineMode, MatchStatus, Method, Summary, Verdict } from "./types";
 
 // ---------- routing ----------
 
@@ -134,6 +134,20 @@ export function criteriaBreakdown(sm: Summary): CriteriaBreakdown {
 // True when no criterion was compiled or checked by the model in this build.
 export function modelPathIdle(b: CriteriaBreakdown) {
   return b.checkByModel === 0 && b.backTranslationAgree + b.backTranslationDisagree === 0;
+}
+
+// Funnel counts in the worklist headline shape, from the summary breakdown when the
+// worklist has no headline (older runs) or is not loaded.
+export function modeFromBreakdown(b: CriteriaBreakdown): Required<HeadlineMode> {
+  return {
+    modelPath: modelPathIdle(b) ? "rules only" : "rules and model",
+    checkedByRule: b.checkByRule,
+    checkedByModel: b.checkByModel,
+    structured: b.structured,
+    screening: b.screening,
+    humanRead: b.review,
+    total: b.total,
+  };
 }
 
 export const MODEL_IDLE_NOTE = "Model path not run in this build: rules and structured fields only. Connect Nightshift to compile the rest.";

@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import { getMemory, getPatient, postMemory, STATIC } from "../api";
 import { Disclosure, ErrorView, Loading, NewChip, SourceBadge, StaticNote, StatusChip } from "../components/ui";
 import { cell, fmtDate, fmtDateTime, href, miles, phaseLabel, plural, sexShort, useLoad } from "../lib";
-import type { MemoryInput, MemoryRecord, PatientDetail, Row } from "../types";
+import type { MemoryInput, MemoryRecord, PatientDetail, ReviewQueueItem, Row } from "../types";
 
 export function PatientPage({ pid }: { pid: string }) {
   const res = useLoad(() => getPatient(pid), [pid]);
@@ -44,6 +44,7 @@ function PatientView({ d }: { d: PatientDetail }) {
 
       <div className="grid-main-side">
         <div className="stack">
+          <ReviewQueueCard d={d} />
           <MatchesCard d={d} />
           <SetAsideCard d={d} />
         </div>
@@ -53,6 +54,76 @@ function PatientView({ d }: { d: PatientDetail }) {
         </div>
       </div>
     </div>
+  );
+}
+
+// The sentences a person has to read to settle the top trials, grouped by trial in rank order.
+function ReviewQueueCard({ d }: { d: PatientDetail }) {
+  const w = d.worklist;
+  const queue = w?.reviewQueue;
+  const ruledOut = w?.ruledOut;
+  if (!w || (queue === undefined && ruledOut === undefined)) return null;
+  const titles = new Map(w.matches.map((m) => [m.nctId, m.title ?? m.nctId]));
+  const groups: { nctId: string; items: ReviewQueueItem[] }[] = [];
+  for (const it of queue ?? []) {
+    let g = groups.find((x) => x.nctId === it.nctId);
+    if (!g) {
+      g = { nctId: it.nctId, items: [] };
+      groups.push(g);
+    }
+    g.items.push(it);
+  }
+  const n = queue?.length ?? 0;
+  const topN = groups.length;
+  return (
+    <section className="card" aria-labelledby="rq-title">
+      <div className="card-head">
+        <div>
+          <h2 id="rq-title">
+            {n === 0
+              ? "Nothing left to read for the top trials"
+              : `To settle this patient's top ${topN === 1 ? "trial" : `${topN} trials`}, read ${n === 1 ? "this sentence" : `these ${n} sentences`}`}
+          </h2>
+          <p>These criteria could not be checked from records, so a person has to read them. Each title opens the full match with its evidence.</p>
+        </div>
+      </div>
+      {groups.map((g) => (
+        <div key={g.nctId} className="rq-trial">
+          <a className="strong wrap-anywhere" href={href.match(w.patientId, g.nctId)} style={{ color: "var(--ink)" }}>
+            {titles.get(g.nctId) ?? g.nctId}
+          </a>
+          <div className="tiny muted">
+            <a href={href.trial(g.nctId)}>{g.nctId}</a> · {plural(g.items.length, "sentence")}
+          </div>
+          <ol>
+            {g.items.map((it) => (
+              <li key={it.criterionId}>
+                {it.text} <span className="mono tiny muted nowrap">{it.criterionId}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+      {ruledOut !== undefined && (
+        <div className="card-foot small stack" style={{ gap: 6 }}>
+          <span>
+            <span className="strong">{plural(ruledOut, "trial")} ruled out with evidence</span>
+            <span className="muted"> · each has a criterion not met, backed by a source row</span>
+          </span>
+          {w.topBlockers.length > 0 && (
+            <Disclosure id="rq-ruled-out" summary="Show the most common reasons">
+              <ul className="small" style={{ margin: 0, paddingLeft: 18 }}>
+                {w.topBlockers.map((b) => (
+                  <li key={b.reason}>
+                    {b.reason} ({plural(b.trials, "trial")})
+                  </li>
+                ))}
+              </ul>
+            </Disclosure>
+          )}
+        </div>
+      )}
+    </section>
   );
 }
 

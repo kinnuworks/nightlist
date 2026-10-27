@@ -3,9 +3,9 @@
 import { useMemo, useRef, useState } from "react";
 import { getSummary, getWorklist } from "../api";
 import { RequestItem } from "../components/RequestItem";
-import { Disclosure, ErrorView, IconTissue, Loading, NewChip, StatusChip } from "../components/ui";
-import { fmtDate, href, miles, navigate, plural, sexShort, useLoad } from "../lib";
-import type { OneItemAway, Overnight, Summary, Worklist, WorklistPatient } from "../types";
+import { CriteriaFunnel, Disclosure, ErrorView, IconTissue, Loading, NewChip, StatusChip } from "../components/ui";
+import { criteriaBreakdown, fmtDate, href, miles, modeFromBreakdown, navigate, phaseLabel, plural, sexShort, useLoad } from "../lib";
+import type { ChangeItem, Headline, OneItemAway, Overnight, Summary, Worklist, WorklistPatient } from "../types";
 
 type StatusFilter = "any" | "clean" | "review" | "open" | "none";
 type Sort = "priority" | "name" | "distance";
@@ -41,6 +41,8 @@ function WorklistView({ worklist, summary, query }: { worklist: Worklist; summar
   const newCount = Math.max(summary.newMatches ?? 0, newPairs);
   const dqRows = summary.dq.reduce((a, d) => a + d.invalid, 0);
   const dqRules = summary.dq.filter((d) => d.invalid > 0).length;
+  const featured = worklist.featuredPatientId ? byId.get(worklist.featuredPatientId) : undefined;
+  const funnel = worklist.headline?.mode?.total !== undefined ? worklist.headline.mode : modeFromBreakdown(criteriaBreakdown(summary));
 
   const filtered = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -75,35 +77,18 @@ function WorklistView({ worklist, summary, query }: { worklist: Worklist; summar
   return (
     <div className="stack-lg">
       <section className="page-head" aria-labelledby="wl-title">
-        <span className="eyebrow">Morning worklist</span>
-        <h1 id="wl-title">
-          Screened as of {fmtDate(summary.asOf)} · {plural(summary.trialsScreened, "trial")} · {plural(summary.patients, "patient")}
-        </h1>
+        <span className="eyebrow">
+          Morning worklist · screened as of {fmtDate(summary.asOf)} · {plural(summary.trialsScreened, "trial")} · {plural(summary.patients, "patient")}
+        </span>
+        <NightHeadline headline={worklist.headline} />
         <p className="lede">
           Last night every recruiting lung cancer trial within reach of the clinic was compared with every patient on file.
-          This list is for a coordinator to review. It does not decide eligibility; each match shows what was checked, what
+          This list is for a coordinator to review. It does not decide who can enroll; each match shows what was checked, what
           could not be checked, and the record behind every answer.
         </p>
       </section>
 
-      <ol className="flow" aria-label="How the overnight screen works">
-        <li className="flow-step">
-          <b><span className="num">1</span>Read public trial text</b>
-          {summary.trialsInSnapshot} recruiting trials from ClinicalTrials.gov; {summary.trialsScreened} have a site nearby.
-        </li>
-        <li className="flow-step">
-          <b><span className="num">2</span>Compile each criterion</b>
-          into a typed check. The model sees trial text only, never patient data.
-        </li>
-        <li className="flow-step">
-          <b><span className="num">3</span>Run checks as SQL</b>
-          inside the data layer over clinic records: met, not met, or unknown.
-        </li>
-        <li className="flow-step">
-          <b><span className="num">4</span>Coordinator review</b>
-          Unknown answers name the data item to obtain.
-        </li>
-      </ol>
+      {featured && <StartHere p={featured} overnight={worklist.overnight} />}
 
       <div className="stats" role="group" aria-label="Overnight results">
         <button type="button" className="stat" onClick={() => { setStatus("any"); setOnlyNew(false); setOnlyAway(false); setQ(""); scrollTo(listRef.current); }}>
@@ -127,6 +112,41 @@ function WorklistView({ worklist, summary, query }: { worklist: Worklist; summar
           <span className="stat-hint">rows set aside by {plural(dqRules, "rule")} · see rules and rows</span>
         </button>
       </div>
+
+      <section className="card" aria-labelledby="cf-title">
+        <div className="card-head">
+          <div>
+            <h2 id="cf-title">How the criteria were handled</h2>
+            <p>Each criterion is compiled into a check that runs on clinic records, or left for the screening visit or a person to read.</p>
+          </div>
+          <a className="small" href={href.run("results")}>
+            Details on the run page
+          </a>
+        </div>
+        <div className="card-body">
+          <CriteriaFunnel mode={funnel} compact id="wl-funnel-note" />
+        </div>
+      </section>
+
+      <ol className="flow" aria-label="How the overnight screen works">
+        <li className="flow-step">
+          <b><span className="num">1</span>Read public trial text</b>
+          {summary.trialsInSnapshot} recruiting trials from ClinicalTrials.gov; {summary.trialsScreened} have a site nearby.
+        </li>
+        <li className="flow-step">
+          <b><span className="num">2</span>Compile each criterion</b>
+          into a typed check. The model sees trial text only, never patient data.
+        </li>
+        <li className="flow-step">
+          <b><span className="num">3</span>Run checks as SQL</b>
+          inside the data layer over clinic records: met, not met, or unknown.
+        </li>
+        <li className="flow-step">
+          <b><span className="num">4</span>Coordinator review</b>
+          Unknown answers name the data item to obtain.
+        </li>
+      </ol>
+
 
       <div className="grid-2">
         <OvernightPanel overnight={worklist.overnight} byId={byId} />
@@ -198,6 +218,115 @@ function WorklistView({ worklist, summary, query }: { worklist: Worklist; summar
         )}
       </section>
     </div>
+  );
+}
+
+// The lead number: trial screens the night settled with a source row behind them.
+function NightHeadline({ headline }: { headline?: Headline }) {
+  const n = headline?.ruledOutWithEvidence;
+  if (n === undefined)
+    return (
+      <h1 id="wl-title" className="headline-what">
+        Overnight screen results
+      </h1>
+    );
+  const low = headline?.manualHoursAvoided?.low;
+  const high = headline?.manualHoursAvoided?.high;
+  return (
+    <div className="headline">
+      <h1 id="wl-title">
+        <span className="headline-num">{n.toLocaleString()}</span> <span className="headline-what">trial {n === 1 ? "screen" : "screens"} ruled out with evidence</span>
+      </h1>
+      {low !== undefined && high !== undefined && (
+        <p className="headline-sub">
+          About {low.toLocaleString()} to {high.toLocaleString()} hours of manual screening at 45 to 56 minutes each (Penberthy et al., 2012)
+        </p>
+      )}
+    </div>
+  );
+}
+
+// Strip the leading "P10003: " or "P10003 " the event summaries carry.
+function changeText(it: ChangeItem, pid: string) {
+  return it.summary
+    .replace(new RegExp(`^${pid}(:\\s*|\\s+/\\s*|\\s+)`), "")
+    .replace(/\s*->\s*/g, " to ")
+    .replace(/\s+=\s+/g, ": ")
+    .replace(/_/g, " ");
+}
+
+const CHANGE_LIMIT = 3;
+
+// The patient to open first, with what changed for them overnight and their top trial.
+function StartHere({ p, overnight }: { p: WorklistPatient; overnight: Overnight }) {
+  const groups = (overnight.groups ?? [])
+    .map((g) => ({ ...g, mine: g.items.filter((it) => it.patientId === p.patientId) }))
+    .filter((g) => g.mine.length > 0);
+  const best = p.matches[0];
+  return (
+    <section className="card card-pad start-here" aria-labelledby="sh-title">
+      <div className="stack" style={{ gap: 14 }}>
+        <div className="spread" style={{ alignItems: "flex-start" }}>
+          <div className="stack" style={{ gap: 4 }}>
+            <span className="eyebrow">Start here</span>
+            <h2 id="sh-title">{p.name}</h2>
+            <span className="small muted">
+              {p.patientId} · {p.age} {sexShort(p.sex)} · ECOG {p.ecog ?? "not recorded"} · {miles(p.milesToClinic)} from clinic
+            </span>
+            {p.story && <p className="lede" style={{ margin: 0 }}>{p.story}</p>}
+          </div>
+          <a className="btn btn-primary" href={href.patient(p.patientId)}>
+            Open {p.name}
+          </a>
+        </div>
+        <div className="start-here-grid">
+          <div>
+            <h3 className="small strong">What changed overnight</h3>
+            {groups.length === 0 ? (
+              <p className="small muted" style={{ marginTop: 4 }}>No changes recorded for this patient since the previous run.</p>
+            ) : (
+              <ul className="changes">
+                {groups.map((g) => {
+                  // Lead with results that were found over the ones that came back negative.
+                  const items = [...g.mine].sort((a, b) => Number(/not_detected/.test(a.summary)) - Number(/not_detected/.test(b.summary)));
+                  // Match events read better as a list of trial numbers than as full sentences.
+                  const ids = g.kind.startsWith("match_") ? [...new Set(items.map((it) => it.nctId).filter((x): x is string => !!x))] : [];
+                  const parts = ids.length ? ids : items.map((it) => changeText(it, p.patientId));
+                  const extra = parts.length - CHANGE_LIMIT;
+                  return (
+                    <li key={g.kind}>
+                      <span className="strong">{g.label}</span> ({items.length}): {parts.slice(0, CHANGE_LIMIT).join(", ")}
+                      {extra > 0 && <span className="muted">, and {extra} more</span>}
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+          <div>
+            <h3 className="small strong">Top trial</h3>
+            {best ? (
+              <div className="stack" style={{ gap: 4, marginTop: 4 }}>
+                <div className="row">
+                  <StatusChip status={best.status} />
+                  {best.isNew && <NewChip />}
+                </div>
+                <a className="strong wrap-anywhere" href={href.match(p.patientId, best.nctId)}>
+                  {best.title ?? best.nctId}
+                </a>
+                <span className="small muted">
+                  {best.nctId}
+                  {best.phase && <> · {phaseLabel(best.phase)}</>} · nearest site {miles(best.nearestMiles)}
+                  {(best.keyReview?.length ?? 0) > 0 && <> · {plural(best.keyReview!.length, "sentence")} to read</>}
+                </span>
+              </div>
+            ) : (
+              <p className="small muted" style={{ marginTop: 4 }}>No trials to review for this patient.</p>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 

@@ -106,6 +106,16 @@ export interface WorklistPatient {
   matches: WorklistMatch[];
   setAside: { nctId: string; notes: string[] }[];
   topBlockers: { reason: string; trials: number }[];
+  // Sentences a person has to read to settle this patient's top trials.
+  reviewQueue?: ReviewQueueItem[];
+  // Trials ruled out by at least one criterion checked against a source row.
+  ruledOut?: number;
+}
+
+export interface ReviewQueueItem {
+  nctId: string;
+  criterionId: string;
+  text: string;
 }
 
 export interface OneItemAway {
@@ -135,10 +145,34 @@ export interface Overnight {
   groups: { kind: string; label: string; count: number; items: ChangeItem[] }[];
 }
 
+// How the run's criteria were handled, for the compile funnel and the mode banner.
+export interface HeadlineMode {
+  modelPath?: "rules only" | "rules and model" | string;
+  checkedByRule?: number;
+  checkedByModel?: number;
+  structured?: number;
+  screening?: number;
+  humanRead?: number;
+  total?: number;
+}
+
+// What the night did for the coordinator.
+export interface Headline {
+  pairs?: number;
+  ruledOutWithEvidence?: number;
+  noBlockers?: number;
+  needsReview?: number;
+  openItems?: number;
+  manualHoursAvoided?: { low?: number; high?: number };
+  mode?: HeadlineMode;
+}
+
 export interface Worklist {
   runId: string;
   asOf: string;
   generatedAt?: string;
+  headline?: Headline;
+  featuredPatientId?: string;
   patients: WorklistPatient[];
   oneItemAway: OneItemAway[];
   overnight: Overnight;

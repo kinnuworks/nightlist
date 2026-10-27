@@ -6,6 +6,18 @@ The model reads the trials. It never reads the patients. Each eligibility criter
 
 Track: Solving Fragmented Intelligence (Open Agent Hackathon 2026).
 
+## Where to check each requirement
+
+| Requirement | Proof |
+|---|---|
+| Zetaris is the data layer | [sql/](sql/) (six sources, USL `trialmatch`, six DQ rules), applied by `npm run zetaris:setup`, run log in [docs/zetaris-run.md](docs/zetaris-run.md) |
+| A Meterless engine works in a feature, with a passing test | World Model, H-MEM and Scout Intent in [engines/](engines/); `npm run engines` runs the official Meterless suites |
+| Nightshift is the AI provider | [server/src/nightshift.ts](server/src/nightshift.ts); a live run's trace with the model per request in [docs/nightshift-run.md](docs/nightshift-run.md) |
+| NVIDIA Nemotron | Behind Nightshift's `meterless/deep` (compile) and `meterless/fast` (check) routes; serving model recorded per request |
+| Runs from a clean clone, no accounts | `npm run setup`, `npm run demo`, `npm start` (sample mode) |
+| Evaluation | [docs/EVALUATION.md](docs/EVALUATION.md); `npm run eval` |
+| Demo video and slide deck | Links in the submission form |
+
 ## The problem
 
 About 7% of adult cancer patients in the US enroll in a treatment trial, and the rate at community hospitals is closer to 4% ([Unger et al., JCO 2024](https://www.healthday.com/healthpro-news/cancer/patient-enrollment-in-cancer-treatment-trials-about-7-percent)). Poor accrual is the most common non-scientific reason cancer trials close early. Screening one patient against one trial by hand takes 45 to 56 minutes ([Penberthy et al., J Oncol Pract 2012](https://pmc.ncbi.nlm.nih.gov/articles/PMC3500483/)), and a community clinic sees hundreds of lung cancer patients against hundreds of open trials, with new trials opening and patients' results changing every week.

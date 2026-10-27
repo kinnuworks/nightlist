@@ -2,8 +2,8 @@
 // engine conformance and data layer status, and a button to rerun the screen.
 import { useEffect, useState } from "react";
 import { getStatus, getSummary, getTrace, getUsl, postRun, STATIC, STATIC_NOTE } from "../api";
-import { CodeBlock, Disclosure, ErrorView, EvidenceTable, Loading, SourceBadge, StackBar } from "../components/ui";
-import { criteriaBreakdown, fmtDate, fmtTime, MODEL_IDLE_NOTE, modelPathIdle, plural, SOURCE_OF_TABLE, useLoad } from "../lib";
+import { CodeBlock, CriteriaFunnel, Disclosure, ErrorView, EvidenceTable, Loading, SourceBadge, StackBar } from "../components/ui";
+import { criteriaBreakdown, fmtDate, fmtTime, modeFromBreakdown, MODEL_IDLE_NOTE, modelPathIdle, plural, SOURCE_OF_TABLE, useLoad } from "../lib";
 import type { Status, Summary, TraceEvent, Usl } from "../types";
 
 const AGENTS: { name: string; role: string }[] = [
@@ -57,6 +57,8 @@ export function RunPage({ section }: { section?: string }) {
         <RunNow onDone={() => setGen(gen + 1)} />
         <StatusCard s={s} sm={sm} />
       </div>
+
+      <FunnelCard sm={sm} />
 
       <ResultsCard sm={sm} />
 
@@ -211,6 +213,26 @@ function StatusCard({ s, sm }: { s: Status; sm: Summary }) {
           <ScoutBadge v={s.engines.scoutIntent} /> <span className="small muted">trial text guard eval</span>
         </dd>
       </dl>
+    </section>
+  );
+}
+
+function FunnelCard({ sm }: { sm: Summary }) {
+  const mode = modeFromBreakdown(criteriaBreakdown(sm));
+  return (
+    <section className="card" id="run-results" tabIndex={-1} aria-labelledby="fn-title">
+      <div className="card-head">
+        <div>
+          <h2 id="fn-title">Compile funnel</h2>
+          <p>
+            How each criterion in the screened trials was handled. Checks from rules, the model and structured fields run as SQL on clinic records; the rest are
+            left for the screening visit or a person to read. Model path: {mode.modelPath}.
+          </p>
+        </div>
+      </div>
+      <div className="card-body">
+        <CriteriaFunnel mode={mode} id="run-funnel-note" />
+      </div>
     </section>
   );
 }

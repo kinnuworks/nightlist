@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from "react";
 import { NotInReplay, STATIC, STATIC_NOTE } from "../api";
 import { cell, METHOD_HELP, METHOD_LABEL, SOURCE_OF_TABLE, STATUS_LABEL, VERDICT_LABEL } from "../lib";
-import type { CheckInfo, MatchStatus, Method, Row, Verdict } from "../types";
+import type { CheckInfo, HeadlineMode, MatchStatus, Method, Row, Verdict } from "../types";
 
 // ---------- icons (decorative; every use sits next to text) ----------
 
@@ -328,6 +328,52 @@ export function StackBar({ parts, label }: { parts: { value: number; cls: string
       {parts.map((p) => (
         <span key={p.label} className={p.cls} style={{ width: `${(p.value / total) * 100}%` }} />
       ))}
+    </div>
+  );
+}
+
+// Compile funnel: how every criterion in the screened trials was handled, as one stacked
+// bar with a legend that carries the numbers in text.
+export function CriteriaFunnel({ mode, compact = false, id = "funnel" }: { mode: HeadlineMode; compact?: boolean; id?: string }) {
+  const parts = [
+    { key: "rule", label: "Checked by rules", value: mode.checkedByRule ?? 0, help: "Compiled by a pattern rule and run as SQL on clinic records" },
+    { key: "model", label: "Checked by model", value: mode.checkedByModel ?? 0, help: "Compiled by the model from public trial text and run as SQL" },
+    { key: "struct", label: "Structured fields", value: mode.structured ?? 0, help: "Age and sex from registry fields" },
+    { key: "screen", label: "Screening visit", value: mode.screening ?? 0, help: "Confirmed in person at the screening visit" },
+    { key: "read", label: "Needs a human read", value: mode.humanRead ?? 0, help: "A person has to read the sentence" },
+  ];
+  const sum = parts.reduce((a, p) => a + p.value, 0);
+  const total = mode.total ?? sum;
+  const denom = total || 1;
+  const pctOf = (v: number) => {
+    const x = (v / denom) * 100;
+    return x > 0 && x < 1 ? "under 1%" : `${Math.round(x)}%`;
+  };
+  return (
+    <div className={`funnel${compact ? " funnel-compact" : ""}`}>
+      <div
+        className="funnel-bar"
+        role="img"
+        aria-label={`${total.toLocaleString()} criteria: ${parts.map((p) => `${p.value.toLocaleString()} ${p.label.toLowerCase()}`).join(", ")}`}
+      >
+        {parts.map((p) =>
+          p.value > 0 ? <span key={p.key} className={`f-${p.key}`} style={{ width: `${(p.value / (sum || 1)) * 100}%` }} title={`${p.label}: ${p.value.toLocaleString()}`} /> : null,
+        )}
+      </div>
+      <ul className="funnel-legend" aria-labelledby={id}>
+        {parts.map((p) => (
+          <li key={p.key} title={p.help}>
+            <span className={`swatch f-${p.key}`} aria-hidden="true" />
+            <span className="funnel-label">{p.label}</span>
+            <span className="funnel-num">
+              {p.value.toLocaleString()} <span className="muted">({pctOf(p.value)})</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p id={id} className="tiny muted" style={{ margin: 0 }}>
+        Out of {total.toLocaleString()} criteria in the screened trials.
+      </p>
     </div>
   );
 }

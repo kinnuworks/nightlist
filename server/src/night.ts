@@ -234,14 +234,41 @@ function buildWorklist(runId: string, asOf: string, patients: Row[], matches: Ma
         screening: m.screening, review: m.review, specificity: m.specificity, coverage: Math.round(m.coverage * 100) / 100, nearestMiles: Math.round(m.nearestMiles), isNew: newPairs.has(`${pid}|${m.nctId}`),
         unknowns: m.unknowns.map((u) => ({ criterionId: u.criterionId, text: u.text, items: u.items })), keyReview: m.keyReview, verified: m.verified, notes: notes[`${pid}|${m.nctId}`],
       })),
+      // The sentences a coordinator must read to settle this patient's top five trials.
+      reviewQueue: live.slice(0, 5).flatMap((m) => (m.keyReview ?? []).map((k) => ({ nctId: m.nctId, criterionId: k.criterionId, text: k.text }))),
+      ruledOut: mine.filter((m) => m.status === "not_eligible").length,
       setAside: Object.entries(notes).filter(([k]) => k.startsWith(`${pid}|`)).map(([k, v]) => ({ nctId: k.split("|")[1], notes: v })),
       topBlockers,
     };
   });
   // Treatment-changing items first: a genetic panel, then PD-L1, then the rest.
   const ITEM_PRIORITY: Record<string, number> = { ngs_panel: 0, pdl1_ihc: 1, path_review: 2, staging: 2, recist: 3, cbc: 4, cmp: 4, ecog: 5, med_reconcile: 5, chart_review: 6 };
+  // What the night did for the coordinator, in pairs and in manual screening time
+  // avoided (45 to 56 minutes per patient-trial screen, Penberthy et al. 2012).
+  const ruledOut = matches.filter((m) => m.status === "not_eligible").length;
+  const headline = {
+    pairs: matches.length,
+    ruledOutWithEvidence: ruledOut,
+    noBlockers: matches.filter((m) => m.status === "eligible_no_blockers").length,
+    needsReview: matches.filter((m) => m.status === "needs_review").length,
+    openItems: matches.filter((m) => m.status === "possible_unknowns").length,
+    manualHoursAvoided: { low: Math.round((ruledOut * 45) / 60), high: Math.round((ruledOut * 56) / 60) },
+    mode: {
+      modelPath: criteria.some((c) => c.method === "model") ? "rules and model" : "rules only",
+      checkedByRule: criteria.filter((c) => c.category === "check" && c.method === "rule").length,
+      checkedByModel: criteria.filter((c) => c.category === "check" && c.method === "model").length,
+      structured: criteria.filter((c) => c.method === "structured").length,
+      screening: criteria.filter((c) => c.category === "screening").length,
+      humanRead: criteria.filter((c) => c.category === "review").length,
+      total: criteria.length,
+    },
+  };
   oneItemAway.sort((a, b) => (ITEM_PRIORITY[a.item] ?? 9) - (ITEM_PRIORITY[b.item] ?? 9) || b.trials.length - a.trials.length);
-  return { runId, asOf, generatedAt: new Date().toISOString(), patients: patientsOut, oneItemAway, overnight };
+  // The patient with the most overnight news opens the worklist.
+  const news = new Map<string, number>();
+  for (const g of overnight.groups ?? []) for (const it of g.items ?? []) if (it.patientId) news.set(it.patientId, (news.get(it.patientId) ?? 0) + (g.kind === "fact_added" ? 5 : 1));
+  const featured = [...news.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? patientsOut[0]?.patientId;
+  return { runId, asOf, generatedAt: new Date().toISOString(), headline, featuredPatientId: featured, patients: patientsOut, oneItemAway, overnight };
 }
 
 function countTop(xs: string[], n = 3) {
