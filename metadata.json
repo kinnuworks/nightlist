@@ -2,12 +2,22 @@
   "name": "Nightlist",
   "track": "Solving Fragmented Intelligence",
   "summary": "Overnight lung cancer trial screening for a community clinic: the model compiles public trial eligibility text into checks, and Zetaris runs them over patient data the model never sees.",
-  "users": ["clinical research coordinator", "oncology nurse navigator"],
+  "users": [
+    "clinical research coordinator",
+    "oncology nurse navigator"
+  ],
   "sponsor_technology": {
     "zetaris": {
       "role": "data layer",
       "in_use_case": true,
-      "sources": ["EHR (PostgreSQL datasource)", "lab system files", "ClinicalTrials.gov REST", "RxNav REST", "NCI Thesaurus REST", "compiled trial feed"],
+      "sources": [
+        "EHR (PostgreSQL datasource)",
+        "lab system files",
+        "ClinicalTrials.gov REST",
+        "RxNav REST",
+        "NCI Thesaurus REST",
+        "compiled trial feed"
+      ],
       "usl": "trialmatch (10 tables)",
       "dq_rules": 6,
       "sql": "sql/"
@@ -18,15 +28,19 @@
         "hmem": "engines/hmem (official conformance 13/13)",
         "scout_intent": "engines/scout-intent (official eval, all gates)"
       },
-      "nightshift": "primary AI provider; routing modes meterless/deep and meterless/fast"
+      "nightshift": "primary AI provider; Compiler uses route meterless/deep, Checker uses meterless/fast; 2,896 requests in two live runs (docs/nightshift-run.md)"
     },
-    "nvidia": "Nemotron models behind Nightshift: a large model compiles criteria, a small one back-translates them",
-    "cursor": "not used"
+    "nvidia": "NVIDIA Nemotron served every model request in the live runs: nemotron-3.5-bolt-e4b (2,889) and nemotron-3-ultra-550b-a55b (7), logged per request in logs/ and docs/nightshift-run.md",
+    "cursor": "not used; built with a different AI coding assistant, which the rules allow"
   },
   "data": {
     "trials": "ClinicalTrials.gov API v2, live snapshot",
     "patients": "240 synthetic patients, no real patient data",
-    "terminology": ["RxNav", "NCI Thesaurus", "US Census ZCTA"]
+    "terminology": [
+      "RxNav",
+      "NCI Thesaurus",
+      "US Census ZCTA"
+    ]
   },
   "run": {
     "setup": "npm run setup",
