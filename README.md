@@ -6,6 +6,8 @@ The model reads the trials. It never reads the patients. Each eligibility criter
 
 Track: Solving Fragmented Intelligence (Open Agent Hackathon 2026).
 
+Demo video (3 minutes): https://youtu.be/LzP3DXNErWo
+
 ## Try it in 60 seconds
 
 No accounts, keys or Docker needed. Node 20 or newer.
@@ -35,7 +37,7 @@ It reads last night's run and returns the headline, the agents involved, one pat
 | NVIDIA Nemotron | 2,896 model requests in two live runs, all served by NVIDIA Nemotron and each logged with the model that served it: [docs/nightshift-run.md](docs/nightshift-run.md), traces in [logs/](logs/) |
 | Runs from a clean clone, no accounts | `npm run setup`, `npm run demo`, `npm start` (sample mode), or the [Dockerfile](Dockerfile); `POST /run` with [three sample inputs and outputs](input_examples/) |
 | Evaluation | [docs/EVALUATION.md](docs/EVALUATION.md); `npm run eval` |
-| Demo video and slide deck | Links in the submission form |
+| Demo video and slide deck | [Video](https://youtu.be/LzP3DXNErWo); deck in the submission form |
 
 ## The problem
 
