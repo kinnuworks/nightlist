@@ -88,6 +88,14 @@ export async function runNight(opts: NightOptions = {}) {
     (r.status === "detected" ? d.carried : r.status === "not_detected" ? d.negative : []).push(String(r.gene));
     drivers.set(String(r.patient_id), d);
   }
+  // Stage IV patients: a trial whose title is about locally advanced or stage III disease
+  // only is ranked down (its stage criterion is often too long for the rules to compile).
+  const dx = await layer.query(`SELECT patient_id, stage_group FROM ${layer.table("diagnosis")} WHERE stage_group IS NOT NULL`);
+  for (const r of dx) if (String(r.stage_group) === "IV") {
+    const d = drivers.get(String(r.patient_id)) ?? { carried: [], negative: [] };
+    (d as any).stageIV = true;
+    drivers.set(String(r.patient_id), d);
+  }
   const worklist = buildWorklist(id, asOf, patients, matches, trials, criteria, overnight, applied, drivers);
   const summary = {
     runId: id, asOf, dataLayer: layer.kind, trialsInSnapshot: snap.trials.length, trialsScreened: trials.length, patients: patients.length,
@@ -112,7 +120,7 @@ export async function runNight(opts: NightOptions = {}) {
   writeFileSync(join(outDir, "criteria.json"), JSON.stringify(criteria));
   writeFileSync(join(outDir, "trials.json"), JSON.stringify(trials.map(({ eligibility, ...t }) => ({ ...t, eligibility }))));
   writeFileSync(join(RUNTIME, "latest.json"), JSON.stringify({ runId: id, dir: outDir }));
-  trace.emit({ agent: "Navigator", action: "write_worklist", status: "ok", summary: `${worklist.patients.filter((p) => p.matches.length).length} patients with at least one trial to review; ${worklist.oneItemAway.length} patients one data item away` });
+  trace.emit({ agent: "Navigator", action: "write_worklist", status: "ok", summary: `${worklist.patients.filter((p) => p.matches.length).length} patients with at least one trial to review; ${new Set(worklist.oneItemAway.map((x) => x.patientId)).size} patients one data item away from two or more trials` });
   await layer.close();
   return { id, outDir, summary };
 }
@@ -204,6 +212,7 @@ function buildWorklist(runId: string, asOf: string, patients: Row[], matches: Ma
       let a = 0;
       for (const g of carried) if (geneInTitle(g, title)) a += 3;
       for (const g of negative) if (geneInTitle(g, title)) a -= 3;
+      if ((drivers.get(pid) as any)?.stageIV && /(locally[- ]advanced|stage (iii|3)|inoperable|unresectable stage)/i.test(title) && !/(metastatic|stage iv|stage 4|advanced or)/i.test(title)) a -= 3;
       return a;
     };
     const live = mine

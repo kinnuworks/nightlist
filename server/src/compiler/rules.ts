@@ -102,7 +102,7 @@ function biomarker(t: string, kind: string): Result {
   if (UNMODELLED_VARIANT.test(t)) return null;
   // "Prior treatment with a KRAS G12C inhibitor" is a therapy history question, not a
   // biomarker one; "EGFR mutation for which a TKI is approved" is still a biomarker.
-  if (/(prior|previous(ly)?|received|treated with|treatment with|exposure to|progress(ed|ion) on)[^.;]{0,50}(inhibitors?|tkis?|tyrosine kinase|targeted therap)/i.test(t)) return null;
+  if (/(prior|previous(ly)?|received|treated with|treatment with|exposure to|progress(ed|ion|ive disease) on)[^.;]{0,50}(inhibitors?|tkis?|tyrosine kinase|targeted therap)/i.test(t.replace(/\([^()]*\)/g, ""))) return null;
   if (/(applicable to|only for|patients only|participants only)/i.test(t)) return null;
   if (/pd-?l1/i.test(t) && !/(egfr|alk|ros1|kras|braf|ret|ntrk|her2|erbb2)/i.test(t)) return null;
   const genes = genesIn(t);
@@ -181,7 +181,10 @@ function conditions(t: string, kind: string): Result {
 function priorTherapy(t: string, kind: string): Result {
   // Washout periods ("within 4 weeks of first dose") are confirmed at screening, not here.
   if (/within \d+\s*(day|week|month)|half-?lives|prior to (the )?(first dose|randomi|enrol)/i.test(t)) return null;
-  if (/(adverse (event|reaction)|toxicit|intoleran|hypersensitiv|allerg|discontinu|mmae|pan-?(kras|ras)|exactly|neoadjuvant|adjuvant|locally advanced disease is|permitted|allowed)/i.test(t)) return null;
+  // "In an adjuvant, locally advanced, or metastatic setting" means any setting, which is what the check counts.
+  const anySetting = /adjuvant,?\s+(locally advanced,?\s+)?(or|and\/or)\s+(locally advanced|metastatic|advanced)|adjuvant,\s+locally advanced,?\s+or\s+metastatic/i.test(t);
+  const tA = anySetting ? t.replace(/adjuvant/gi, "") : t;
+  if (/(adverse (event|reaction)|toxicit|intoleran|hypersensitiv|allerg|discontinu|mmae|pan-?(kras|ras)|exactly|neoadjuvant|adjuvant|locally advanced disease is|permitted|allowed)/i.test(tA)) return null;
   if (/chemotherap/i.test(t) && !/platinum/i.test(t)) return null;
   // Named agents are narrower than a drug class; leave them for the model or a human.
   if (/(osimertinib|gefitinib|erlotinib|afatinib|lazertinib|amivantamab|pembrolizumab|nivolumab|atezolizumab|durvalumab|cemiplimab|alectinib|lorlatinib|brigatinib|crizotinib|capmatinib|tepotinib|selpercatinib|pralsetinib|dabrafenib)/i.test(t) && !/(egfr[- ]?tki|tyrosine kinase inhibitor|checkpoint|anti-?pd)/i.test(t)) return null;
@@ -210,7 +213,7 @@ function priorTherapy(t: string, kind: string): Result {
   const present = kind === "exclusion" ? !negated : !negated;
   return {
     pred: { k: "prior_therapy", classes: classes as any, present },
-    caveats: ["dose, duration and reason for stopping are not checked"],
+    caveats: ["dose, duration and reason for stopping are not checked", ...(/(3rd|third)[- ]generation/i.test(t) ? ["which EGFR TKI generation is not checked"] : []), ...(/most recent line/i.test(t) ? ["whether it was the most recent line is not checked"] : [])],
   };
 }
 
@@ -354,7 +357,10 @@ export function compileByRules(c: Pick<Criterion, "text" | "kind">): { pred: Pre
   if (!handledException && /(with the exception of|except(ing)? (for|those|patients|participants|in)|\bexcept\b|\bunless\b|other than|apart from)/i.test(t)) return null;
   // An inclusion sentence that also says who is not eligible needs a person to read it.
   if (c.kind === "inclusion" && /(not eligible|are excluded|will be excluded|ineligible)/i.test(t)) return null;
-  if (/(including,? but not limited to|\be\.g\.|\beg,|such as|following criteria|any (other )?(targetable|actionable)|etc\b)/i.test(t)) return null;
+  // A bracketed "(such as osimertinib, ...)" right after a drug class only gives examples
+  // of the class the rule checks; any other "such as" list needs a person.
+  const tEx = t.replace(/\((such as|e\.g\.,?)[^()]*\)(?=\s*egfr[- ]?tki)/i, "");
+  if (/(including,? but not limited to|\be\.g\.|\beg,|such as|following criteria|any (other )?(targetable|actionable)|etc\b)/i.test(tEx)) return null;
   // Washouts, contraception and similar items are confirmed at screening even when
   // they name a drug or a condition.
   if (SCREENING_FIRST.test(t)) return null;

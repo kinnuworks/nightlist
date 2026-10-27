@@ -17,7 +17,7 @@ npm run demo
 npm start
 ```
 
-Open http://localhost:8787 and start with the patient the worklist puts first. Or skip the UI and run one overnight screen from the command line:
+Open http://localhost:8787 (set `PORT` to use another port) and start with the patient the worklist puts first. Or skip the UI and run one overnight screen from the command line:
 
 ```bash
 curl -s -X POST http://localhost:8787/run -H "Content-Type: application/json" -d @input_examples/example_1.json
@@ -62,7 +62,7 @@ Nightlist never says a patient is eligible. Every patient and trial pair lands i
 | Open items | Nothing blocks; some checks are unknown because data is missing, and the data item to obtain is named |
 | Blocked | At least one criterion is not met, with the source row that decided it |
 
-With the model path off (rules only), the demo night puts 111 of 25,440 pairs in "no blockers found" and 12,548 in "key criterion needs a human read". That is deliberate: the system only says "no blockers" when the criteria that define the trial's population were actually checked.
+With the model path off (rules only), the demo night puts 111 of 25,440 pairs in "no blockers found" and 12,499 in "key criterion needs a human read". That is deliberate: the system only says "no blockers" when the criteria that define the trial's population were actually checked.
 
 ## Run it
 
@@ -165,7 +165,7 @@ Nightshift is the app's AI provider: every model call goes through its OpenAI-co
 
 **NVIDIA.** Nemotron does the model work. In the two live runs Nightshift served 2,889 of 2,896 requests with `nemotron-3.5-bolt-e4b` (about 4.5 seconds per compile) and 7 with `nemotron-3-ultra-550b-a55b`. Nightshift races the models on each route and keeps the first good answer, so the small fast model won almost every time. The Checker restated 1,337 compiled rules and disagreed with 774. Its catches include a rule that accepted only stage III when the trial also took stages IB to IIIB, and a platelet threshold compiled as "100 x ULN" instead of 100,000 per microliter.
 
-We then scored both model roles on the blind final sample, and the results changed the design. Of the model's own compilations that passed the Checker and would have screened patients, 1 of 9 matched the gold label, so a model compilation is now a draft: it shows on the criterion as "model draft" and screens nobody until a person confirms it. On the rule compiler's output the Checker disagreed with 11 rules that were correct and 2 that overreached, so for rules a disagreement is a flag the coordinator sees beside the rule ("Checker disagrees: ..."), and the rule still screens. With both changes the compiler keeps the 87.0% precision and 82.4% coverage reported below.
+We then scored both model roles on the blind final sample, and the results changed the design. Of the model's own compilations that passed the Checker and would have screened patients, 1 of 9 matched the gold label, so a model compilation is now a draft: it shows on the criterion as "model draft" and screens nobody until a person confirms it. On the rule compiler's output the Checker disagreed with 11 rules that were correct and 2 that overreached, so for rules a disagreement is a flag the coordinator sees beside the rule ("Checker disagrees: ..."), and the rule still screens. With both changes the compiler keeps the precision reported below: 83.8% on the blind final test, 87.0% for the current code on the same (no longer blind) sample.
 
 **Cursor.** Not used. The Official Rules make it optional, and we built with a different AI coding assistant (see AI and model usage).
 

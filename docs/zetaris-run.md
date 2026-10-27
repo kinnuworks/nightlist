@@ -1515,7 +1515,7 @@ Run `night-20261027-202347` with `SAMPLE_MODE=false`: every patient check ran as
   - trial_is_recruiting on trial: 0 invalid rows
 - Verifier: 400 open matches re-read against source rows, 0 sent back for a human read
 - Navigator: World Model: 19 new matches, 7 changed, 0 dropped since the last run; 240 patients with at least one trial to review; 283 patients one data item away
-- Result: 10,266 pairs ruled out with evidence and 15,174 needing a person. The same night in sample mode (DuckDB over the same source files) gave 10,285 and 15,155. Both runs predate the change that turns a Checker disagreement on a rule into a flag; with the current code the sample-mode night gives 12,727 and 12,548.
+- Result: 10,266 pairs ruled out with evidence and 15,174 needing a person. The same night in sample mode (DuckDB over the same source files) gave 10,285 and 15,155. Both runs predate the change that turns a Checker disagreement on a rule into a flag; with the current code the sample-mode night gives 12,776 and 12,499.
 
 | Trial | Checks in one Zetaris query | ms |
 |---|---:|---:|
