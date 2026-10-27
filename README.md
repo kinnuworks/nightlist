@@ -23,7 +23,7 @@ Open http://localhost:8787 (set `PORT` to use another port) and start with the p
 curl -s -X POST http://localhost:8787/run -H "Content-Type: application/json" -d @input_examples/example_1.json
 ```
 
-It re-runs the night (a few seconds) and returns the headline, the agents involved, one patient's matches with the criteria a person still has to read, and the path of the trace for that run. Three sample inputs and the outputs they produced are in [input_examples/](input_examples/) and [output_examples/](output_examples/). With Docker: `docker build -t nightlist . && docker run --rm -p 8787:8787 nightlist`.
+It reads last night's run and returns the headline, the agents involved, one patient's matches with the criteria a person still has to read, and the path of the trace for that run. Set `"rerun": true` in `options` to screen the whole clinic again first (a few seconds; the morning view then shows changes since that new run). Three sample inputs and the outputs they produced are in [input_examples/](input_examples/) and [output_examples/](output_examples/). With Docker: `docker build -t nightlist . && docker run --rm -p 8787:8787 nightlist`.
 
 ## Where to check each requirement
 

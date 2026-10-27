@@ -49,7 +49,7 @@ export function App() {
   }, [title]);
 
   const s = status.data;
-  const layerLabel = s ? (s.dataLayer === "zetaris" ? "Zetaris" : s.dataLayer === "duckdb" ? "DuckDB" : s.dataLayer) : "";
+  const layerLabel = s ? (s.dataLayer === "zetaris" ? "Zetaris" : s.dataLayer === "duckdb" ? "DuckDB, the same SQL Zetaris runs live" : s.dataLayer) : "";
   const modelPath =
     worklist.data?.headline?.mode?.modelPath ??
     (summary.data ? (modelPathIdle(criteriaBreakdown(summary.data)) ? "rules only" : "rules and model") : undefined);

@@ -19,4 +19,4 @@ npm start             # serves on http://localhost:8787
 curl -s -X POST http://localhost:8787/run -H "Content-Type: application/json" -d @input_examples/example_1.json
 ```
 
-Send `"options": { "rerun": false }` to read the latest run without re-running it. The trace for each run is in `logs/<trace_id>.jsonl`. Counts can move slightly if you re-fetch trials from ClinicalTrials.gov; the committed snapshot gives the numbers shown here.
+The example files send `"rerun": false`, so they read the latest run; set it to `true` to screen the clinic again first. The trace for each run is in `logs/<trace_id>.jsonl`. Counts can move slightly if you re-fetch trials from ClinicalTrials.gov; the committed snapshot gives the numbers shown here.

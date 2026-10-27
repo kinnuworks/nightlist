@@ -235,7 +235,7 @@ function NightHeadline({ headline }: { headline?: Headline }) {
   return (
     <div className="headline">
       <h1 id="wl-title">
-        <span className="headline-num">{n.toLocaleString()}</span> <span className="headline-what">trial {n === 1 ? "screen" : "screens"} ruled out with evidence</span>
+        <span className="headline-num">{n.toLocaleString()}</span> <span className="headline-what">trial {n === 1 ? "screen" : "screens"} a coordinator no longer reads by hand, each ruled out with evidence</span>
       </h1>
       {low !== undefined && high !== undefined && (
         <p className="headline-sub">
@@ -273,7 +273,7 @@ function StartHere({ p, overnight }: { p: WorklistPatient; overnight: Overnight 
             <span className="small muted">
               {p.patientId} · {p.age} {sexShort(p.sex)} · ECOG {p.ecog ?? "not recorded"} · {miles(p.milesToClinic)} from clinic
             </span>
-            {p.story && <p className="lede" style={{ margin: 0 }}>{p.story}</p>}
+            {p.story && <p className="lede" style={{ margin: 0 }}>Demo story: {p.story}</p>}
           </div>
           <a className="btn btn-primary" href={href.patient(p.patientId)}>
             Open {p.name}

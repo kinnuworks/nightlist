@@ -12,3 +12,11 @@ engines/scout-intent/evals/reports/latest.md
 !logs/night-20261027-181516.jsonl
 !logs/night-20261027-190029.jsonl
 !logs/night-20261027-202347.jsonl
+CLAUDE.md
+HACKATHON.md
+STATE.md
+judge.sh
+stranger.sh
+judging/
+SETUP.md
+gitignore-add.txt
