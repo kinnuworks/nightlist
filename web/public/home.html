@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="en" data-mood="cobalt" data-accent="cobalt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nightlist · Overnight trial screening for a cancer clinic</title>
+<meta name="description" content="Nightlist re-screens a community cancer clinic's lung cancer patients against every recruiting trial nearby, every night, and hands the research coordinator a worklist with the evidence behind each answer.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232F5BFF'/%3E%3Cpath d='M17.6 7.5a8.6 8.6 0 1 0 6.9 13.4 7 7 0 0 1-6.9-13.4z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400..600&family=Public+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- Tokens ---------- */
+:root{
+  --bg:#FFFFFF; --bg-alt:#F5F5F7; --sunk:var(--bg-alt); --surface:#FFFFFF; --surface-2:#FAFAFB; --band-edge:none;
+  --ink:#1D1D1F; --ink-2:#515154; --ink-3:#6E6E73; --ink-4:#86868B;
+  --line:rgba(0,0,0,.08); --line-2:rgba(0,0,0,.14); --tint:rgba(0,0,0,.045);
+  --shadow-rgb:0 0 0;
+  --accent:#F7A028; --accent-hi:#FFC45A; --accent-ink:#8F5200; --accent-wash:#FFF3DE; --on-accent:#2A1700;
+  --focus:var(--accent-ink); --marker:#D4F53C; --success:#1F7A3D;
+  --font-display:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-body:var(--font-display);
+  --font-serif:"Instrument Serif",ui-serif,Georgia,serif;
+  --font-mono:"JetBrains Mono","Geist Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --display-weight:700; --display-track:-.042em;
+  --fs-display:clamp(42px,6.4vw,80px); --fs-h2:clamp(32px,4.4vw,54px); --fs-h3:clamp(24px,3vw,38px);
+  --fs-lead:clamp(17.5px,1.55vw,21px); --fs-body:16.5px; --fs-small:14.5px; --fs-micro:13px;
+  --container:1120px; --text-max:680px; --gutter:24px; --section-y:clamp(80px,10vw,128px); --bleed:clamp(64px,9vw,140px);
+  --r-xs:7px; --r-sm:10px; --r-md:14px; --r-lg:20px; --r-xl:28px; --r-2xl:32px; --r-pill:999px;
+  --ring:0 0 0 1px var(--line);
+  --shadow-1:0 0 0 .5px rgba(var(--shadow-rgb)/.10),0 1px 2px rgba(var(--shadow-rgb)/.06),0 6px 18px rgba(var(--shadow-rgb)/.06);
+  --shadow-2:0 0 0 .5px rgba(var(--shadow-rgb)/.10),0 2px 6px rgba(var(--shadow-rgb)/.05),0 24px 60px -12px rgba(var(--shadow-rgb)/.18);
+  --shadow-3:0 0 0 1px rgba(var(--shadow-rgb)/.06),0 40px 90px -30px rgba(var(--shadow-rgb)/.42);
+  --ease-out:cubic-bezier(.22,1,.36,1); --ease-spring:cubic-bezier(.34,1.36,.64,1);
+  --dur-press:.12s; --dur-hover:.2s; --dur-ui:.3s; --dur-reveal:.7s;
+  --wallpaper:radial-gradient(90% 80% at 12% 100%,#FFC978 0,transparent 60%),radial-gradient(70% 70% at 88% 8%,#BFD9FF 0,transparent 62%),linear-gradient(160deg,#F7F3EE,#ECEFF6);
+  --wallpaper-soft:radial-gradient(70% 60% at 85% 0%,#DCE8FF 0,transparent 60%),radial-gradient(60% 60% at 10% 100%,#FFE6C2 0,transparent 60%),linear-gradient(160deg,#F7F7F9,#EEF0F4);
+  --wash:linear-gradient(#DCE8FE,#EEF4FF 55%,var(--bg));
+  --chrome:linear-gradient(#FBFBFB,#F1F1F2); --chrome-line:rgba(0,0,0,.08); --chrome-ink:#6E6E73;
+  --key-bg:linear-gradient(#fff,#F2F2F4); --key-ink:#3A3A3C; --key-edge:inset 0 0 0 1px rgba(0,0,0,.10),0 1.5px 0 rgba(0,0,0,.18),0 2px 3px rgba(0,0,0,.06);
+}
+[data-mood="white"]{
+  --bg-alt:#FFFFFF; --sunk:#F6F6F7; --surface-2:#FAFAFA; --band-edge:inset 0 1px 0 var(--line);
+  --wallpaper-soft:radial-gradient(60% 70% at 88% 0%,#EEF3FF 0,transparent 60%),radial-gradient(60% 60% at 8% 100%,#FFF3E2 0,transparent 60%),#FAFAFA;
+}
+[data-mood="cream"]{
+  --bg:#FAF6EF; --bg-alt:#F3ECE1; --surface:#FFFEFC; --surface-2:#FBF8F3;
+  --ink:#17150F; --ink-2:#423C33; --ink-3:#6D6459; --ink-4:#857B6E;
+  --line:#EBE3D7; --line-2:#DDD2C2; --tint:rgba(23,21,15,.055); --shadow-rgb:23 16 14;
+  --font-display:"Plus Jakarta Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --display-track:-.035em;
+  --wallpaper:radial-gradient(130% 100% at 50% -20%,#F7E6D6 0%,#E3AB7C 40%,#C2542A 100%);
+  --wallpaper-soft:radial-gradient(130% 100% at 50% -20%,#FDF8F2 0%,#F2E2CE 48%,#E2C3A1 100%);
+}
+[data-mood="cobalt"]{
+  --bg:#FDFDFE; --bg-alt:#F4F6FC; --surface:#FFFFFF; --surface-2:#FBFBFD;
+  --ink:#0E1116; --ink-2:#3F4552; --ink-3:#5C6372; --ink-4:#868C9C;
+  --line:#E4E6EE; --line-2:#D3D8E6; --tint:rgba(47,91,255,.07); --shadow-rgb:16 20 60;
+  --font-display:"Outfit",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-body:"Public Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --display-weight:500; --display-track:-.028em;
+  --wallpaper:radial-gradient(80% 70% at 50% 0%,#8EA2FF 0%,transparent 60%),linear-gradient(160deg,#3D5BF0,#1E2FA8);
+  --wallpaper-soft:radial-gradient(80% 70% at 50% 0%,#E3E9FF 0%,transparent 60%),linear-gradient(160deg,#F2F5FF,#E4EAFF);
+}
+[data-accent="terracotta"]{--accent:#D66B38;--accent-hi:#E8895A;--accent-ink:#A1411F;--on-accent:#fff}
+[data-accent="cobalt"]{--accent:#2F5BFF;--accent-hi:#5B8CFF;--accent-ink:#1B3BCC;--on-accent:#fff}
+[data-accent="mono"]{--accent:var(--ink);--accent-hi:color-mix(in oklab,var(--ink) 80%,var(--bg));--accent-ink:var(--ink);--on-accent:var(--bg)}
+[data-accent]{--accent-wash:color-mix(in oklab,var(--accent) 14%,var(--surface))}
+@media (max-width:640px){:root{--gutter:18px}}
+
+/* ---------- Base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 var(--fs-body)/1.6 var(--font-body);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+img,svg,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+p{margin:0}
+::selection{background:var(--marker);color:#17150F}
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.container{width:min(100% - 2*var(--gutter),var(--container));margin-inline:auto}
+
+/* ---------- Type ---------- */
+h1,.t-display{margin:0;font-family:var(--font-display);font-size:var(--fs-display);font-weight:var(--display-weight);line-height:1;letter-spacing:var(--display-track);text-wrap:balance}
+h2,.t-h2{margin:0;font-family:var(--font-display);font-size:var(--fs-h2);font-weight:var(--display-weight);line-height:1.05;letter-spacing:calc(var(--display-track) + .006em);text-wrap:balance}
+h3,.t-h3{margin:0;font-family:var(--font-display);font-size:var(--fs-h3);font-weight:var(--display-weight);line-height:1.1;letter-spacing:calc(var(--display-track) + .012em);text-wrap:balance}
+.t-title{margin:0;font-size:17px;font-weight:600;line-height:1.35;letter-spacing:-.015em}
+.lead{font-size:var(--fs-lead);line-height:1.5;letter-spacing:-.011em;color:var(--ink-3);max-width:620px;text-wrap:pretty}
+.t-small{font-size:var(--fs-small);line-height:1.55;color:var(--ink-3)}
+.t-micro{font-size:var(--fs-micro);color:var(--ink-3)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.eyebrow svg{width:14px;height:14px;stroke-width:2}
+.eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.t-muted{color:var(--ink-4)}
+.t-accent{color:var(--accent-ink)}
+.t-serif{font-family:var(--font-serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.t-mono{font-family:var(--font-mono);font-size:.92em;letter-spacing:0}
+.hl{position:relative;z-index:0;white-space:nowrap}
+.hl::after{content:"";position:absolute;z-index:-1;left:.02em;right:.04em;bottom:.05em;height:.17em;border-radius:99px;background:var(--marker)}
+.hl-soft{background:linear-gradient(transparent 58%,color-mix(in oklab,var(--accent) 20%,transparent) 58%)}
+
+/* ---------- Buttons ---------- */
+.btn{--h:48px;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:var(--h);padding:0 24px;border:0;border-radius:var(--r-pill);font:600 15px/1 var(--font-body);letter-spacing:-.01em;white-space:nowrap;cursor:pointer;transition:transform var(--dur-press) var(--ease-spring),box-shadow var(--dur-hover) var(--ease-out),background-color var(--dur-hover) var(--ease-out),filter var(--dur-hover) var(--ease-out)}
+.btn:hover{transform:translateY(-1px)}
+.btn:active{transform:scale(.97)}
+.btn svg{width:17px;height:17px}
+.btn-sm{--h:36px;padding:0 15px;font-size:13.5px}
+.btn-lg{--h:54px;padding:0 28px;font-size:16px}
+.btn-ink{background:var(--ink);color:var(--bg)}
+.btn-ink:hover{background:color-mix(in oklab,var(--ink) 85%,var(--bg))}
+.btn-candy{color:var(--on-accent);background:linear-gradient(135deg,var(--accent-hi),var(--accent) 60%,color-mix(in oklab,var(--accent) 88%,#000));box-shadow:inset 0 1px 0 rgba(255,255,255,.5),inset 0 -1px 0 rgba(0,0,0,.14),0 0 0 1px color-mix(in oklab,var(--accent-ink) 40%,transparent),0 8px 20px -8px color-mix(in oklab,var(--accent-ink) 70%,transparent)}
+.btn-candy:hover{filter:brightness(1.04) saturate(1.06)}
+.btn-outline{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line-2)}
+.btn-outline:hover{background:var(--surface-2)}
+.btn-ghost{background:var(--tint);color:var(--ink)}
+.btn-halo{background:#fff;color:#0E1116;box-shadow:0 0 0 6px rgba(255,255,255,.14),0 18px 40px -12px rgba(10,20,120,.6)}
+.btn .tag{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:var(--r-pill);background:var(--accent-ink);color:#fff;font-size:12.5px;font-weight:650}
+.btn-ink .tag{background:rgba(255,255,255,.16);color:inherit}
+.btn-candy .tag{background:rgba(0,0,0,.12);color:inherit}
+.btn .sep{opacity:.45;font-weight:400}
+
+/* ---------- Nav (floating glass pill) ---------- */
+.nav{position:fixed;inset:12px 0 auto;z-index:50;display:flex;justify-content:center;padding-inline:12px;pointer-events:none}
+.nav__bar{pointer-events:auto;width:min(100%,980px);height:56px;display:flex;align-items:center;gap:8px;padding:0 8px 0 14px;border-radius:var(--r-pill);background:color-mix(in oklab,var(--surface) 74%,transparent);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);box-shadow:0 0 0 1px var(--line),0 10px 30px -14px rgba(var(--shadow-rgb)/.22)}
+.nav__brand{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:650;letter-spacing:-.02em}
+.nav__links{display:flex;gap:2px;margin-inline:auto}
+.nav__links a{padding:8px 12px;border-radius:var(--r-pill);font-size:14px;font-weight:500;color:var(--ink-2);transition:background-color var(--dur-hover),color var(--dur-hover)}
+.nav__links a:hover{background:var(--tint);color:var(--ink)}
+.nav--on-color .nav__bar{background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);color:#fff}
+.nav--on-color .nav__links a{color:rgba(255,255,255,.85)}
+.nav--on-color .nav__links a:hover{background:rgba(255,255,255,.12);color:#fff}
+.nav--on-color .btn-ink{background:#fff;color:#0E1116}
+.app-icon{width:28px;height:28px;border-radius:22.5%;flex:none;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.12)}
+@media (max-width:760px){.nav__links{display:none}.nav__bar{justify-content:space-between}}
+
+/* ---------- Badge / chips / segmented / controls ---------- */
+.badge{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px 0 4px;border-radius:var(--r-pill);background:var(--surface);box-shadow:var(--shadow-1);font-size:13px;font-weight:550;color:var(--ink-2)}
+.badge__tag{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:var(--r-pill);background:var(--ink);color:var(--bg);font-size:12px;font-weight:650}
+.badge--dot{padding-left:12px}.badge--dot::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 14px;border:0;border-radius:var(--r-pill);background:var(--surface);box-shadow:var(--ring);font:550 13.5px/1 var(--font-body);color:var(--ink-2)}
+.chip--soft{background:var(--tint);box-shadow:none}
+button.chip{cursor:pointer;transition:background-color var(--dur-hover),box-shadow var(--dur-hover),color var(--dur-hover)}
+button.chip:hover{background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line-2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);box-shadow:none}
+.segmented{display:inline-flex;gap:2px;padding:4px;border-radius:var(--r-pill);background:var(--tint)}
+.segmented button{height:34px;padding:0 18px;border:0;border-radius:var(--r-pill);background:transparent;font:550 14px/1 var(--font-body);color:var(--ink-3);cursor:pointer;transition:background-color var(--dur-ui) var(--ease-out),color var(--dur-ui) var(--ease-out),box-shadow var(--dur-ui) var(--ease-out)}
+.segmented [aria-selected="true"],.segmented [aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-1)}
+.switch{-webkit-appearance:none;appearance:none;position:relative;flex:none;width:40px;height:24px;margin:0;border-radius:99px;background:var(--line-2);cursor:pointer;transition:background-color var(--dur-ui) var(--ease-out)}
+.switch::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.22);transition:transform var(--dur-ui) var(--ease-spring)}
+.switch:checked{background:var(--accent)}.switch:checked::after{transform:translateX(16px)}
+.range{--val:50%;-webkit-appearance:none;appearance:none;width:100%;height:24px;margin:0;background:transparent;cursor:pointer}
+.range::-webkit-slider-runnable-track{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--accent) var(--val),var(--tint) var(--val))}
+.range::-moz-range-track{height:6px;border-radius:99px;background:var(--tint)}
+.range::-moz-range-progress{height:6px;border-radius:99px;background:var(--accent)}
+.range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-8px;border-radius:50%;background:#fff;box-shadow:0 0 0 .5px rgba(0,0,0,.14),0 2px 6px rgba(0,0,0,.2);transition:transform var(--dur-press) var(--ease-spring)}
+.range::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:#fff;box-shadow:0 0 0 .5px rgba(0,0,0,.14),0 2px 6px rgba(0,0,0,.2)}
+.range:active::-webkit-slider-thumb{transform:scale(1.08)}
+kbd{display:inline-grid;place-items:center;min-width:26px;height:26px;padding:0 7px;border-radius:var(--r-xs);font:500 12.5px/1 var(--font-mono);color:var(--key-ink);background:var(--key-bg);box-shadow:var(--key-edge)}
+:where(p,li) kbd{height:21px;min-width:21px;margin-block:-3px;padding:0 5px;font-size:12px}
+.avatar{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent-wash);color:var(--accent-ink);font-size:13px;font-weight:650}
+@media (pointer:coarse){.btn-sm{--h:44px}.chip,.segmented button{min-height:44px}}
+
+/* ---------- Layout ---------- */
+.section{padding-block:var(--section-y)}
+.section--alt{background:var(--bg-alt);box-shadow:var(--band-edge)}
+.section-head{max-width:var(--text-max);margin:0 auto clamp(40px,5vw,64px);text-align:center}
+.section-head .eyebrow{margin-bottom:16px}
+.section-head .lead{margin:18px auto 0}
+.section-head--left{margin-inline:0;text-align:left}.section-head--left .lead{margin-inline:0}
+.grid{display:grid;gap:16px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.split{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,5vw,64px);align-items:center}
+.split--flip>:first-child{order:2}
+.split .eyebrow{margin-bottom:14px}.split .lead,.split .t-small{margin-top:14px}.split .chips{margin-top:20px}
+.stack>*+*{margin-top:clamp(72px,9vw,120px)}
+.try{display:grid;grid-template-columns:minmax(280px,360px) 1fr;gap:16px;align-items:stretch}
+@media (max-width:900px){.grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}.split,.try{grid-template-columns:1fr}.split--flip>:first-child{order:0}}
+@media (max-width:640px){.grid-2,.grid-3{grid-template-columns:1fr}}
+
+/* ---------- Hero ---------- */
+.hero{padding-top:calc(80px + clamp(48px,8vw,96px));text-align:center}
+.hero .badge{margin-bottom:24px}
+.hero h1{max-width:900px;margin-inline:auto}
+.hero .lead{margin:22px auto 0}
+.cta-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:32px}
+.trust{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margin-top:16px;font-size:13.5px;color:var(--ink-3)}
+.trust span+span::before{content:"·";margin-right:14px;color:var(--ink-4)}
+@media (max-width:640px){.trust{flex-direction:column;align-items:center;gap:2px}.trust span+span::before{display:none}}
+.hero__visual{margin-top:clamp(44px,6vw,72px)}
+.bleed{position:relative;z-index:1;margin-bottom:calc(-1*var(--bleed))}
+.after-bleed{padding-top:calc(var(--section-y) + var(--bleed))}
+.hero--split{text-align:left}.hero--split .container{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center}
+.hero--split h1,.hero--split .lead{margin-inline:0}.hero--split .cta-row,.hero--split .trust{justify-content:flex-start;align-items:flex-start}
+@media (max-width:900px){.hero--split .container{grid-template-columns:1fr}}
+.hero--color{position:relative;overflow-x:clip;color:#fff;background:radial-gradient(120% 90% at 50% -10%,#5C78FF 0%,#3655EC 45%,#2338C9 100%);padding-bottom:clamp(56px,7vw,88px)}
+.hero--color::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 96px),repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 1px,transparent 1px 96px);-webkit-mask:radial-gradient(70% 60% at 50% 30%,#000,transparent);mask:radial-gradient(70% 60% at 50% 30%,#000,transparent)}
+.hero--color>*{position:relative}
+.hero--color .lead{color:rgba(255,255,255,.76)}.hero--color .t-muted{color:rgba(255,255,255,.62)}.hero--color .trust,.hero--color .trust span::before{color:rgba(255,255,255,.7)}
+.hero--color :focus-visible{outline-color:#fff}
+.hero--color:has(.bleed){padding-bottom:0}
+.hero--color .btn-outline{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+.hero--color .btn-outline:hover{background:rgba(255,255,255,.18)}
+.hero--wash{background:var(--wash)}
+
+/* ---------- Surfaces ---------- */
+.card{color:var(--ink);background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--ring);padding:24px}
+.card--flat{background:var(--sunk);box-shadow:none}
+.section--alt .card--flat{background:var(--surface);box-shadow:var(--ring)}
+.card--raised{box-shadow:var(--shadow-2)}
+.card--chosen{box-shadow:0 0 0 1.5px var(--accent),var(--shadow-1)}
+.panel{border-radius:var(--r-xl);background:var(--sunk);padding:clamp(24px,3vw,40px);overflow:hidden}
+.tile{display:flex;align-items:flex-start;gap:14px;padding:20px;border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--ring);transition:box-shadow var(--dur-hover) var(--ease-out),transform var(--dur-hover) var(--ease-out)}
+.tile:hover{box-shadow:var(--shadow-1);transform:translateY(-2px)}
+.tile .t-title{font-size:16px;margin:1px 0 4px}
+.tile p{font-size:var(--fs-small);line-height:1.5;color:var(--ink-3)}
+.icon-tile{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--accent-wash);color:var(--accent-ink)}
+.icon-tile svg{width:19px;height:19px;stroke-width:1.75}
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.bento>*{grid-column:span 2;display:flex;flex-direction:column;gap:12px;min-height:260px;padding:28px;border-radius:var(--r-xl);background:var(--surface);box-shadow:var(--ring);overflow:hidden}
+.bento>.span-3{grid-column:span 3}.bento>.span-4{grid-column:span 4}.bento>.span-6{grid-column:span 6}
+.bento>.is-accent{background:linear-gradient(160deg,var(--accent-hi),var(--accent));color:var(--on-accent);box-shadow:none}
+@media (max-width:900px){.bento{grid-template-columns:1fr}.bento>*{grid-column:auto!important}}
+
+/* ---------- Product frames (device chrome may use fixed colors) ---------- */
+.stage{position:relative;padding:clamp(18px,4vw,56px);border-radius:var(--r-xl);background:var(--wallpaper);overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.stage--soft{background:var(--wallpaper-soft)}
+.window{position:relative;overflow:hidden;border-radius:14px;background:var(--surface);color:var(--ink);box-shadow:var(--shadow-3);text-align:left}
+.window__bar{position:relative;display:flex;align-items:center;height:38px;padding:0 14px;background:var(--chrome);border-bottom:1px solid var(--chrome-line);font-size:12.5px;font-weight:600;color:var(--chrome-ink)}
+.window__title{position:absolute;left:50%;transform:translateX(-50%)}
+.lights{display:flex;gap:8px}
+.lights i{width:12px;height:12px;border-radius:50%;background:#FF5F57;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.14)}
+.lights i:nth-child(2){background:#FEBC2E}.lights i:nth-child(3){background:#28C840}
+.window--dark{background:#1B1B1F;color:#F2F0EB}
+.window--dark .window__bar{background:#26262B;border-color:rgba(255,255,255,.06);color:#9A9AA2}
+.desktop{position:relative;overflow:hidden;aspect-ratio:16/10;border-radius:var(--r-lg);background:var(--wallpaper);box-shadow:var(--shadow-3);text-align:left}
+.menubar{display:flex;align-items:center;gap:16px;height:26px;padding:0 14px;background:rgba(255,255,255,.4);-webkit-backdrop-filter:blur(20px) saturate(1.6);backdrop-filter:blur(20px) saturate(1.6);font-size:12.5px;font-weight:600;color:#1D1D1F}
+.menubar .end{display:flex;gap:14px;margin-left:auto;font-weight:500}
+.desktop--dark .menubar{background:rgba(0,0,0,.35);color:#fff}
+.desktop--dark .popover{background:rgba(38,38,44,.82);color:#F2F0EB;box-shadow:0 0 0 .5px rgba(255,255,255,.14),0 20px 50px -12px rgba(0,0,0,.5)}
+.popover{position:absolute;width:300px;padding:10px;border-radius:14px;background:rgba(246,246,248,.84);-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 20px 50px -12px rgba(0,0,0,.35);font-size:13px;color:#1D1D1F}
+.phone{width:min(300px,78vw);aspect-ratio:9/19.5;margin-inline:auto;padding:10px;border-radius:48px;background:#0E0E10;box-shadow:var(--shadow-3),inset 0 0 0 1.5px #3A3A3E}
+.phone__screen{position:relative;height:100%;overflow:hidden;border-radius:38px;background:var(--surface);text-align:left}
+.phone__screen::before{content:"";position:absolute;z-index:3;top:10px;left:50%;width:96px;height:28px;transform:translateX(-50%);border-radius:20px;background:#0E0E10}
+.phone__screen::after{content:"";position:absolute;bottom:8px;left:50%;width:34%;height:5px;transform:translateX(-50%);border-radius:3px;background:var(--ink);opacity:.85}
+.phone__status{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;height:48px;padding:0 26px;font-size:13px;font-weight:600}
+.phone__body{padding:8px 16px 32px}
+.float{position:absolute;z-index:2;color:var(--ink);padding:12px 14px;border-radius:var(--r-md);background:color-mix(in oklab,var(--surface) 90%,transparent);-webkit-backdrop-filter:blur(16px) saturate(1.5);backdrop-filter:blur(16px) saturate(1.5);box-shadow:var(--shadow-2);font-size:13px;text-align:left}
+@media (max-width:760px){.float{display:none}}
+
+/* ---------- Pricing / FAQ / quotes / footer ---------- */
+.price-card{max-width:460px;margin-inline:auto;overflow:hidden;border-radius:var(--r-xl);background:var(--surface);box-shadow:var(--shadow-2);text-align:left}
+.price-card__head{display:flex;align-items:center;gap:12px;padding:18px 24px;background:var(--sunk);border-bottom:1px solid var(--line)}
+.price-card__body{padding:28px}
+.price{display:flex;align-items:baseline;gap:10px}
+.price__amount{font:var(--display-weight) 56px/1 var(--font-display);letter-spacing:-.04em}
+.price__was{font-size:18px;color:var(--ink-3);text-decoration:line-through}
+.checklist{display:grid;gap:10px;margin:24px 0;padding:0;list-style:none;font-size:15px;color:var(--ink-2)}
+.checklist li{display:flex;gap:10px}
+.checklist li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;background:var(--accent-ink);-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12.5l4.5 4.5L19 7.5'/></svg>") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12.5l4.5 4.5L19 7.5'/></svg>") center/contain no-repeat}
+.price-card .btn{width:100%}
+.faq{max-width:760px;margin-inline:auto;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0;list-style:none;cursor:pointer;font-size:17px;font-weight:600;letter-spacing:-.015em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;font-weight:400;color:var(--ink-3);transition:transform var(--dur-ui) var(--ease-out)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{max-width:640px;margin-bottom:22px;color:var(--ink-3)}
+.quotes{columns:3 300px;column-gap:16px}
+.quote{break-inside:avoid;margin-bottom:16px;padding:22px;border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--ring)}
+.quote__who{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:14.5px;font-weight:600}
+.quote__who img{width:36px;height:36px;border-radius:50%}
+.quote__who small{display:block;font-size:13px;font-weight:400;color:var(--ink-3)}
+.quote p{font-size:15px;line-height:1.55;color:var(--ink-2)}
+.quote--feature{max-width:760px;margin-inline:auto;padding:clamp(28px,4vw,48px);text-align:center}
+.quote--feature p{font:var(--display-weight) clamp(22px,2.6vw,30px)/1.3 var(--font-display);letter-spacing:-.02em;color:var(--ink);text-wrap:balance}
+.quote--feature .quote__who{justify-content:center;margin:24px 0 0}
+.footer{padding:40px 0 48px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-3)}
+.footer .container{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px}
+
+/* ---------- Motion ---------- */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity var(--dur-reveal) var(--ease-out),transform var(--dur-reveal) var(--ease-out);transition-delay:calc(var(--i,0)*80ms)}
+.js .reveal.in{opacity:1;transform:none}
+@media print{.js .reveal{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .reveal{opacity:1;transform:none;transition:none}*{animation:none!important}}
+
+/* =====================================================================
+   Nightlist page additions. Product colors live here as app tokens.
+   ===================================================================== */
+:root{
+  --st-ok:#1F7A3D; --st-ok-wash:#E5F3EA;
+  --st-review:#8A5A00; --st-review-wash:#FBF0D9;
+  --st-bad:#B42318; --st-bad-wash:#FBE7E5;
+  --src-lab:#6B4FA0; --src-lab-wash:#F0EBF8;
+  --src-ehr:#1B3BCC; --src-ehr-wash:#E8EDFF;
+  /* the dark app window in the hero */
+  --app-bg:#13151D; --app-panel:#1A1D28; --app-line:rgba(255,255,255,.08); --app-ink:#EEF1FA; --app-ink-2:#B8BFD0; --app-ink-3:#8C94A8;
+  --app-ok:#5BD08A; --app-review:#F4C15D; --app-bad:#FF8A80; --app-new:#8FA8FF;
+}
+.badge--on-color{background:rgba(255,255,255,.14);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.badge--on-color::before{background:#fff}
+@media (max-width:520px){.badge__extra{display:none}.sh__btn{display:none}}
+.app-icon--lg{width:88px;height:88px;border-radius:22.5%;box-shadow:var(--shadow-2)}
+.nav__brand .app-icon{box-shadow:none}
+.mono{font-family:var(--font-mono);letter-spacing:0}
+
+/* hero window: the morning worklist */
+.hero__visual{position:relative;max-width:980px;margin-inline:auto}
+.wl{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);background:var(--app-bg);color:var(--app-ink);font-size:13px;line-height:1.45}
+.wl__top{grid-column:1/-1;display:flex;align-items:center;gap:18px;padding:10px 18px;border-bottom:1px solid var(--app-line);font-size:12px;color:var(--app-ink-3)}
+.wl__top b{color:var(--app-ink);font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px}
+.wl__top b svg{width:18px;height:18px;border-radius:5px}
+.wl__top .tabs{display:flex;gap:4px}
+.wl__top .tabs span{padding:4px 10px;border-radius:99px}
+.wl__top .tabs span:first-child{background:rgba(255,255,255,.08);color:var(--app-ink)}
+.wl__top .mode{margin-left:auto;display:flex;align-items:center;gap:6px}
+.wl__top .mode i{width:7px;height:7px;border-radius:50%;background:var(--app-review)}
+.wl__head{padding:28px 26px 24px;border-right:1px solid var(--app-line)}
+.wl__eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--app-ink-3)}
+.wl__num{margin-top:14px;font:500 clamp(48px,6vw,76px)/.95 var(--font-display);letter-spacing:-.035em;color:#fff}
+.wl__what{margin-top:8px;font:500 22px/1.2 var(--font-display);letter-spacing:-.015em;color:var(--app-ink)}
+.wl__sub{margin-top:8px;font-size:12px;color:var(--app-ink-3)}
+.wl__steps{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:22px;border-radius:10px;overflow:hidden;background:var(--app-line)}
+.wl__steps div{padding:10px 12px;background:var(--app-panel);font-size:11.5px;color:var(--app-ink-3)}
+.wl__steps b{display:block;color:var(--app-ink);font-weight:600;font-size:12px;margin-bottom:1px}
+.wl__steps b em{font-style:normal;color:var(--app-new);margin-right:6px;font-family:var(--font-mono);font-size:11px}
+.wl__start{padding:22px 22px 24px}
+.sh{border-radius:12px;background:var(--app-panel);box-shadow:inset 0 0 0 1px var(--app-line),inset 0 2px 0 var(--app-new);padding:16px}
+.sh__eyebrow{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--app-new)}
+.sh__row{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:6px}
+.sh__name{font:500 24px/1.1 var(--font-display);letter-spacing:-.02em;color:#fff}
+.sh__meta{margin-top:4px;font-size:11.5px;color:var(--app-ink-3)}
+.sh__btn{flex:none;height:30px;padding:0 12px;border-radius:99px;background:#fff;color:#0E1116;font-size:12px;font-weight:600;display:inline-flex;align-items:center}
+.sh__story{margin-top:10px;font-size:12.5px;color:var(--app-ink-2)}
+.sh__block{margin-top:14px;padding-top:12px;border-top:1px solid var(--app-line)}
+.sh__label{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--app-ink-3)}
+.sh__block ul{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:5px;font-size:12px;color:var(--app-ink-2)}
+.sh__block li b{color:var(--app-ink);font-weight:600}
+.sh__trial{margin-top:6px;font-size:12.5px;font-weight:600;color:var(--app-ink)}
+.sh__chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.ach{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:99px;font-size:11px;font-weight:600;white-space:nowrap}
+.ach svg{width:11px;height:11px}
+.ach--review{background:rgba(244,193,93,.14);color:var(--app-review)}
+.ach--new{background:rgba(143,168,255,.16);color:var(--app-new)}
+.ach--ok{background:rgba(91,208,138,.14);color:var(--app-ok)}
+.ach--bad{background:rgba(255,138,128,.14);color:var(--app-bad)}
+.wl__stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--app-line)}
+.wl__stats div{padding:14px 24px;border-left:1px solid var(--app-line)}
+.wl__stats div:first-child{border-left:0}
+.wl__stats b{display:block;font:500 26px/1 var(--font-display);letter-spacing:-.02em;color:#fff}
+.wl__stats span{display:block;margin-top:6px;font-size:11.5px;color:var(--app-ink-3)}
+@media (max-width:860px){
+  .wl{grid-template-columns:1fr}
+  .wl__head{border-right:0;border-bottom:1px solid var(--app-line);padding:22px 18px}
+  .wl__start{padding:18px}
+  .wl__steps{display:none}
+  .wl__stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wl__stats div:nth-child(3){border-left:0}
+  .wl__stats div:nth-child(n+3){border-top:1px solid var(--app-line)}
+  .wl__top .tabs,.wl__top .mode span{display:none}
+}
+.f-head{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:650;letter-spacing:.02em;color:var(--ink-3)}
+.f-dot{width:8px;height:8px;border-radius:50%;flex:none}
+.f-body{margin-top:5px;font-size:13.5px;font-weight:600;line-height:1.35;color:var(--ink)}
+.f-sub{margin-top:3px;font-size:12px;color:var(--ink-3)}
+.float--a{left:-196px;top:150px;width:212px}
+.float--b{right:-196px;top:236px;width:212px}
+.float--c{left:-196px;bottom:48px;width:212px}
+@media (max-width:1380px){.float--a,.float--b,.float--c{display:none}}
+
+/* problem -> solution */
+.compare{align-items:stretch}
+.compare .card{display:flex;flex-direction:column;gap:18px;padding:28px}
+.compare__fig{font:500 clamp(34px,4vw,46px)/1 var(--font-display);letter-spacing:-.03em}
+.compare__fig small{display:block;margin-top:8px;font:400 15px/1.45 var(--font-body);letter-spacing:0;color:var(--ink-3)}
+.compare ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:15px;color:var(--ink-2)}
+.compare li{display:flex;gap:10px}
+.compare li svg{flex:none;width:18px;height:18px;margin-top:3px}
+.card--flat li svg{color:var(--ink-4)}
+.card--chosen li svg{color:var(--accent-ink)}
+.ids{margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:14px;border-radius:var(--r-md);background:var(--sunk);font-size:12.5px}
+.section--alt .card .ids{background:var(--bg-alt)}
+.idchip{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;border-radius:8px;background:var(--surface);box-shadow:var(--ring);font-family:var(--font-mono);font-size:12px;color:var(--ink)}
+.idchip small{font-family:var(--font-body);font-size:11px;font-weight:600;color:var(--ink-3)}
+.ids .gap{color:var(--st-bad);font-weight:600;font-size:12px}
+.ids .join-ok{color:var(--accent-ink);font-weight:600;font-size:12px}
+.ids svg{width:16px;height:16px;color:var(--ink-3)}
+.compare__label{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pill-label{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:99px;font-size:12px;font-weight:650}
+.pill-label--old{background:var(--tint);color:var(--ink-2)}
+.pill-label--new{background:var(--accent);color:#fff}
+
+/* feature visuals */
+.feature-copy h3{max-width:460px}
+.feature-copy .t-small{max-width:460px}
+.mini{font-size:13px;line-height:1.45}
+.mini__body{padding:18px}
+.crit-src{font-size:13.5px;color:var(--ink);font-weight:500}
+.lbl{display:block;margin:14px 0 6px;font-size:10.5px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3)}
+.rule-line{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.code-chip{display:inline-flex;align-items:center;height:26px;padding:0 9px;border-radius:8px;background:var(--bg-alt);box-shadow:var(--ring);font-family:var(--font-mono);font-size:12px;color:var(--ink)}
+.sql{margin:0;padding:12px 14px;border-radius:10px;background:#11131B;color:#C9D1E6;font:400 11.5px/1.65 var(--font-mono);white-space:pre-wrap;word-break:break-word}
+.sql .kw{color:#8FA8FF}.sql .str{color:#8EE0A8}
+.ev{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:11px}
+.ev th,.ev td{padding:6px 8px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--line)}
+.ev th{font-weight:600;color:var(--ink-3);background:var(--bg-alt)}
+.ev td{color:var(--ink)}
+.ev .hit{background:color-mix(in oklab,var(--accent) 10%,var(--surface));color:var(--accent-ink);font-weight:600}
+.ev-wrap{overflow-x:auto;border-radius:10px;box-shadow:var(--ring)}
+.ev-wrap table tr:last-child td{border-bottom:0}
+.st{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:99px;font-size:11.5px;font-weight:650;white-space:nowrap}
+.st svg{width:11px;height:11px}
+.st--ok{background:var(--st-ok-wash);color:var(--st-ok)}
+.st--review{background:var(--st-review-wash);color:var(--st-review)}
+.st--bad{background:var(--st-bad-wash);color:var(--st-bad)}
+.st--src{background:var(--src-lab-wash);color:var(--src-lab)}
+.st--plain{background:var(--bg-alt);color:var(--ink-2);box-shadow:var(--ring)}
+.st--new{background:var(--accent-wash);color:var(--accent-ink)}
+.chg{margin:0;padding:0;list-style:none}
+.chg__group{padding:12px 18px;border-top:1px solid var(--line)}
+.chg__group:first-child{border-top:0}
+.chg__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;font-size:12px;font-weight:650;color:var(--ink-2)}
+.chg__head b{font:500 20px/1 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
+.chg__items{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:4px;font-size:12.5px;color:var(--ink-2)}
+.chg__items li{display:flex;gap:8px;min-width:0}
+.chg__items li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.chg__items .mono{font-size:11.5px;color:var(--ink);flex:none}
+.chain{display:grid;gap:10px}
+.chain__arrow{display:flex;justify-content:center;color:var(--ink-3)}
+.chain__arrow svg{width:18px;height:18px}
+.note-card{padding:14px 16px;border-radius:12px;background:var(--surface);box-shadow:var(--shadow-1);font-size:13px}
+.note-card__who{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12px;color:var(--ink-3)}
+.note-card__who .avatar{width:28px;height:28px;font-size:11px}
+.note-card__who b{color:var(--ink);font-weight:600}
+.note-card q{display:block;font-size:14px;color:var(--ink);quotes:none}
+.aside-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-2)}
+.aside-row:first-of-type{border-top:0}
+.aside-row svg{flex:none;width:16px;height:16px;margin-top:1px;color:var(--ink-3)}
+.big-count{display:flex;align-items:baseline;gap:10px}
+.big-count b{font:500 44px/1 var(--font-display);letter-spacing:-.03em}
+.big-count span{font-size:13px;color:var(--ink-3)}
+
+/* how it's built */
+.tile p.t-title{color:var(--ink)}
+.tile .role{display:block;margin-top:8px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+.sponsors{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;border-radius:var(--r-lg);overflow:hidden;background:var(--line);box-shadow:var(--ring)}
+.sponsors div{padding:22px;background:var(--surface)}
+.sponsors h4{margin:0 0 6px;font:500 19px/1.2 var(--font-display);letter-spacing:-.015em}
+.sponsors p{font-size:14px;line-height:1.5;color:var(--ink-3)}
+.sponsors .eyebrow{font-size:11px;margin-bottom:8px}
+.guarantee{margin:28px auto 0;max-width:680px;text-align:center;font-size:15px;color:var(--ink-2)}
+@media (max-width:900px){.sponsors{grid-template-columns:1fr}}
+
+/* try it */
+.try .card{display:flex;flex-direction:column;gap:18px}
+.try .segmented{display:flex;width:100%}
+.try .segmented button{flex:1;padding:0 10px}
+.who{font-size:14px;color:var(--ink-2)}
+.who b{display:block;font:500 22px/1.15 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
+.who span{display:block;margin-top:4px;font-size:13px;color:var(--ink-3)}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;color:var(--ink-2)}
+.try__links{margin-top:auto;display:grid;gap:8px}
+.groups{margin:0;padding:16px 0 0;list-style:none;display:grid;gap:12px;border-top:1px solid var(--line)}
+.groups li{display:grid;gap:5px;justify-items:start;font-size:13px;line-height:1.45;color:var(--ink-3)}
+.try__links .btn{width:100%}
+.try .stage{padding:clamp(14px,3vw,36px)}
+.pv{font-size:13px;line-height:1.45}
+.pv__head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line)}
+.pv__name{font:500 24px/1.1 var(--font-display);letter-spacing:-.02em}
+.pv__meta{margin-top:4px;font-size:12.5px;color:var(--ink-3)}
+.pv__counts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.pv__counts div{padding:12px 16px;border-left:1px solid var(--line)}
+.pv__counts div:first-child{border-left:0}
+.pv__counts b{display:block;font:500 24px/1 var(--font-display);letter-spacing:-.02em}
+.pv__counts span{display:block;margin-top:5px;font-size:11.5px;color:var(--ink-3)}
+.pv__sec{padding:14px 20px;border-bottom:1px solid var(--line)}
+.pv__sec:last-child{border-bottom:0}
+.pv__sec h4{margin:0 0 8px;font-size:10.5px;font-weight:650;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);display:flex;justify-content:space-between;gap:8px}
+.pv__match{padding:10px 0;border-top:1px solid var(--line)}
+.pv__match:first-of-type{border-top:0;padding-top:0}
+.pv__mtop{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.pv__mtop .mono{font-size:11.5px;color:var(--ink-3)}
+.pv__title{margin-top:5px;font-weight:600;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pv__kr{margin:6px 0 0;padding:0 0 0 14px;font-size:12px;color:var(--ink-2);display:grid;gap:4px}
+.pv__kr li{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pv[data-kr="off"] .pv__kr{display:none}
+.pv__list{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:12.5px;color:var(--ink-2)}
+.pv__list li{display:flex;justify-content:space-between;gap:12px}
+.pv__list li b{font-weight:600;color:var(--ink);white-space:nowrap}
+.pv__note{padding:10px 12px;border-radius:10px;background:var(--bg-alt);font-size:12.5px;color:var(--ink-2)}
+.pv__note small{display:block;margin-top:4px;font-size:11.5px;color:var(--ink-3)}
+.pv__notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.pv__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.pv__grid .pv__sec{border-bottom:0}
+.pv__grid .pv__sec+.pv__sec{border-left:1px solid var(--line)}
+@media (max-width:640px){
+  .pv__counts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pv__counts div:nth-child(3){border-left:0}
+  .pv__counts div:nth-child(n+3){border-top:1px solid var(--line)}
+  .pv__grid{grid-template-columns:1fr}
+  .pv__grid .pv__sec+.pv__sec{border-left:0;border-top:1px solid var(--line)}
+  .pv__head,.pv__sec{padding-inline:14px}
+}
+
+/* final CTA and footer */
+.final{text-align:center}
+.final .app-icon--lg{margin:0 auto 28px}
+.final h2{max-width:760px;margin-inline:auto}
+.final .lead{margin:18px auto 0}
+.footer__brand{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:600}
+.footer__brand span{font-weight:400;color:var(--ink-3)}
+.footer nav{display:flex;flex-wrap:wrap;gap:6px 20px}
+.footer nav a:hover{color:var(--ink)}
+.faq code{font-family:var(--font-mono);font-size:.88em;padding:1px 6px;border-radius:6px;background:var(--bg-alt);color:var(--ink-2)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="nl-g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5B8CFF"/><stop offset=".55" stop-color="#2F5BFF"/><stop offset="1" stop-color="#1B32B8"/>
+    </linearGradient>
+    <symbol id="nl-icon" viewBox="0 0 64 64">
+      <rect width="64" height="64" rx="14.4" fill="url(#nl-g)"/>
+      <path d="M33.5 13.5a17.5 17.5 0 1 0 15.4 25.8A14.2 14.2 0 0 1 33.5 13.5z" fill="#fff"/>
+      <path d="M40 22.5h11M42.5 29.5h8.5" stroke="#fff" stroke-opacity=".78" stroke-width="3.2" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="nav nav--on-color">
+  <div class="nav__bar">
+    <a class="nav__brand" href="#top" aria-label="Nightlist, back to top">
+      <svg class="app-icon" viewBox="0 0 64 64" aria-hidden="true"><use href="#nl-icon"/></svg>
+      Nightlist
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#how">How it works</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#try">Try it</a>
+      <a href="#built">Built with</a>
+    </nav>
+    <a class="btn btn-ink btn-sm" href="./#/">Open the worklist</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero hero--color">
+  <div class="container">
+    <span class="badge badge--dot badge--on-color"><span>Open Agent Hackathon 2026<span class="badge__extra"> · Solving Fragmented Intelligence</span></span></span>
+    <h1>Trial screening, overnight. <span class="t-muted">A worklist by morning.</span></h1>
+    <p class="lead">Each night Nightlist checks every lung cancer patient at a community clinic against the recruiting trials within 250 miles. The research coordinator starts the day with a ranked list, and every answer links to the record that decided it.</p>
+    <div class="cta-row">
+      <a class="btn btn-halo" href="./#/">Open the worklist
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-outline" href="./#/match/P10003/NCT07100080">See one verdict's evidence</a>
+    </div>
+    <p class="trust"><span>Synthetic patients</span><span>Runs locally with no accounts</span><span>Open source</span></p>
+
+    <div class="hero__visual bleed">
+      <div class="window window--dark" aria-hidden="true">
+        <div class="window__bar"><div class="lights"><i></i><i></i><i></i></div><span class="window__title">Nightlist · Morning worklist</span></div>
+        <div class="wl">
+          <div class="wl__top">
+            <b><svg viewBox="0 0 64 64"><use href="#nl-icon"/></svg>Nightlist</b>
+            <span>River Region Cancer Care (fictional)</span>
+            <span class="tabs"><span>Worklist</span><span>Overnight run</span></span>
+            <span class="mode"><i></i><span>Sample mode · DuckDB</span></span>
+          </div>
+          <div class="wl__head">
+            <div class="wl__eyebrow">Morning worklist · as of Oct 26, 2026 · 106 trials · 240 patients</div>
+            <div class="wl__num">12,727</div>
+            <div class="wl__what">trial screens ruled out with evidence</div>
+            <div class="wl__sub">About 9,545 to 11,879 hours of manual screening at 45 to 56 minutes each</div>
+            <div class="wl__steps">
+              <div><b><em>1</em>Read public trial text</b>471 recruiting trials, 106 with a site nearby</div>
+              <div><b><em>2</em>Compile each criterion</b>into a typed check</div>
+              <div><b><em>3</em>Run checks as SQL</b>met, not met or unknown</div>
+              <div><b><em>4</em>Coordinator review</b>unknowns name the item to get</div>
+            </div>
+          </div>
+          <div class="wl__start">
+            <div class="sh">
+              <div class="sh__eyebrow">Start here</div>
+              <div class="sh__row">
+                <div>
+                  <div class="sh__name">Gloria Haynes</div>
+                  <div class="sh__meta">P10003 · 3 mi from clinic</div>
+                </div>
+                <span class="sh__btn">Open Gloria Haynes</span>
+              </div>
+              <p class="sh__story">No molecular testing on file at first. Her NGS result arrived overnight.</p>
+              <div class="sh__block">
+                <div class="sh__label">What changed overnight</div>
+                <ul>
+                  <li><b>Patient facts added (10):</b> EGFR detected L858R, ALK not detected, ROS1 not detected, and 7 more</li>
+                  <li><b>New matches (2):</b> NCT05967689, NCT07100080</li>
+                  <li><b>Dropped matches (21):</b> NCT07195695, NCT06890598, NCT06008730, and 18 more</li>
+                </ul>
+              </div>
+              <div class="sh__block">
+                <div class="sh__label">Top trial</div>
+                <div class="sh__chips">
+                  <span class="ach ach--review"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 8s2.4-4.5 6.5-4.5S14.5 8 14.5 8s-2.4 4.5-6.5 4.5S1.5 8 1.5 8z"/><circle cx="8" cy="8" r="1.8"/></svg>Key criterion needs a human read</span>
+                  <span class="ach ach--new">New since last run</span>
+                </div>
+                <div class="sh__trial">IZABRIGHT-Lung01 · izalontamab brengitecan vs platinum-pemetrexed</div>
+                <div class="sh__meta">NCT07100080 · nearest site 77 mi · 3 sentences to read</div>
+              </div>
+            </div>
+          </div>
+          <div class="wl__stats">
+            <div><b>2</b><span>Trials opened</span></div>
+            <div><b>10</b><span>Patient facts added</span></div>
+            <div><b>205</b><span>New matches</span></div>
+            <div><b>21</b><span>Dropped matches</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float float--a" aria-hidden="true">
+        <div class="f-head"><span class="f-dot" style="background:var(--accent)"></span>New since last run</div>
+        <div class="f-body">EGFR L858R, Gloria Haynes</div>
+        <div class="f-sub">Plasma ctDNA panel, reported Oct 26</div>
+      </div>
+      <div class="float float--b" aria-hidden="true">
+        <div class="f-head"><span class="f-dot" style="background:var(--st-review)"></span>Verifier sent 1 match back</div>
+        <div class="f-body">Tissue and plasma KRAS disagree</div>
+        <div class="f-sub">FoundationOne CDx detected, Guardant360 CDx did not. Confirm before referral.</div>
+      </div>
+      <div class="float float--c" aria-hidden="true">
+        <div class="f-head"><span class="f-dot" style="background:var(--st-bad)"></span>Steward</div>
+        <div class="f-body">15 lab rows set aside by data-quality rules</div>
+        <div class="f-sub">6 under a mistyped MRN, 9 with no unit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem and solution -->
+<section class="section section--alt after-bleed" id="how">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>The problem</span>
+      <h2>The answers exist. <span class="t-muted">They sit in systems that don't share an ID.</span></h2>
+      <p class="lead">Screening one patient against one trial by hand takes most of an hour. A community clinic has hundreds of lung cancer patients and over a hundred open trials nearby, and both change every week.</p>
+    </div>
+    <div class="grid grid-2 compare">
+      <div class="card card--flat reveal">
+        <div class="compare__label"><span class="pill-label pill-label--old">By hand</span><span class="t-micro">Penberthy et al., 2012</span></div>
+        <div class="compare__fig">45 to 56 min<small>per patient, per trial, read and checked by a coordinator</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>The EHR, the lab system, medication orders, molecular reports and ClinicalTrials.gov are separate places to look, and the orders and reports are free text.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>In advanced NSCLC, about half of potentially eligible patients are lost to gaps in biomarker testing (Sadik et al., 2022).</li>
+        </ul>
+        <div class="ids" aria-label="The EHR and the lab system use different patient ID formats">
+          <span class="idchip"><small>EHR</small>4747753</span>
+          <span class="gap">no shared key</span>
+          <span class="idchip"><small>Lab</small>MRN4747753</span>
+        </div>
+      </div>
+      <div class="card card--chosen reveal" style="--i:1">
+        <div class="compare__label"><span class="pill-label pill-label--new">With Nightlist</span><span class="t-micro">Demo night, Oct 26, 2026</span></div>
+        <div class="compare__fig">25,440 pairs<small>240 synthetic patients against 106 trials, screened in one night</small></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Zetaris queries each source in place and joins them in one semantic layer.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Every criterion comes back met, not met or unknown, with the source row.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>An unknown names the data item that would settle it.</li>
+        </ul>
+        <div class="ids" aria-label="The semantic layer resolves both IDs to one patient">
+          <span class="idchip"><small>EHR</small>4747753</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          <span class="idchip"><small>Patient</small>P10003</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+          <span class="idchip"><small>Lab</small>MRN4747753</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section" id="evidence">
+  <div class="container stack">
+
+    <div class="split">
+      <div class="feature-copy reveal">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>Evidence</span>
+        <h3>Every verdict opens to its evidence.</h3>
+        <p class="t-small">Each eligibility sentence is compiled into a typed check. The check runs as SQL inside the data layer, and the row that decided it sits right below, as the lab system filed it, under its own MRN.</p>
+        <div class="chips">
+          <span class="chip">Compiled check</span><span class="chip">The SQL that ran</span><span class="chip">Source rows</span>
+        </div>
+      </div>
+      <div class="stage stage--soft reveal" style="--i:1">
+        <div class="window mini" aria-hidden="true">
+          <div class="window__bar"><div class="lights"><i></i><i></i><i></i></div><span class="window__title">Gloria Haynes · NCT07100080</span></div>
+          <div class="mini__body">
+            <div class="rule-line"><span class="st st--plain">Inclusion I02</span><span class="st st--ok"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7"/></svg>Met</span><span class="st st--plain">Compiled by rule</span></div>
+            <p class="crit-src" style="margin-top:10px">Documented evidence of EGFR mutation (exon 19 deletion, L858R mutation).</p>
+            <span class="lbl">Compiled check</span>
+            <span class="code-chip">EGFR exon19del/L858R detected</span>
+            <span class="lbl">SQL in the semantic layer</span>
+<pre class="sql"><span class="kw">CASE WHEN EXISTS</span> (<span class="kw">SELECT</span> 1 <span class="kw">FROM</span> usl.biomarker b
+  <span class="kw">WHERE</span> b.patient_id = p.patient_id <span class="kw">AND</span> b.gene = <span class="str">'EGFR'</span>
+  <span class="kw">AND</span> b.status = <span class="str">'detected'</span>
+  <span class="kw">AND</span> b.alteration <span class="kw">IN</span> (<span class="str">'exon19del'</span>, <span class="str">'L858R'</span>))
+<span class="kw">THEN</span> <span class="str">'T'</span> ... <span class="kw">ELSE</span> <span class="str">'U'</span> <span class="kw">END</span></pre>
+            <span class="lbl" style="display:flex;justify-content:space-between;align-items:center">Source row <span class="st st--src" style="text-transform:none;letter-spacing:0">Lab system (molecular)</span></span>
+            <div class="ev-wrap">
+              <table class="ev">
+                <tr><th>lab_mrn</th><th>gene</th><th>status</th><th>alteration</th><th>assay</th><th>reported</th></tr>
+                <tr><td class="hit">MRN4747753</td><td>EGFR</td><td>detected</td><td>L858R</td><td>Plasma ctDNA panel (Guardant360 CDx)</td><td>2026-10-26</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="split split--flip">
+      <div class="feature-copy reveal">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>What changed overnight</span>
+        <h3>The morning view starts with what changed.</h3>
+        <p class="t-small">Nightlist keeps an append-only log of trials, patient facts and verdicts in the Meterless World Model, so each morning it can compare against the night before. On the demo's second night two trials opened, Gloria Haynes's NGS result came in, and 205 patient-trial pairs became new matches.</p>
+        <div class="chips">
+          <span class="chip">Trials opened and closed</span><span class="chip">New and lost matches</span>
+        </div>
+      </div>
+      <div class="stage stage--soft reveal" style="--i:1">
+        <div class="window mini" aria-hidden="true">
+          <div class="window__bar"><div class="lights"><i></i><i></i><i></i></div><span class="window__title">What changed overnight</span></div>
+          <ul class="chg">
+            <li class="chg__group">
+              <div class="chg__head"><span>Trials opened</span><b>2</b></div>
+              <ul class="chg__items">
+                <li><span class="mono">NCT05967689</span><span>Zipalertinib for EGFR exon 20 insertions or other uncommon mutations</span></li>
+                <li><span class="mono">NCT07100080</span><span>IZABRIGHT-Lung01, after failure of EGFR TKI therapy</span></li>
+              </ul>
+            </li>
+            <li class="chg__group">
+              <div class="chg__head"><span>Patient facts added</span><b>10</b></div>
+              <ul class="chg__items">
+                <li><span class="mono">P10003</span><span>biomarker EGFR: detected L858R</span></li>
+                <li><span class="mono">P10003</span><span>biomarker ALK: not detected</span></li>
+              </ul>
+            </li>
+            <li class="chg__group">
+              <div class="chg__head"><span>New matches</span><b>205</b></div>
+              <ul class="chg__items">
+                <li><span class="mono">P10001</span><span>now matches NCT05967689 (key criterion needs a human read)</span></li>
+              </ul>
+            </li>
+            <li class="chg__group">
+              <div class="chg__head"><span>Changed matches · Dropped matches</span><b>6 · 21</b></div>
+              <ul class="chg__items">
+                <li><span class="mono">P10003</span><span>no longer matches NCT07195695 (blocked by NCT07195695-I04)</span></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="feature-copy reveal">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 15h9"/></svg>One data item away</span>
+        <h3>It names the test that would settle the most trials.</h3>
+        <p class="t-small">An unknown answer comes with the data item that would resolve it. Patients one item away from several trials are listed together, with treatment-changing tests first and a flag when the test needs tissue. For Gloria Haynes, a comprehensive NGS panel would settle the open checks on 18 trials.</p>
+        <div class="chips">
+          <span class="chip">Needs tissue flag</span><span class="chip">Request with coordinator sign-off</span>
+        </div>
+      </div>
+      <div class="stage stage--soft reveal" style="--i:1">
+        <div class="chain" aria-hidden="true">
+          <div class="window mini">
+            <div class="mini__body">
+              <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><b style="font-size:15px">Gloria Haynes</b><span class="mono" style="font-size:11.5px;color:var(--ink-3)">P10003 · night 1</span></div>
+              <p style="margin-top:6px;color:var(--ink-2)">Comprehensive NGS panel (EGFR, ALK, ROS1, KRAS, BRAF, MET, RET, ERBB2, NTRK); plasma ctDNA is an option when tissue is limited</p>
+              <div class="rule-line" style="margin-top:10px"><span class="st st--new">Would settle 18 trials</span><span class="st st--plain">No tissue needed</span></div>
+            </div>
+          </div>
+          <div class="chain__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+          <div class="note-card">
+            <div class="note-card__who"><span class="avatar">RC</span><span><b>R. Calloway</b> · research coordinator · decision</span></div>
+            <q>Ordered plasma NGS (Guardant360) after Nightlist flagged 18 trials one data item away.</q>
+          </div>
+          <div class="chain__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
+          <div class="window mini">
+            <div class="mini__body" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between">
+              <span><span class="mono" style="font-size:11.5px;color:var(--ink-3)">Night 2</span> &nbsp;<b>EGFR L858R detected</b></span>
+              <span class="st st--new">New since last run</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="split split--flip">
+      <div class="feature-copy reveal">
+        <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Coordinator notes</span>
+        <h3>It remembers what the coordinator told it.</h3>
+        <p class="t-small">Decisions and preferences go into Meterless H-MEM and apply on every later night. Earline Pruitt will not travel more than 100 miles, so 27 trials with a farther nearest site are set aside, each with the reason and who recorded it.</p>
+        <div class="chips">
+          <span class="chip">Carried across nights</span><span class="chip">Reason on every trial</span>
+        </div>
+      </div>
+      <div class="stage stage--soft reveal" style="--i:1">
+        <div class="chain" aria-hidden="true">
+          <div class="note-card">
+            <div class="note-card__who"><span class="avatar">RC</span><span><b>R. Calloway</b> · research coordinator · preference</span></div>
+            <q>Patient will not travel more than 100 miles for a trial; daughter drives her.</q>
+            <p style="margin-top:8px;font-size:12px;color:var(--ink-3)">Earline Pruitt · P10005 · ALK fusion with active brain metastases</p>
+          </div>
+          <div class="window mini">
+            <div class="mini__body">
+              <div class="big-count"><b>27</b><span>trials set aside for Earline Pruitt</span></div>
+              <div style="margin-top:12px">
+                <div class="aside-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Set aside: nearest site 146 mi exceeds the 100-mile limit recorded by R. Calloway (research coordinator) (2026-10-27)</span></div>
+                <div class="aside-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg><span>Applied again on every later night until the coordinator changes it.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- How it's built -->
+<section class="section section--alt" id="built">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>How it's built</span>
+      <h2>The model reads trials. <span class="t-muted">SQL reads patients.</span></h2>
+      <p class="lead">Eight agents run each night in order. Each one writes what it did, to which target and how long it took, to a trace you can open on the Run page.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="tile reveal"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><div><p class="t-title">Watcher</p><p>Pulls the ClinicalTrials.gov snapshot and records what opened, changed or closed in the World Model.</p></div></div>
+      <div class="tile reveal" style="--i:1"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><div><p class="t-title">Guard</p><p>Runs Scout Intent on trial text before any model sees it. The compiler proceeds only on a signed contract for that one criterion.</p></div></div>
+      <div class="tile reveal" style="--i:2"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></span><div><p class="t-title">Compiler</p><p>Turns each eligibility sentence into a typed check, by rule first and by model through Nightshift when rules cannot. Every output is validated against the schema.</p></div></div>
+      <div class="tile reveal"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8h10M7 12h6"/><path d="M4 4h16v12H8l-4 4z"/></svg></span><div><p class="t-title">Checker</p><p>A second model restates each compiled check in plain words. If it disagrees with the sentence, the criterion goes to a person.</p></div></div>
+      <div class="tile reveal" style="--i:1"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg></span><div><p class="t-title">Steward</p><p>Runs the semantic layer's data-quality rules. Lab rows with no matching patient or no unit stay out of screening.</p></div></div>
+      <div class="tile reveal" style="--i:2"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v13c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-13M4 12c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5"/></svg></span><div><p class="t-title">Screener</p><p>One SQL pass per trial evaluates every check for every patient and returns met, not met or unknown.</p></div></div>
+      <div class="tile reveal"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M8.5 11l2 2 3.5-3.5"/></svg></span><div><p class="t-title">Verifier</p><p>Re-reads the source rows behind each open match and sends it back when reports conflict, for example tissue and plasma KRAS.</p></div></div>
+      <div class="tile reveal" style="--i:1"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6h.01M4 12h.01M4 18h.01"/></svg></span><div><p class="t-title">Navigator</p><p>Applies remembered coordinator decisions from H-MEM, records the verdicts and writes the morning worklist.</p></div></div>
+      <div class="tile reveal" style="--i:2"><span class="icon-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 3"/></svg></span><div><p class="t-title">The trace</p><p>Every step is logged with the agent, the target, the model that served the request and the duration.</p></div></div>
+    </div>
+    <div class="sponsors reveal">
+      <div>
+        <span class="eyebrow">Data layer</span>
+        <h4>Zetaris</h4>
+        <p>Six sources with no shared identifiers, queried in place. The <span class="mono">trialmatch</span> semantic layer joins them, and six data-quality rules run every night.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Engines and runtime</span>
+        <h4>Meterless</h4>
+        <p>World Model for what changed, H-MEM for coordinator notes, Scout Intent to guard trial text. Each passes the official suite. Nightshift is the model runtime.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Models</span>
+        <h4>NVIDIA Nemotron</h4>
+        <p>Served through Meterless Nightshift to compile the criteria rules cannot express and to check those compilations.</p>
+      </div>
+    </div>
+    <p class="guarantee">The model only sees public trial text. Patient rows are touched only by SQL generated from a validated check.</p>
+  </div>
+</section>
+
+<!-- Try it -->
+<section class="section" id="try">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Try it here</span>
+      <h2>Three patients from the demo night.</h2>
+      <p class="lead">Real output from <span class="t-mono">POST /run</span> for three synthetic patients. Switch between them to see what the coordinator would read first.</p>
+    </div>
+    <div class="try">
+      <div class="card">
+        <div>
+          <p class="t-micro" id="pick-label" style="margin-bottom:10px">Patient</p>
+          <div class="segmented" role="tablist" aria-labelledby="pick-label">
+            <button type="button" role="tab" aria-selected="true" aria-controls="pv" data-p="gloria">Gloria</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="pv" data-p="earline">Earline</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="pv" data-p="james">James</button>
+          </div>
+        </div>
+        <div class="who" id="who"></div>
+        <label class="toggle-row"><span>Show the sentences a person must read</span><input type="checkbox" class="switch" id="kr" checked></label>
+        <ul class="groups" aria-label="The four groups every pair lands in">
+          <li><span class="st st--ok">No blockers found</span><span>Every disease-defining criterion was checked from records and none blocks.</span></li>
+          <li><span class="st st--review">Key criterion needs a human read</span><span>Nothing blocks, but a criterion about the disease, a gene or prior therapy needs a person.</span></li>
+          <li><span class="st st--review">Open items</span><span>Nothing blocks. The missing data item is named.</span></li>
+          <li><span class="st st--bad">Blocked</span><span>At least one criterion is not met, with the row that decided it.</span></li>
+        </ul>
+        <div class="try__links">
+          <a class="btn btn-candy" id="open-p" href="./#/patient/P10003">Open in the app</a>
+          <a class="btn btn-outline" href="./#/run">See the overnight run</a>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="window pv" id="pv" role="tabpanel" aria-live="polite" data-kr="on">
+          <div class="window__bar"><div class="lights" aria-hidden="true"><i></i><i></i><i></i></div><span class="window__title" id="pv-title">Patient</span></div>
+          <div id="pv-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--alt" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Questions</span>
+      <h2>What it does and doesn't do.</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Does Nightlist decide who can enroll?</summary>
+        <p>No. It never says a patient is eligible. Each patient and trial pair lands in one of four groups: no blockers found, key criterion needs a human read, open items, or blocked. A coordinator and the trial team make the call.</p>
+      </details>
+      <details>
+        <summary>Does the model see patient records?</summary>
+        <p>No. The model reads public trial text and nothing else. Patient rows are touched only by SQL that code generates from a validated check, so the design holds even when the model runs in the cloud.</p>
+      </details>
+      <details>
+        <summary>Where does the data come from?</summary>
+        <p>Trials come from a ClinicalTrials.gov snapshot: 471 recruiting NSCLC trials with a US site, 106 of them within 250 miles of the demo clinic in Montgomery, Alabama. The clinic is River Region Cancer Care (fictional), and its 240 patients are synthetic, generated from published NSCLC figures. No real patient data is used.</p>
+      </details>
+      <details>
+        <summary>How accurate is the compiler?</summary>
+        <p>Real criteria were labeled blind and every compiled check was run against all 240 patients. A criterion counts as correct only when every patient gets the gold verdict. On the final sample, scored once, the rule compiler got 83.8% of the criteria it compiled right and compiled 84.7% of the criteria that can be compiled. What it cannot express goes to a person.</p>
+      </details>
+      <details>
+        <summary>What runs where?</summary>
+        <p>Zetaris is the data layer: the EHR, the lab system files and terminology services are registered there and queried in place through the <code>trialmatch</code> semantic layer. Model calls go through Meterless Nightshift to NVIDIA Nemotron. In sample mode the same semantic-layer SQL runs in an embedded DuckDB on your machine.</p>
+      </details>
+      <details>
+        <summary>Can I run it myself?</summary>
+        <p>Yes. You need Node 20 or newer and no accounts, keys or Docker. Clone the repository, then run <code>npm ci</code>, <code>npm run build -w web</code>, <code>npm run demo</code> and <code>npm start</code>, and open localhost:8787.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="section final">
+  <div class="container reveal">
+    <svg class="app-icon app-icon--lg" viewBox="0 0 64 64" aria-hidden="true"><use href="#nl-icon"/></svg>
+    <h2>Open the worklist. <span class="t-muted">Start with Gloria Haynes.</span></h2>
+    <p class="lead">The demo runs on synthetic patients at a fictional clinic, on your own machine.</p>
+    <div class="cta-row">
+      <a class="btn btn-candy" href="./#/">Open the worklist</a>
+      <a class="btn btn-outline" href="./#/patient/P10003">Open Gloria Haynes</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <span class="footer__brand"><svg class="app-icon" viewBox="0 0 64 64" aria-hidden="true"><use href="#nl-icon"/></svg>Nightlist <span>· Built for the Open Agent Hackathon 2026</span></span>
+    <nav aria-label="Footer">
+      <a href="./#/">Worklist</a>
+      <a href="./#/run">Overnight run</a>
+      <a href="https://github.com/kinnuworks/nightlist">Source on GitHub</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+document.querySelectorAll('.range').forEach(r=>{const f=()=>r.style.setProperty('--val',(r.value-r.min)/(r.max-r.min)*100+'%');r.addEventListener('input',f);f()});
+const nav=document.querySelector('.nav'),hero=document.querySelector('.hero--color');
+if(nav&&hero)new IntersectionObserver(([e])=>nav.classList.toggle('nav--on-color',e.isIntersecting),{rootMargin:'-40px 0px -90% 0px'}).observe(hero);
+</script>
+<script>
+/* Real POST /run outputs from output_examples/example_{1,2,3}.json, trimmed to what the preview shows. */
+const PATIENTS = {"gloria": {"id": "P10003", "name": "Gloria Haynes", "story": "No molecular testing on file at first; NGS results arrive on night 2 of the demo", "miles": 3, "counts": {"eligible": 1, "needsReview": 67, "possible": 0, "blocked": 38}, "reviewQueue": 24, "matches": [{"nct": "NCT07100080", "title": "Study of Izalontamab Brengitecan (BMS-986507) Versus Platinum-Pemetrexed for EGFR-mutated Non-small Cell Lung Cancer After Failure of EGFR TKI Therapy (IZABRIGHT-Lung01)", "status": "needs_review", "miles": 77, "isNew": true, "keyReview": ["Non-squamous NSCLC, not amenable to treatment in curative intent.", "Progressive disease on a 3rd-generation (such as osimertinib, furmonertinib, lazertinib,...) EGFR-TKI-based mono- or combination therapy regimen as the most recent line of therapy in an adjuvant, locally advanced, or metastatic treatment setting."]}, {"nct": "NCT05624996", "title": "Testing the Addition of High Dose, Targeted Radiation to the Usual Treatment for Locally-Advanced Inoperable Non-Small Cell Lung Cancer", "status": "needs_review", "miles": 85, "isNew": false, "keyReview": ["Pathologically (histologically or cytologically) proven diagnosis of non-operable stage IIB or III, node positive (American Joint Committee on Cancer [AJCC] eighth edition) non-small cell lung cancer (NSCLC) with known PD-L1 status prior to registration; Patients must have an identified primary tumor and at least one nodal metastasis (peribronchial/hilar/intrapulmonary, mediastinal/subcarinal, sup", "Hematologic function (e.g. platelets, leukocytes, hemoglobin) amenable, at the discretion of the treating physician, to allow for treatment with chemotherapy and concurrent radiation therapy"]}, {"nct": "NCT05099172", "title": "First in Human Study of BAY2927088 in Participants Who Have Advanced Non-small Cell Lung Cancer (NSCLC) With Mutations in the Genes of Epidermal Growth Factor Receptor (EGFR) and/or Human Epidermal Growth Factor Receptor 2 (HER2)", "status": "needs_review", "miles": 146, "isNew": false, "keyReview": ["Documented histologically or cytologically confirmed locally advanced NSCLC, not suitable for definitive therapy or recurrent or metastatic NSCLC at screening (small cell or mixed histologies are excluded).", "Documented disease progression after treatment with at least one prior systemic therapy for advanced disease. Participants who do not have standard of care access due to any reason, are intolerant to, or are not eligible for standard treatments, may also be eligible. Note: Except for participants eligible for Group F, Group H and Group I (Expansion or Extension) who should have received no prior s"]}, {"nct": "NCT05642572", "title": "Comparing Combinations of Targeted Drugs for Advanced Non-Small Cell Lung Cancer That Has EGFR and MET Gene Changes (A Lung-MAP Treatment Trial)", "status": "needs_review", "miles": 146, "isNew": false, "keyReview": ["Patients must meet all SCREENING/PRE-SCREENING and SUB-STUDY REGISTRATION COMMON ELIGIBILITY CRITERIA as specified in S1400: Phase II/III Biomarker-Driven Master Protocol for Previously Treated Squamous Cell Lung Cancer (Lung-Map)", "Participants must have a MET amplification determined by tissue-based or blood-based (circulating tumor DNA [ctDNA]) next generation sequencing (NGS) assay. MET amplifications may have been determined based on tissue submitted for testing by Foundation Medicine Inc (FMI) through the LUNGMAP screening protocol or using test results completed outside of the study. Tissue or blood must be obtained af"]}, {"nct": "NCT06667076", "title": "A Study of Amivantamab in Combination With Lazertinib, or Amivantamab in Combination With Platinum-Based Chemotherapy, for Common Epidermal Growth Factor Receptor (EGFR)-Mutated Locally Advanced or Metastatic Non-Small Cell Lung Cancer (NSCLC)", "status": "needs_review", "miles": 112, "isNew": false, "keyReview": ["Have histologically or cytologically confirmed advanced or metastatic non-small cell lung cancer (NSCLC) that is not amenable to curative intent therapy", "Epidermal growth factor resistance-mutation (EGFRm) must be an Ex19del or Ex21 L858R substitution, as detected by food and drug administration (FDA)-approved or other validated test in a clinical laboratory improvement amendments (CLIA)-certified laboratory (sites in the US), or an accredited local laboratory (sites outside of the US) in accordance with site standard of care. In the European union"]}], "blockers": [{"reason": "fails: ALK fusion detected", "trials": 6}, {"reason": "fails: KRAS G12C detected", "trials": 5}, {"reason": "fails: has had PD1_PDL1", "trials": 5}], "setAside": {"count": 0}, "away": [{"label": "CBC with differential (results older than 30 days count as missing)", "trials": 7, "needsTissue": false}], "memory": [{"text": "Ordered plasma NGS (Guardant360) after Nightlist flagged 18 trials one data item away.", "actor": "R. Calloway (research coordinator)"}]}, "earline": {"id": "P10005", "name": "Earline Pruitt", "story": "ALK fusion with active brain metastases", "miles": 18, "counts": {"eligible": 1, "needsReview": 42, "possible": 0, "blocked": 63}, "reviewQueue": 18, "matches": [{"nct": "NCT05624996", "title": "Testing the Addition of High Dose, Targeted Radiation to the Usual Treatment for Locally-Advanced Inoperable Non-Small Cell Lung Cancer", "status": "needs_review", "miles": 85, "isNew": false, "keyReview": ["Pathologically (histologically or cytologically) proven diagnosis of non-operable stage IIB or III, node positive (American Joint Committee on Cancer [AJCC] eighth edition) non-small cell lung cancer (NSCLC) with known PD-L1 status prior to registration; Patients must have an identified primary tumor and at least one nodal metastasis (peribronchial/hilar/intrapulmonary, mediastinal/subcarinal, sup", "Hematologic function (e.g. platelets, leukocytes, hemoglobin) amenable, at the discretion of the treating physician, to allow for treatment with chemotherapy and concurrent radiation therapy"]}, {"nct": "NCT05363280", "title": "Phase 2 Study for the Patient, Who Has Diagnosed With Small Cell Lung Cancer (SCLC) or Non Small Cell Lung Cancer (NSCLC) or Renal Cell Carcinoma (RCC) and Finished the First Line Stand Treatment , Need More Treatment", "status": "eligible_no_blockers", "miles": 85, "isNew": false, "keyReview": []}, {"nct": "NCT07246863", "title": "Trial Investigating Visugromab and Nivolumab With or Without Docetaxel in 2L Treatment of Participants With Metastatic NSCLC", "status": "needs_review", "miles": 85, "isNew": false, "keyReview": ["Participants must have demonstrated absence of actionable mutations (e.g. EGFR, ALK, among others) that suggest/require treatment with available targeted agent.", "Participants must have failed one line of prior systemic treatment for metastatic NSCLC containing an approved anti PD (L)1 checkpoint inhibitor (CPI). The minimum treatment duration on this regimen must have been 12 weeks exposure for the CPI with no documented progression in this period. Failure of the prior line of systemic treatment for metastatic NSCLC must have occurred under ongoing CPI tre"]}, {"nct": "NCT06618287", "title": "A Study to Evaluate the Safety, Tolerability, Drug Levels, and Preliminary Efficacy of BMS-986507 Combinations in Adult Participants With Advanced Solid Tumors", "status": "needs_review", "miles": 85, "isNew": false, "keyReview": ["Group A: Participants must have pathologically confirmed locally advanced or metastatic NSCLC with an EGFR exon 19 deletion or L858R mutation in exon 21, either alone or in combination with other EGFR mutations, which may include T790M in exon 20. Participants with other EGFR mutations (including but not limited to, exon 21 L861Q, exon 18 G719X, and exon 20 S768I mutations, etc.) will also be allo", "Group B: Participants must have pathologically confirmed locally advanced or metastatic NSCLC."]}, {"nct": "NCT06712316", "title": "Safety, Efficacy, and Pharmacokinetics of BNT327 in Combination With Chemotherapy and Other Investigational Agents for Lung Cancer (ROSETTA Lung-02)", "status": "needs_review", "miles": 85, "isNew": false, "keyReview": ["Have at least one measurable lesion as the targeted lesion based on RECIST v1.1. Lesions treated after prior local treatment (radiotherapy, ablation, interventional procedures, etc.) are generally not considered as target lesions. If the lesion with prior local treatment is the only targeted lesion, evidence-based radiology must be provided to demonstrate disease progression (the single bone metas", "Have histologically or cytologically confirmed NSCLC with small-cell lung cancer or neuroendocrine histologic component."]}], "blockers": [{"reason": "excluded: has active brain metastases", "trials": 35}, {"reason": "fails: EGFR exon19del/L858R detected", "trials": 8}, {"reason": "excluded: ALK fusion detected", "trials": 6}], "setAside": {"count": 27, "example": "Set aside: nearest site 146 mi exceeds the 100-mile limit recorded by R. Calloway (research coordinator) (2026-10-27)"}, "away": [], "memory": [{"text": "Patient will not travel more than 100 miles for a trial; daughter drives her.", "actor": "R. Calloway (research coordinator)"}]}, "james": {"id": "P10006", "name": "James Tolliver", "story": "Neutrophil count 1.1 blocks trials that require at least 1.5", "miles": 4, "counts": {"eligible": 1, "needsReview": 60, "possible": 0, "blocked": 45}, "reviewQueue": 25, "matches": [{"nct": "NCT06270706", "title": "A Phase 1 Study of PLN-101095 in Adults With Advanced or Metastatic Solid Tumors", "status": "needs_review", "miles": 146, "isNew": false, "keyReview": ["Has histologically or cytologically confirmed advanced or metastatic solid tumor", "Has a diagnosis of immunodeficiency or use of systemic steroids >10 mg/day"]}, {"nct": "NCT06745908", "title": "Clinical Trial of N-803 Plus Tislelizumab or Prior Failed Immune Checkpoint Inhibitor and Docetaxel Versus Docetaxel Monotherapy in Participants With Advanced or Metastatic Non-Small Cell Lung Cancer Who Have Acquired Resistance to Immune Checkpoint In", "status": "needs_review", "miles": 146, "isNew": false, "keyReview": ["Have acquired resistance to a regional Health Authority-approved immune plus platinum-based chemotherapy, defined as disease progression immediately following an initial response (of any duration) or stable disease (approximately 6 months duration [± 2 weeks]). Participants who received anti-PD-1/anti-PD-L1 mAb as first-line therapy may have received the combination of platinum-based chemotherapy ", "Participants with AGA must have 1 or more documented AGA(s): EGFR, ROS1, neurotrophic tyrosine receptor kinase (NTRK), B rapidly accelerated fibrosarcoma (BRAF), mesenchymal epithelial transition (MET) exon 14 skipping, rearranged during transfection (RET), Kirsten Rat sarcoma (KRAS) and HER2."]}, {"nct": "NCT07098338", "title": "A Study of Novel Combinations in Non-Small Cell Lung Cancer (NSCLC)", "status": "needs_review", "miles": 146, "isNew": false, "keyReview": ["PD-L1 TC ≥ 1% (TC≥ 50% for sub-study 1, 1-49% for sub-study 2)", "Documented positive AGA and had progressed on prior targeted therapy"]}, {"nct": "NCT07144280", "title": "A Study to Learn About the Study Medicine Called PF-08046054/SGN-PDL1V Versus Docetaxel in Adult Participants With Previously-Treated Programmed Cell Death Ligand 1 (PD-L1) Positive Non-Small-Cell Lung Cancer (NSCLC)", "status": "needs_review", "miles": 68, "isNew": false, "keyReview": ["Histologically or cytologically confirmed diagnosis of NSCLC with locally advanced, unresectable Stage IIIB or IIIC not eligible for definitive chemoradiotherapy or metastatic (Stage IV: M1a, M1b, or M1c) disease per the American Joint Committee on Cancer (AJCC) Staging Manual, Version 8.0, and the Union for International Cancer Control (UICC) Staging System. Note: Participants with a neuroendocri", "Participants who have NSCLC with known AGAs are permitted."]}, {"nct": "NCT05363280", "title": "Phase 2 Study for the Patient, Who Has Diagnosed With Small Cell Lung Cancer (SCLC) or Non Small Cell Lung Cancer (NSCLC) or Renal Cell Carcinoma (RCC) and Finished the First Line Stand Treatment , Need More Treatment", "status": "eligible_no_blockers", "miles": 85, "isNew": false, "keyReview": []}], "blockers": [{"reason": "fails: ANC >= 1.5", "trials": 10}, {"reason": "excluded: has had PD1_PDL1", "trials": 8}, {"reason": "fails: KRAS G12C detected", "trials": 5}], "setAside": {"count": 0}, "away": [], "memory": []}};
+(function(){
+  const LABEL={eligible_no_blockers:"No blockers found",needs_review:"Key criterion needs a human read",possible_unknowns:"Open items",not_eligible:"Blocked"};
+  const TONE={eligible_no_blockers:"ok",needs_review:"review",possible_unknowns:"review",not_eligible:"bad"};
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const body=document.getElementById('pv-body'),who=document.getElementById('who'),title=document.getElementById('pv-title'),open=document.getElementById('open-p'),pv=document.getElementById('pv');
+  function render(key){
+    const p=PATIENTS[key];
+    title.textContent=p.name+' · '+p.id;
+    who.innerHTML='<b>'+esc(p.name)+'</b><span>'+esc(p.story)+'</span>';
+    open.href='./#/patient/'+p.id;
+    open.textContent='Open '+p.name+' in the app';
+    const c=p.counts;
+    let h='<div class="pv__head"><div><div class="pv__name">'+esc(p.name)+'</div><div class="pv__meta">'+p.id+' · '+p.miles+' mi from clinic · '+p.reviewQueue+' sentences in the review queue</div></div></div>';
+    h+='<div class="pv__counts"><div><b>'+c.eligible+'</b><span>No blockers found</span></div><div><b>'+c.needsReview+'</b><span>Need a human read</span></div><div><b>'+c.possible+'</b><span>Open items</span></div><div><b>'+c.blocked+'</b><span>Blocked</span></div></div>';
+    h+='<div class="pv__sec"><h4><span>Top matches</span><span>'+Math.min(3,p.matches.length)+' of '+(c.eligible+c.needsReview+c.possible)+'</span></h4>';
+    p.matches.slice(0,3).forEach(m=>{
+      h+='<div class="pv__match"><div class="pv__mtop"><span class="st st--'+TONE[m.status]+'">'+LABEL[m.status]+'</span>'+(m.isNew?'<span class="st st--new">New since last run</span>':'')+'<span class="mono">'+m.nct+' · nearest site '+m.miles+' mi</span></div>';
+      h+='<div class="pv__title">'+esc(m.title)+'</div>';
+      if(m.keyReview.length) h+='<ol class="pv__kr">'+m.keyReview.slice(0,2).map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>';
+      h+='</div>';
+    });
+    h+='</div><div class="pv__grid"><div class="pv__sec"><h4>Others blocked by</h4><ul class="pv__list">'+p.blockers.map(b=>'<li><span>'+esc(b.reason)+'</span><b>'+b.trials+' trials</b></li>').join('')+'</ul></div>';
+    h+='<div class="pv__sec"><h4>Set aside</h4>'+(p.setAside.count?'<div class="pv__note"><b>'+p.setAside.count+' trials set aside.</b> '+esc(p.setAside.example)+'</div>':'<p style="font-size:12.5px;color:var(--ink-3)">Nothing set aside. No coordinator preference limits this patient\'s trials.</p>')+'</div></div>';
+    if(p.away.length||p.memory.length){
+      h+='<div class="pv__sec" style="border-top:1px solid var(--line)"><h4>Coordinator notes and next steps</h4><div class="pv__notes">';
+      if(p.away.length) h+='<div class="pv__note"><b>One data item away:</b> '+esc(p.away[0].label)+'<small>Would settle '+p.away[0].trials+' trials · '+(p.away[0].needsTissue?'needs tissue':'no tissue needed')+'</small></div>';
+      if(p.memory.length) h+='<div class="pv__note">'+esc(p.memory[0].text)+'<small>'+esc(p.memory[0].actor)+'</small></div>';
+      h+='</div></div>';
+    }
+    body.innerHTML=h;
+  }
+  document.querySelectorAll('.try .segmented button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('.try .segmented button').forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));
+    render(b.dataset.p);
+  }));
+  document.getElementById('kr').addEventListener('change',e=>{pv.dataset.kr=e.target.checked?'on':'off'});
+  render('gloria');
+})();
+</script>
+</body>
+</html>

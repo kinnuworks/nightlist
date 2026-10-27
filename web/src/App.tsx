@@ -78,6 +78,9 @@ export function App() {
               Overnight run
             </a>
           </nav>
+          <a className="about-link" href="./home.html">
+            About
+          </a>
           {s && (
             <div className="topbar-status">
               <span className="mode-banner" title="How this run was produced: where the checks ran and which compile path was used">

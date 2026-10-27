@@ -47,10 +47,17 @@ export const IconTissue = () =>
 
 export function BrandMark() {
   return (
-    <svg className="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-      <rect width="32" height="32" rx="3" fill="#1b2a41" />
-      <path d="M20.5 8a8.5 8.5 0 1 0 3.5 13.2A7 7 0 0 1 20.5 8z" fill="#f1f5f9" />
-      <path d="M22 11h4M22 15h3" stroke="#e0703f" strokeWidth="1.8" strokeLinecap="round" />
+    <svg className="brand-mark" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="nl-brand-g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#5B8CFF" />
+          <stop offset=".55" stopColor="#2F5BFF" />
+          <stop offset="1" stopColor="#1B32B8" />
+        </linearGradient>
+      </defs>
+      <rect width="64" height="64" rx="14.4" fill="url(#nl-brand-g)" />
+      <path d="M33.5 13.5a17.5 17.5 0 1 0 15.4 25.8A14.2 14.2 0 0 1 33.5 13.5z" fill="#fff" />
+      <path d="M40 22.5h11M42.5 29.5h8.5" stroke="#fff" strokeOpacity=".78" strokeWidth="3.2" strokeLinecap="round" />
     </svg>
   );
 }
