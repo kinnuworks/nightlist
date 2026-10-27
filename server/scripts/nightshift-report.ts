@@ -46,7 +46,7 @@ ${[...byModel.values()].sort((a, b) => b.n - a.n).map((s) => `| ${s.agent} | ${[
 
 Requests served by a model other than NVIDIA Nemotron: ${nonNvidia}.
 
-Compiler: ${count("Compiler", "compile_criterion", "ok")} criteria compiled by the model, ${count("Compiler", "compile_criterion", "retry")} retries and ${count("Compiler", "compile_criterion", "failed")} failures (a failure sends the criterion to human review). Checker: ${count("Checker", "back_translate")} back-translations, ${count("Checker", "back_translate", "ok")} agreed and ${count("Checker", "back_translate", "blocked")} disagreed, which sends the criterion to human review instead of screening patients with it.
+Compiler: ${count("Compiler", "compile_criterion", "ok")} criteria compiled by the model, ${count("Compiler", "compile_criterion", "retry")} retries and ${count("Compiler", "compile_criterion", "failed")} failures (a failure sends the criterion to human review). Checker: ${count("Checker", "back_translate")} back-translations, ${count("Checker", "back_translate", "ok")} agreed and ${count("Checker", "back_translate", "blocked")} disagreed, which at the time of these runs sent the criterion to human review. The pipeline now keeps a disputed model draft in review and flags a disputed rule instead; see the README's NVIDIA section for why.
 
 ${runs.map((r) => `- \`${r.id}\`: ${r.events.find((e) => e.action === "compile_summary")?.summary ?? "stopped before the compile summary"}`).join("\n")}
 

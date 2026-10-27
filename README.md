@@ -111,7 +111,7 @@ flowchart LR
   W --> G[Guard: Scout Intent]
   G -->|signed compile contract| C[Compiler: rules, then model]
   C --> K[Checker: back-translation]
-  K -->|disagree| R[Needs a human read]
+  K -->|disagrees with a model draft| R[Needs a human read]
   K -->|agree| F[(Compiled trial feed)]
   subgraph Zetaris
     EHR[(EHR, PostgreSQL)]
@@ -139,7 +139,7 @@ flowchart LR
 | Watcher | Pulls the trial snapshot, records what opened, changed or closed in the World Model | |
 | Guard | Runs Scout Intent on untrusted trial text before any model sees it; the compiler proceeds only on a verified signed contract for that exact criterion, and compiles the sanitized text | Blocks injected instructions |
 | Compiler | Deterministic rules first, then the model through Nightshift for the rest; validates every output against the schema, retries once | Sends uncompilable criteria to review |
-| Checker | A second model call restates the compiled rule without seeing how it was made, then judges it against the sentence | Disagreement sends the criterion to review |
+| Checker | A second model call restates the compiled rule without seeing how it was made, then judges it against the sentence | Flags a disputed rule for the coordinator; a disputed model draft stays in review |
 | Steward | Runs the semantic layer's data-quality rules | Rows that fail are excluded and reported |
 | Screener | One SQL pass per trial evaluates every check for every patient | |
 | Verifier | Re-reads the evidence rows behind every open match: rows must exist, and results for the same gene must not conflict across reports | Sends the match back for a human read (12 challenges on the demo data) |
@@ -163,15 +163,17 @@ The model only ever sees public trial text. Patient rows are touched only by SQL
 
 Nightshift is the app's AI provider: every model call goes through its OpenAI-compatible runtime with the `meterless-app` header, using routing modes (`meterless/deep` to compile, `meterless/fast` to check), and the trace records the model that served each request. In the live runs Nightshift had only an NVIDIA key, so every request went to Nemotron.
 
-**NVIDIA.** Nemotron does the model work. In the two live runs Nightshift served 2,889 of 2,896 requests with `nemotron-3.5-bolt-e4b` (about 4.5 seconds per compile) and 7 with `nemotron-3-ultra-550b-a55b`. Nightshift races the models on each route and keeps the first good answer, so the small fast model won almost every time. The Checker is where Nemotron earns its place: of 1,337 compiled rules it restated, it disagreed with 774 and sent them to a person. Its catches include a rule that accepted only stage III when the trial also took stages IB to IIIB, and a platelet threshold compiled as "100 x ULN" instead of 100,000 per microliter.
+**NVIDIA.** Nemotron does the model work. In the two live runs Nightshift served 2,889 of 2,896 requests with `nemotron-3.5-bolt-e4b` (about 4.5 seconds per compile) and 7 with `nemotron-3-ultra-550b-a55b`. Nightshift races the models on each route and keeps the first good answer, so the small fast model won almost every time. The Checker restated 1,337 compiled rules and disagreed with 774. Its catches include a rule that accepted only stage III when the trial also took stages IB to IIIB, and a platelet threshold compiled as "100 x ULN" instead of 100,000 per microliter.
+
+We then scored both model roles on the blind final sample, and the results changed the design. Of the model's own compilations that passed the Checker and would have screened patients, 1 of 9 matched the gold label, so a model compilation is now a draft: it shows on the criterion as "model draft" and screens nobody until a person confirms it. On the rule compiler's output the Checker disagreed with 11 rules that were correct and 2 that overreached, so for rules a disagreement is a flag the coordinator sees beside the rule ("Checker disagrees: ..."), and the rule still screens. With both changes the compiler keeps the 87.0% precision and 82.4% coverage reported below.
 
 **Cursor.** Not used. The Official Rules make it optional, and we built with a different AI coding assistant (see AI and model usage).
 
 ## AI and model usage
 
 Models (through Meterless Nightshift, the app's only AI provider):
-- NVIDIA Nemotron, through the `meterless/deep` route, compiles eligibility criteria the rules cannot express into the typed check language. Output is validated against the schema and rejected if a range has no bound; one retry, then human review.
-- NVIDIA Nemotron, through the `meterless/fast` route, restates each compiled check in plain words and judges it against the sentence; a disagreement sends the criterion to human review.
+- NVIDIA Nemotron, through the `meterless/deep` route, compiles eligibility criteria the rules cannot express into the typed check language. Output is validated against the schema and rejected if a range has no bound; one retry, then human review. A compilation that passes is a draft a person confirms before it screens anyone.
+- NVIDIA Nemotron, through the `meterless/fast` route, restates each compiled check in plain words and judges it against the sentence. A disagreement keeps a model draft in review and puts a visible flag on a rule.
 - The trace records the model Nightshift reports for every request. Until a live Nightshift run is cached, sample mode uses the rule compiler only and says so.
 
 Sponsor technology:

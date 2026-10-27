@@ -13,6 +13,15 @@ import { backTranslate, compileByModel } from "./model.ts";
 import { compileByRules, isScreeningItem } from "./rules.ts";
 import { leaves } from "../evaluator/sqlgen.ts";
 
+// On the blind final sample the Checker disagreed with 11 rule compilations that were
+// right and 2 that overreached, so for rules its disagreement is a flag the coordinator
+// sees beside the rule, and the rule still screens. Model compilations are drafts anyway.
+function flagRule(c: Criterion) {
+  if (c.method !== "rule") { c.category = "review"; return; }
+  const note = `Checker disagrees: ${c.check?.reason ?? "see back-translation"}`;
+  if (!(c.caveat ?? "").includes("Checker disagrees")) c.caveat = [c.caveat, note].filter(Boolean).join("; ");
+}
+
 // A range leaf with neither bound says nothing; models sometimes return one.
 function hasUnboundedRange(p: Criterion["pred"]): boolean {
   return !!p && leaves(p).some((l) => (l.k === "age" || l.k === "lines") ? l.min === undefined && l.max === undefined : l.k === "pdl1" ? l.minTps === undefined && l.maxTps === undefined : false);
@@ -97,7 +106,7 @@ export async function compileTrials(trials: Trial[], trace: Trace, opts: Compile
       Object.assign(c, { category: "check", method: "rule", pred: r.pred, caveat: r.caveats.join("; ") || undefined });
       if (hit?.method === "rule" && JSON.stringify(hit.pred) === JSON.stringify(r.pred) && hit.check && hit.check.status !== "unchecked") {
         c.check = hit.check;
-        if (hit.check.status === "disagree") c.category = "review";
+        if (hit.check.status === "disagree") flagRule(c);
         counts.cached++;
         continue;
       }
@@ -144,8 +153,10 @@ export async function compileTrials(trials: Trial[], trace: Trace, opts: Compile
         c.check = { status: chk.status, backTranslation: chk.backTranslation, model: chk.model, reason: chk.reason };
         if (chk.status === "disagree") {
           counts.disagree++;
-          trace.emit({ agent: "Checker", action: "back_translate", status: "blocked", model: chk.model, target: "Compiler", summary: `${c.criterionId}: rule "${describe(c.pred)}" does not match the sentence (${chk.reason}); sent to human review` });
-          c.category = "review";
+          const isRule = c.method === "rule";
+          trace.emit({ agent: "Checker", action: "back_translate", status: isRule ? "flagged" : "blocked", model: chk.model, target: "Compiler", summary: `${c.criterionId}: rule "${describe(c.pred)}" does not match the sentence (${chk.reason}); ${isRule ? "flagged for the coordinator" : "sent to human review"}` });
+          if (isRule) flagRule(c);
+          else c.category = "review";
         } else {
           counts.agree++;
           trace.emit({ agent: "Checker", action: "back_translate", status: "ok", model: chk.model, summary: `${c.criterionId}: agrees` });

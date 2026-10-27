@@ -13,7 +13,7 @@ NVIDIA models Nightshift offered: `nvidia/nemotron-3.5-lightning-30b-a3b`, `nvid
 
 Requests served by a model other than NVIDIA Nemotron: 0.
 
-Compiler: 1559 criteria compiled by the model, 340 retries and 320 failures (a failure sends the criterion to human review). Checker: 1337 back-translations, 563 agreed and 774 disagreed, which sends the criterion to human review instead of screening patients with it.
+Compiler: 1559 criteria compiled by the model, 340 retries and 320 failures (a failure sends the criterion to human review). Checker: 1337 back-translations, 563 agreed and 774 disagreed, which at the time of these runs sent the criterion to human review. The pipeline now keeps a disputed model draft in review and flags a disputed rule instead; see the README's NVIDIA section for why.
 
 - `night-20261027-181516`: 2427 criteria: {"rule":485,"model":804,"cached":0,"screening":503,"review":511,"structured":105,"blocked":0,"agree":528,"disagree":715,"retries":380}
 - `night-20261027-190029`: 2427 criteria: {"rule":25,"model":73,"cached":1249,"screening":503,"review":455,"structured":105,"blocked":0,"agree":35,"disagree":59,"retries":280}
