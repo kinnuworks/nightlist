@@ -76,19 +76,38 @@ function WorklistView({ worklist, summary, query }: { worklist: Worklist; summar
 
   return (
     <div className="stack-lg">
-      <section className="page-head" aria-labelledby="wl-title">
-        <span className="eyebrow">
-          Morning worklist · screened as of {fmtDate(summary.asOf)} · {plural(summary.trialsScreened, "trial")} · {plural(summary.patients, "patient")}
-        </span>
-        <NightHeadline headline={worklist.headline} />
-        <p className="lede">
-          Last night every recruiting lung cancer trial within reach of the clinic was compared with every patient on file.
-          This list is for a coordinator to review. It does not decide who can enroll; each match shows what was checked, what
-          could not be checked, and the record behind every answer.
-        </p>
-      </section>
-
-      {featured && <StartHere p={featured} overnight={worklist.overnight} />}
+      <div className={featured ? "hero" : undefined}>
+        <section className="page-head" aria-labelledby="wl-title">
+          <span className="eyebrow">
+            Morning worklist · screened as of {fmtDate(summary.asOf)} · {plural(summary.trialsScreened, "trial")} · {plural(summary.patients, "patient")}
+          </span>
+          <NightHeadline headline={worklist.headline} />
+          <p className="lede">
+            Last night every recruiting lung cancer trial within reach of the clinic was compared with every patient on file.
+            This list is for a coordinator to review. It does not decide who can enroll; each match shows what was checked, what
+            could not be checked, and the record behind every answer.
+          </p>
+          <ol className="flow" aria-label="How the overnight screen works">
+            <li className="flow-step">
+              <b><span className="num">1</span>Read public trial text</b>
+              {summary.trialsInSnapshot} recruiting trials from ClinicalTrials.gov; {summary.trialsScreened} have a site nearby.
+            </li>
+            <li className="flow-step">
+              <b><span className="num">2</span>Compile each criterion</b>
+              into a typed check. The model sees trial text only, never patient data.
+            </li>
+            <li className="flow-step">
+              <b><span className="num">3</span>Run checks as SQL</b>
+              inside the data layer over clinic records: met, not met, or unknown.
+            </li>
+            <li className="flow-step">
+              <b><span className="num">4</span>Coordinator review</b>
+              Unknown answers name the data item to obtain.
+            </li>
+          </ol>
+        </section>
+        {featured && <StartHere p={featured} overnight={worklist.overnight} />}
+      </div>
 
       <div className="stats" role="group" aria-label="Overnight results">
         <button type="button" className="stat" onClick={() => { setStatus("any"); setOnlyNew(false); setOnlyAway(false); setQ(""); scrollTo(listRef.current); }}>
@@ -127,25 +146,6 @@ function WorklistView({ worklist, summary, query }: { worklist: Worklist; summar
           <CriteriaFunnel mode={funnel} compact id="wl-funnel-note" />
         </div>
       </section>
-
-      <ol className="flow" aria-label="How the overnight screen works">
-        <li className="flow-step">
-          <b><span className="num">1</span>Read public trial text</b>
-          {summary.trialsInSnapshot} recruiting trials from ClinicalTrials.gov; {summary.trialsScreened} have a site nearby.
-        </li>
-        <li className="flow-step">
-          <b><span className="num">2</span>Compile each criterion</b>
-          into a typed check. The model sees trial text only, never patient data.
-        </li>
-        <li className="flow-step">
-          <b><span className="num">3</span>Run checks as SQL</b>
-          inside the data layer over clinic records: met, not met, or unknown.
-        </li>
-        <li className="flow-step">
-          <b><span className="num">4</span>Coordinator review</b>
-          Unknown answers name the data item to obtain.
-        </li>
-      </ol>
 
 
       <div className="grid-2">

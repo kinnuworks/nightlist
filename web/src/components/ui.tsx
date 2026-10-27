@@ -48,9 +48,9 @@ export const IconTissue = () =>
 export function BrandMark() {
   return (
     <svg className="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-      <rect width="32" height="32" rx="7" fill="#1d3557" />
+      <rect width="32" height="32" rx="3" fill="#1b2a41" />
       <path d="M20.5 8a8.5 8.5 0 1 0 3.5 13.2A7 7 0 0 1 20.5 8z" fill="#f1f5f9" />
-      <path d="M22 11h4M22 15h3" stroke="#8fb8de" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M22 11h4M22 15h3" stroke="#e0703f" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
 }
