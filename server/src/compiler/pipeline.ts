@@ -11,6 +11,12 @@ import { Nightshift } from "../nightshift.ts";
 import { splitCriteria, type Trial } from "../trials.ts";
 import { backTranslate, compileByModel } from "./model.ts";
 import { compileByRules, isScreeningItem } from "./rules.ts";
+import { leaves } from "../evaluator/sqlgen.ts";
+
+// A range leaf with neither bound says nothing; models sometimes return one.
+function hasUnboundedRange(p: Criterion["pred"]): boolean {
+  return !!p && leaves(p).some((l) => (l.k === "age" || l.k === "lines") ? l.min === undefined && l.max === undefined : l.k === "pdl1" ? l.minTps === undefined && l.maxTps === undefined : false);
+}
 
 type Cached = Pick<Criterion, "category" | "method" | "pred" | "caveat" | "check"> & { model?: string; compiledAt: string };
 const CACHE_FILE = join(COMPILED, "criteria-cache.json");
@@ -48,7 +54,7 @@ export async function compileTrials(trials: Trial[], trace: Trace, opts: Compile
   const ns = new Nightshift();
   const status = opts.useModel ? await ns.status() : { state: "offline" as const, models: [] };
   const modelOn = opts.useModel && status.state === "online";
-  trace.emit({ agent: "Compiler", action: "nightshift_status", status: modelOn ? "ok" : "info", summary: modelOn ? `Nightshift online, routes: ${status.models.join(", ")}` : `Nightshift ${status.state}; using rules and cached model compilations` });
+  trace.emit({ agent: "Compiler", action: "nightshift_status", status: modelOn ? "ok" : "info", summary: modelOn ? `Nightshift online, routes: ${status.models.filter((m) => /^(meterless|nvidia)\//.test(m)).join(", ")}` : `Nightshift ${status.state}; using rules and cached model compilations` });
   const guard = await loadGuard();
   trace.emit({ agent: "Guard", action: "load_scout_intent", status: guard ? "ok" : "info", summary: guard ? "Scout Intent guard active on trial text" : "Scout Intent engine not installed; guard skipped" });
 
@@ -155,7 +161,7 @@ export async function compileTrials(trials: Trial[], trace: Trace, opts: Compile
   for (const c of all) {
     if (c.method === "structured") continue;
     if (!c.pred && c.category === "check") c.category = "review";
-    if (c.pred && !predSchema.safeParse(c.pred).success) { c.category = "review"; c.pred = undefined; }
+    if (c.pred && (!predSchema.safeParse(c.pred).success || hasUnboundedRange(c.pred))) { c.category = "review"; c.pred = undefined; c.method = "none"; }
     if (!(c.caveat ?? "").startsWith("blocked by Scout") && (c.method === "model" || c.check?.model || (c as any).modelReviewed)) {
       cache[keyOf(c)] = { category: c.category, method: c.method, pred: c.pred, caveat: c.caveat, check: c.check, model: c.check?.model ?? (c as any).modelReviewed, compiledAt: new Date().toISOString() };
     }

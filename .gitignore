@@ -9,3 +9,5 @@ data/runtime/
 web/replay-data/
 data/sources/ctgov_nsclc_us.json
 engines/scout-intent/evals/reports/latest.md
+!logs/night-20261027-181516.jsonl
+!logs/night-20261027-190029.jsonl
