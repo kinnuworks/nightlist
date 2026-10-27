@@ -165,6 +165,8 @@ Nightshift is the app's AI provider: every model call goes through its OpenAI-co
 
 **NVIDIA.** Nemotron models run behind Nightshift: the larger model compiles criteria, the smaller one back-translates. This follows NVIDIA's own split for agents (a bigger model to plan, a fast one for checks).
 
+**Cursor.** Not used. The Official Rules make it optional, and we built with a different AI coding assistant (see AI and model usage).
+
 ## AI and model usage
 
 Models (through Meterless Nightshift, the app's only AI provider):
