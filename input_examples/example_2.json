@@ -1,0 +1,5 @@
+{
+  "run_id": "example-2-earline",
+  "input": { "patient_id": "P10005" },
+  "options": { "sample_mode": true }
+}

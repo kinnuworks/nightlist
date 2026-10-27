@@ -11,7 +11,7 @@ process.env.SAMPLE_MODE = "true";
 process.env.NIGHTLIST_RUNTIME = mkdtempSync(join(tmpdir(), "nightlist-test-"));
 process.env.NIGHTLIST_LOGS = join(process.env.NIGHTLIST_RUNTIME, "logs");
 process.env.NIGHTLIST_COMPILED = join(process.env.NIGHTLIST_RUNTIME, "compiled");
-process.env.NIGHTSHIFT_URL = "http://127.0.0.1:1";
+process.env.NIGHTSHIFT_URL = process.env.METERLESS_BASE_URL = "http://127.0.0.1:1";
 const { runNight } = await import("../src/night.ts");
 
 test("overnight run screens every patient and the evidence holds up", { timeout: 300000 }, async () => {

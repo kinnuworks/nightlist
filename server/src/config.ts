@@ -20,6 +20,8 @@ for (const file of [join(ROOT, ".env"), join(ROOT, ".env.local")]) {
 
 const env = (k: string, d = "") => process.env[k] ?? d;
 const truthy = (v: string) => /^(1|true|yes|on)$/i.test(v);
+// The official METERLESS_* names win when set; the older NIGHTSHIFT_* names still work.
+const either = (official: string, legacy: string, d = "") => process.env[official] || process.env[legacy] || d;
 
 export const config = {
   sampleMode: truthy(env("SAMPLE_MODE", "true")),
@@ -35,11 +37,11 @@ export const config = {
     timeoutMs: Number(env("ZETARIS_TIMEOUT_MS", "120000")),
   },
   nightshift: {
-    baseUrl: env("NIGHTSHIFT_URL", "http://127.0.0.1:8088/v1"),
-    token: env("NIGHTSHIFT_TOKEN"),
+    baseUrl: either("METERLESS_BASE_URL", "NIGHTSHIFT_URL", "http://127.0.0.1:8088/v1"),
+    token: either("METERLESS_RUNTIME_TOKEN", "NIGHTSHIFT_TOKEN"),
     tokenFile: env("NIGHTSHIFT_TOKEN_FILE"),
     app: "nightlist",
-    compileModel: env("NIGHTSHIFT_COMPILE_MODEL", "meterless/deep"),
+    compileModel: either("METERLESS_MODEL", "NIGHTSHIFT_COMPILE_MODEL", "meterless/deep"),
     checkModel: env("NIGHTSHIFT_CHECK_MODEL", "meterless/fast"),
     timeoutMs: Number(env("NIGHTSHIFT_TIMEOUT_MS", "180000")),
   },

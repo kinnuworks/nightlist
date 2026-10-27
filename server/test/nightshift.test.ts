@@ -38,8 +38,8 @@ await new Promise<void>((ok) => server.listen(0, ok));
 const port = (server.address() as any).port;
 
 process.env.SAMPLE_MODE = "true";
-process.env.NIGHTSHIFT_URL = `127.0.0.1:${port}`;
-process.env.NIGHTSHIFT_TOKEN = "test-token";
+process.env.NIGHTSHIFT_URL = process.env.METERLESS_BASE_URL = `127.0.0.1:${port}`;
+process.env.NIGHTSHIFT_TOKEN = process.env.METERLESS_RUNTIME_TOKEN = "test-token";
 process.env.NIGHTLIST_RUNTIME = mkdtempSync(join(tmpdir(), "nightlist-ns-"));
 process.env.NIGHTLIST_LOGS = join(process.env.NIGHTLIST_RUNTIME, "logs");
 process.env.NIGHTLIST_COMPILED = join(process.env.NIGHTLIST_RUNTIME, "compiled");

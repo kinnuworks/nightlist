@@ -1,0 +1,5 @@
+{
+  "run_id": "example-3-james",
+  "input": { "patient_id": "P10006" },
+  "options": { "sample_mode": true }
+}

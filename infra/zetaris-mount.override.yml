@@ -1,0 +1,15 @@
+# Compose override for the Zetaris platform (the zetaris-platform folder from Zetaris Cloud).
+# Zetaris runs in Docker and cannot read files on the laptop, so this mounts Nightlist's
+# data/ folder read-only into the query engine and API at /opt/nightlist/data, which is
+# where the file-store tables in sql/01_sources.sql point (ZETARIS_FILE_ROOT).
+#
+# From the zetaris-platform folder:
+#   NIGHTLIST_DATA=/absolute/path/to/nightlist/data \
+#   docker compose -f docker-compose.yml -f /absolute/path/to/nightlist/infra/zetaris-mount.override.yml up -d
+services:
+  driver:
+    volumes:
+      - ${NIGHTLIST_DATA:?set NIGHTLIST_DATA to the absolute path of nightlist/data}:/opt/nightlist/data:ro
+  api:
+    volumes:
+      - ${NIGHTLIST_DATA:?set NIGHTLIST_DATA to the absolute path of nightlist/data}:/opt/nightlist/data:ro

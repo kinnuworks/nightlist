@@ -1,0 +1,13 @@
+node_modules
+**/node_modules
+web/dist
+web/dist-static
+web/replay-data
+data/runtime
+logs/*.jsonl
+.env
+.env.*
+!.env.example
+.git
+*.log
+.DS_Store

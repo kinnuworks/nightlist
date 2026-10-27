@@ -6,6 +6,25 @@ The model reads the trials. It never reads the patients. Each eligibility criter
 
 Track: Solving Fragmented Intelligence (Open Agent Hackathon 2026).
 
+## Try it in 60 seconds
+
+No accounts, keys or Docker needed. Node 20 or newer.
+
+```bash
+git clone https://github.com/kinnuworks/nightlist.git && cd nightlist
+npm ci && npm run build -w web
+npm run demo
+npm start
+```
+
+Open http://localhost:8787 and start with the patient the worklist puts first. Or skip the UI and run one overnight screen from the command line:
+
+```bash
+curl -s -X POST http://localhost:8787/run -H "Content-Type: application/json" -d @input_examples/example_1.json
+```
+
+It re-runs the night (a few seconds) and returns the headline, the agents involved, one patient's matches with the criteria a person still has to read, and the path of the trace for that run. Three sample inputs and the outputs they produced are in [input_examples/](input_examples/) and [output_examples/](output_examples/). With Docker: `docker build -t nightlist . && docker run --rm -p 8787:8787 nightlist`.
+
 ## Where to check each requirement
 
 | Requirement | Proof |
@@ -14,7 +33,7 @@ Track: Solving Fragmented Intelligence (Open Agent Hackathon 2026).
 | A Meterless engine works in a feature, with a passing test | World Model, H-MEM and Scout Intent in [engines/](engines/); `npm run engines` runs the official Meterless suites |
 | Nightshift is the AI provider | [server/src/nightshift.ts](server/src/nightshift.ts); a live run's trace with the model per request in [docs/nightshift-run.md](docs/nightshift-run.md) |
 | NVIDIA Nemotron | Behind Nightshift's `meterless/deep` (compile) and `meterless/fast` (check) routes; serving model recorded per request |
-| Runs from a clean clone, no accounts | `npm run setup`, `npm run demo`, `npm start` (sample mode) |
+| Runs from a clean clone, no accounts | `npm run setup`, `npm run demo`, `npm start` (sample mode), or the [Dockerfile](Dockerfile); `POST /run` with [three sample inputs and outputs](input_examples/) |
 | Evaluation | [docs/EVALUATION.md](docs/EVALUATION.md); `npm run eval` |
 | Demo video and slide deck | Links in the submission form |
 
@@ -69,7 +88,9 @@ Live mode: copy `.env.example` to `.env`, set the Zetaris and Nightshift values,
 
 ### Without the UI
 
-Every screen is backed by a JSON route:
+`POST /run` re-runs the overnight screen and returns structured JSON: the headline, what changed overnight, the top of the worklist, the agents and their roles, the trace id and log file, and, when the input names a patient, that patient's matches and open items. Send `"options": { "rerun": false }` to read the latest run instead. Errors come back as `{"status": "error", "error": {"type", "message", "recoverable"}}`. See [input_examples/](input_examples/).
+
+Every screen is also backed by a JSON route:
 
 ```bash
 curl localhost:8787/api/worklist
@@ -144,6 +165,25 @@ Nightshift is the app's AI provider: every model call goes through its OpenAI-co
 
 **NVIDIA.** Nemotron models run behind Nightshift: the larger model compiles criteria, the smaller one back-translates. This follows NVIDIA's own split for agents (a bigger model to plan, a fast one for checks).
 
+## AI and model usage
+
+Models (through Meterless Nightshift, the app's only AI provider):
+- A large NVIDIA Nemotron model behind the `meterless/deep` route compiles eligibility criteria the rules cannot express into the typed check language. Output is validated against the schema; one retry, then human review.
+- A small Nemotron model behind the `meterless/fast` route restates each compiled check in plain words; a disagreement sends the criterion to human review.
+- The trace records the model Nightshift reports for every request. Until a live Nightshift run is cached, sample mode uses the rule compiler only and says so.
+
+Sponsor technology:
+- Zetaris: data layer for six sources, the `trialmatch` USL and six DQ rules (see Sponsor technology above).
+- Meterless engines: World Model (overnight changes), H-MEM (coordinator decisions carried across nights), Scout Intent (guard on trial text), each with the official test suite.
+- Meterless Nightshift: primary AI provider, OpenAI-compatible runtime with `meterless-app` and `meterless-scope` headers.
+- NVIDIA: Nemotron models in the compile and check lanes.
+
+Agent frameworks: none. The agents are plain TypeScript modules coordinated by `server/src/night.ts`.
+
+Development tools: built with an AI coding assistant. AI-assisted coding was used for scaffolding, debugging and documentation. All generated code was reviewed and tested.
+
+Sample mode: `SAMPLE_MODE=true` (the default) runs the same semantic-layer SQL in an embedded DuckDB over the same source files, with no calls to Zetaris or Nightshift.
+
 ## Evaluation
 
 The compiler is measured by behaviour. A random sample of real criteria from the screened trials was labeled blind (the labeler never saw compiler output). For every labeled criterion, the compiled check and the gold label are both run against all 240 patients; a criterion counts as correct only when every patient gets the same verdict. Rules were tuned on a development sample and a second sample. A third sample was drawn and labeled after those rule changes and scored once, before anything else changed: on it the rule compiler gave the gold verdict for every patient on 83.8% of the criteria it compiled, and compiled 84.7% of the criteria that can be compiled. That is the number we quote. Rules fixed after that test score 87.0% on the same sample, but that sample is no longer blind. Results and every error: [docs/EVALUATION.md](docs/EVALUATION.md).
@@ -187,7 +227,19 @@ Server: criterion splitting, rule compilation including traps (KRAS G12D vs G12C
 | `web/` | The worklist UI (also builds as a static replay) |
 | `sql/` | Generated Zetaris Lightning SQL |
 | `data/` | Source files, evaluation sets |
+| `input_examples/`, `output_examples/` | Three `POST /run` requests and the responses they produced |
+| `infra/` | EHR database container and the Zetaris mount override |
 | `docs/` | Setup, evaluation, Zetaris notes, sponsor technology |
+
+## Third-party code and licences
+
+- Hono and @hono/node-server (MIT): HTTP API
+- @duckdb/node-api (MIT): embedded engine for sample mode
+- zod (MIT): schema validation for compiled checks
+- React, React DOM and Vite (MIT): the UI
+- tsx (MIT) and TypeScript (Apache-2.0): runtime and type checking
+- yaml (ISC): Scout Intent eval harness
+- Meterless conformance and eval suites (Apache-2.0), copied unchanged into `engines/*/conformance` and `engines/scout-intent/evals`; see the NOTICE files there
 
 ## Pre-existing work
 
